@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+</head>
+<body>
+<script>
+var personne = {
+	nom: "Marie",
+	age: 25,
+	danser: function (){
+		console.log ("Ça danse!");
+	}
+}
+
+personne.danser();
+console.log (personne.age);
+console.log (personne);
+
+// on n'accéde pas comme ci-dessous au prototype!!
+// console.log (personne.<prototype>);
+
+// accéder au prototype 
+console.log (personne.__proto__);
+
+
+var monArray = ["Do", "Re", "Mi"];
+console.log (monArray);
+console.log (monArray.__proto__);
+console.log (monArray.__proto__.__proto__);
+console.log (monArray.__proto__.__proto__.__proto__);
+
+
+var f1 = function (){
+	console.log ("Hello je suis f1");
+}
+f1();
+console.log (f1);
+//console.log (f1.__proto__);
+//console.log (f1.__proto__.__proto__);
+
+var PersonneGen = function (nom, prenom) {
+	this.nom = nom;
+	this.prenom = prenom;
+	this.danser = function (){
+		console.log (this.nom + " danse");
+	}
+}
+var p1 = new PersonneGen ("Armstrong","Louis");
+var p2 = new PersonneGen ("Aznavour","Charles");
+console.log (p1.nom);
+console.log (p2.prenom);
+// p1.chanter();
+
+console.log (p1);
+console.log (p2);
+PersonneGen.prototype.chanter = function (){
+	console.log (this.nom + " chante (prototype)");
+}
+p1.chanter(); // bon!
+p1.danser(); // pas bon!
+
+// vérification
+console.log (p1.__proto__ == PersonneGen.__proto__);
+
+// exemple pratique
+var Ingredient = function (nom, origin) {
+	this.nom = nom;
+	this.origin = origin;
+}
+var i1 = new Ingredient ("riz", "Japon");
+var i2 = new Ingredient ("banane", "Brésil");
+
+Ingredient.prototype.afficher = function (){
+	console.log ("nom: " + this.nom);
+	console.log ("origin: " + this.origin);
+}
+
+Ingredient.prototype.type = "bio";
+i1.afficher();
+console.log (i1.type);
+i1.__proto__.type = "pollué";
+console.log (i1.type);
+console.log (i2.type);
+
+
+
+
+
+
+// le moule à films!
+class Film {
+    // le constructeur: méthode spéciale qui est appelée à chaque fois qu'on crée un objet film (voir plus bas)
+    constructor (titre, realisateur, dateSortie) {
+        this.titre = titre;
+        this.realisateur = realisateur;
+        this.dateSortie = dateSortie;
+    }
+    // le reste de méthodes (notez qu'on n'écrit plus le mot "function")
+    afficherFilm () { 
+        console.log ("Le film " + this.titre + " a été réalisé par " + this.realisateur + " et est sorti le " + this.dateSortie);
+    }   
+}
+
+// créer les objets est beaucoup plus facile maintenant
+let film1= new Film ("Problemos", "Eric Judor", "10/5/2017");
+let film2= new Film ("Matrix", "The Wachowskis", "1/1/1999");
+console.log (film1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

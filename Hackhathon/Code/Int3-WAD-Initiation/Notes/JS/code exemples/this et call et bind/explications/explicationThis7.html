@@ -1,0 +1,37 @@
+<html>
+<head>
+<meta charset='utf-8' />
+</head>
+<body>
+<script>
+
+
+// SOLUTION: copier la référence de this
+// dans un objet (ex: self) avant de l'utiliser
+// dans le contexte de la fonction "interne"
+// ----------------------
+var monFilm = {
+	titre: "Porco Rosso",
+	duree: 140,
+	prix: 25,
+	calculePrixPromo: function (pourcentagePromo){
+		let self = this; // on copie la référence à this et on l'utilise au lieu de celui-ci
+					// comme ça on sait que self contient la valeur de this à cet lieu précis
+		var  changePrix = function (nouveauPrix){
+			self.prix = nouveauPrix; // this est une référence à l'objet window (voir les exemples précédents)
+		}
+		changePrix(1000); // rien ne changera dans monFilm
+		return (self.prix - self.prix * pourcentagePromo / 100);
+
+	}	
+}
+
+prixPromo = monFilm.calculePrixPromo (20);
+console.log (monFilm.titre + " coute " + prixPromo + " euros");
+console.log (this); // on n'a pas touché l'objet global, tout va bien!
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<html>
+<head>
+<meta charset='utf-8' />
+</head>
+<body>
+<div id = "monDiv"></div>
+
+<script>
+console.log (5 == 5); // true
+console.log (5 === 5); // true
+console.log ("5" === 5); // false
+
+var x = "Isa";
+var y = "Isa";
+console.log (x == y); // true
+
+var x = false;
+var y = true;
+console.log (x == y); // false
+
+console.log (2 == 2);
+console.log (2 == 1);
+console.log (NaN == NaN);
+console.log (0 / -3 == 0 / 3);
+
+var voiture ={
+	vitesse: 200
+}
+var autreVoiture = {
+	vitesse: 200
+}
+console.log (voiture == autreVoiture);
+
+var encoreVoiture = voiture;
+console.log (voiture == encoreVoiture);
+
+encoreVoiture.vitesse = 1000;
+console.log (voiture);
+
+
+var ages = ["34", "45", "40"];
+
+console.log (ages[0] == 34);
+
+console.log (true == 1);
+
+
+	console.log (typeof (monDiv.innerHTML));
+	console.log (monDiv.innerHTML);
+
+if (monDiv.innerHTML == null){
+
+	
+	console.log ("hello, il n'y a rien dans monDiv");
+}
+
+var a = [3,4,6];
+var b = [3,4,6];
+var as = JSON.stringify (a);
+var bs = JSON.stringify (b);
+console.log (as == bs);
+console.log (as);
+console.log (bs);
+
+var p1 = {
+	nom: "Marie",
+	age: 45
+}
+var p2 = {
+	nom: "Marie",
+	age: 45
+}
+console.log (JSON.stringify(p1));
+console.log (JSON.stringify(p2));
+
+console.log (JSON.stringify(p1) == JSON.stringify(p2));
+
+
+
+</script>
+
+
+
+</body>
+</html>

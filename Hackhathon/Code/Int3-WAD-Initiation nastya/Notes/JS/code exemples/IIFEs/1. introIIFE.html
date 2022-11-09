@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+</head> 
+<body>
+<script>
+// Dans ce fichier on montre des exemples très basiques de IIFEs
+// Note: D'abord, comme rappel, on montre une fonction de base et une fonction 
+// comme expression stockée dans une variable
+
+
+// 1. fonction de base
+function fritesEtMoules (){
+	console.log ("En Belgique... ce sont les frites et les moules!");
+}
+// 1. appel
+fritesEtMoules();
+
+
+
+
+// 2. fonction comme expression avec un paramètre
+// (Cette fonction reçoit un produit, demande à l'utilisateur la sauce à rajouter et 
+// affiche un message)
+quelleSauce = function (produit){
+	var sauce = prompt ("Quelle sauce voulez-vous pour le " + produit + "?");
+	if (sauce == "andalouse") {
+		console.log ("Sans doute c'est le meilleur choix! Bon appetit!");
+	}	
+	else {
+		console.log ("Ok!");
+	}
+}
+// 2. appel (n'oubliez pas le paramètre!)
+quelleSauce("hamburger");
+
+
+// 3. IIFE: on peut créer la même chose mais on appel directement
+// Du coup on ne reutilise pas la fonction! Quelle est l'avantage alors??
+// La réponse est dans "contrôle de la portée avec IIFE.html"
+(function (produit){
+	var sauce = prompt ("Voulez-vous quelle sauce pour le " + produit + "?");
+	if (sauce == "andalouse") {
+		console.log ("Sans doute c'est le meilleur choix! Bon appetit!");
+	}
+	else {
+		console.log ("Ok!");
+	}
+})("frites");
+// 3. appel: il n'y a pas! elle est appelée dans sa création
+
+
+
+// IIFE qui calcule le prix TVAC, elle ne renvoie rien
+(function (prix, tva){
+	var prixTVAc = prix * (1 + tva / 100);
+	console.log ("Le prix TVAC est : " + prixTVAc);
+})(250,21);	
+
+// IIFE qui calcule le prix TVAC et le renvoi
+var prixTVAc = (function (prix, tva){
+	var prixTVAc = prix * (1 + tva / 100);
+	return(prixTVAc);
+})(500,21);	
+console.log ("Le prix TVAC (avec l'IIFE qui a un return) "+prixTVAc);
+
+
+// D'autres exemples simples d'IIFE
+(function (){
+	console.log ("Allons boire un verre");
+})();
+
+
+(function () {
+	console.log ("Allons prendre un verre!!"); 
+
+})();
+
+
+
+ 
+
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+</head> 
+<body>
+<script>
+
+// le moule à films!
+class Film {
+	// le constructeur: méthode spéciale qui est appelée à chaque fois qu'on crée un objet film (voir plus bas)
+	constructor (titre, realisateur, dateSortie) {
+		this.titre = titre;
+		this.realisateur = realisateur;
+		this.dateSortie = dateSortie;
+	}
+	// le reste de méthodes (notez qu'on n'écrit plus le mot "function")
+	afficherFilm () { 
+		console.log ("Le film " + this.titre + " a été réalisé par " + this.realisateur + " et est sorti le " + this.dateSortie);
+	}	
+}
+
+// créer les objets est beaucoup plus facile maintenant
+var f1= new Film ("Problemos", "Eric Judor", "10/5/2017");
+var f2= new Film ("Matrix", "The Wachowskis", "1/1/1999");
+
+f1.afficherFilm();
+f2.afficherFilm();
+
+</script>
+</body>
+</html>

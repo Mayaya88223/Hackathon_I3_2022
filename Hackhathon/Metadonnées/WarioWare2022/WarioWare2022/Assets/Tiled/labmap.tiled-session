@@ -1,0 +1,66 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "labymap.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "Tous les Fichiers (*)",
+    "fileStates": {
+        "": {
+            "scaleInEditor": 1
+        },
+        "#Star": {
+            "scaleInDock": 1
+        },
+        "#coral": {
+            "scaleInDock": 1
+        },
+        "#star": {
+            "scaleInDock": 1
+        },
+        "labymap.json": {
+            "scale": 0.8324374999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 400.6306779788273,
+                "y": 255.2744200015016
+            }
+        },
+        "labymap.json#coral": {
+            "scaleInDock": 1
+        },
+        "labymap.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 433,
+                "y": 295
+            }
+        },
+        "labymap.tmx#coral": {
+            "scaleInDock": 1
+        }
+    },
+    "last.exportedFilePath": "D:/repos/Unity/Labyrinth/Assets/Tiled",
+    "last.imagePath": "E:/repos/JavaScript/LabyrinthShrimp/Assets/Images",
+    "map.height": 15,
+    "map.lastUsedExportFilter": "Fichiers de carte JSON (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 34,
+    "map.width": 25,
+    "openFiles": [
+        "labymap.tmx"
+    ],
+    "project": "labmap.tiled-project",
+    "property.type": "bool",
+    "recentFiles": [
+        "labymap.tmx",
+        "labymap.json"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.transparentColor": "#000000",
+    "tileset.useTransparentColor": true
+}

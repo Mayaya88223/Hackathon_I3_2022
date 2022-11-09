@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+</head> 
+<body>
+<button type="button">Salut</button>
+<button type="button">Hola</button>
+<button type="button">Hello</button>
+
+<script>
+// une solution: créer une IIFE (voir l'explication plus bas)
+
+var boutons = document.getElementsByTagName ("button");
+console.log (boutons)
+
+
+for (var i=0; i< boutons.length; i++){
+	// on crée un contexte. Chaque variable "valeur" est UNE COPIE de i
+	// Quand le click se produit, on ne prend pas la valeur de i mais 
+	// la valeur d'une copie de i (la variable "valeur")
+	// qui est independante de i
+	(function (valeur){
+		boutons[i].addEventListener ("click", function (evenement){
+			console.log ("click sur le bouton " + valeur);
+		});
+	})(i);
+}
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+	<div id="div1">
+	Bonjour!
+	</div>
+	<ul id="ul1">
+		<li>Voili</li>
+		<li>Voila</li>
+	</ul>
+	<script>
+	
+	// exemple1: closure
+	function message (contenu){
+		
+		var nombreFois = 5; 
+		
+		return function (personne){
+			// notez que "nombreFois" et "contenu" sont accésibles dans cette fonction
+			for (var i=0; i<nombreFois;i++){
+				console.log (contenu + " " + personne)
+			}
+		}
+	}
+	
+	var messager1 = message ("J'ai faim");
+	// observez que la fonction anonyme peut toujours accéder à la valeur de 
+	// "contenu" (param) et de "nombreFois" (variable interne)
+	messager1 ("Lucie");
+	messager1 ("Alice");
+	
+	var messager2 = message ("Donne moi un gâteau");
+	// la variable contenu change maintenant
+	messager2 ("Laure");
+	messager2 ("Nicole");
+	
+	// on peut appeler aussi dans une seule ligne:
+	message ("Aussi une glâce")("Michelle");
+	
+	
+	
+	
+	
+	
+	// exemple 2
+	function obtenirModificateurStyle (element){
+		// "element" est accésible depuis la fonction ci-dessous
+		return function (attribut, nouvelleValeur){
+			element.style[attribut] = nouvelleValeur;
+		}
+	}
+	
+	// nous allons obtenir une fonction pour modifier div1
+	var divModif = obtenirModificateurStyle (div1);
+	
+	divModif ("color", "red");
+	divModif ("background-color", "yellow");
+	divModif ("width" ,"400px");
+	
+	// nous allons obtenir une fonction pour modifier une liste
+	var ulModif = obtenirModificateurStyle (ul1);
+	ulModif ("background-color","orange");
+	
+	
+	// exemple 3
+	function generateurFonctions (){
+		var tab = [];
+		
+		for (var i = 0; i < 3; i++){
+				tab.push (
+					function (){
+							console.log (i);
+					}
+				)
+		
+		}
+		return tab;
+	}
+	
+	var mesFonctions = generateurFonctions();
+	mesFonctions[0](); // on obtient 3
+						// le problème: la fonction à accès aux valeurs ACTUELLES de i
+	mesFonctions[2]();
+	
+	
+	
+	</script>
+</body>
+</html>
+	

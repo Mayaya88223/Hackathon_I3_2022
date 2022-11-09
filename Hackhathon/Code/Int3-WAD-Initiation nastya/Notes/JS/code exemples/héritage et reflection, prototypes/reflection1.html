@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+		
+        <title></title>
+    </head>
+    <body>
+	
+<script>
+
+var chocolatGenerique = {
+	type: null,
+	prixKg: null,
+	manger: function (){
+		console.log ("am am am le chocolat " + this.type + " comment c'est bon!!");
+	},
+	afficherInfos: function (){
+		console.log ("Je suis un chocolat " + this.type + " et je coûte " + this.prixKg + " le kilo");
+	}
+}
+
+var monChoco = {
+	type: "noir",
+	prixKg: 100	
+}
+// à ne jamais faire, juste pour illuster le concept du 
+// prototype
+// monChoco.manger (); // erreur, la méthode n'existe pas pour monChoco
+monChoco.__proto__ = chocolatGenerique; // on ne doit jamais affecter les prototypes de cette manière
+monChoco.manger();
+monChoco.afficherInfos();
+
+for (var propriete in monChoco){
+	console.log (propriete + ":" + monChoco[propriete]); 
+	// nous pouvons lister les propriétés et les méthodes ainsi que ses valeurs, et 
+	// savoir aussi si elles appartiennent à l'objet en soi ou pas
+	// (ici les méthodes manger et afficherInfos n'appartiennent pas 
+	// à l'objet original: hasOwnProperty renvoie faux alors)
+	console.log (propriete + ":" + monChoco[propriete] + monChoco.hasOwnProperty (propriete));
+	
+}
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+		
+        <title></title>
+    </head>
+    <body>
+	
+<script>
+
+// cet objet n'est plus une fonction!
+var chocolatGenerique = {
+	type: null,
+	prixKg: null,
+	manger: function (){
+		console.log ("am am am le chocolat " + this.type + " comment c'est bon!!");
+	},
+	afficherInfos: function (){
+		console.log ("Je suis un chocolat " + this.type + " et je coûte " + this.prixKg + " le kilo");
+	}
+}
+
+
+
+// object vide contenant les propriétés et les méthodes du prototype (chocolatGenerique)
+var unChoco = Object.create (chocolatGenerique); 
+console.log ("objet qui héritera, vide. Son prototype __proto__ est l'objet de base");
+console.log (unChoco); // observez le prototype
+console.log (unChoco.__proto__);  // observez le prototype
+console.log (unChoco.__proto__ === chocolatGenerique); // c'est le même objet!
+
+
+// on peut modifier les valeurs des propriétés
+unChoco.type = "noir"; // Attention! si on met cette ligne, le console log précédant affiche déjà cette valeur
+unChoco.prixKg = 100;
+
+
+// appeller les méthodes...
+unChoco.manger();
+
+// modifier le prototype de l'objet (son __proto__, mais le prototype de base ne changera pas)
+
+console.log ("Création d'une méthode propre à l'objet qui hérite");
+unChoco.coucou = function (){
+	console.log (this.type + " dit coucou!");
+}
+console.log (unChoco);
+
+
+console.log ("L'objet qui hérite, complet");
+console.log (unChoco);
+
+// Simulation de Object.create
+Object.creer = function (objet){
+	function F(){};
+	F.prototype = objet;
+	return new F();
+}
+
+var chocolatGenerique2 = {
+	type: null,
+	prixKg: null,
+	manger: function (){
+		console.log ("am am am le chocolat " + this.type + " comment c'est bon!!");
+	},
+	afficherInfos: function (){
+		console.log ("Je suis un chocolat " + this.type + " et je coûte " + this.prixKg + " le kilo");
+	}
+}
+
+
+var choco2 = Object.creer (chocolatGenerique2);
+console.log ("choco2");
+console.log (choco2.__proto__);
+console.log (unChoco.__proto__);
+console.log (unChoco.__proto__.constructor == choco2.__proto__.constructor);
+
+
+
+
+
+
+</script>
+</body>
+</html>

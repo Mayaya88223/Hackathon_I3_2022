@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+</head> 
+<body>
+
+<script>
+// infamous loop sans DOM
+var noms = ["Tony Stark", "John Rambo", "James Bond", "Rick James"];
+ 
+// voici une fonction qui renvoie un array de fonctions
+// Chaque fonction dis bonjour en indiquant le nom d'une personne de l'array "noms"
+function creerSalutations(names) {
+    
+	var salutations = []; // ceci est l'array de fonctions, vide en principe
+     
+	// cette boucle crée et rajoute une fonction dans l'array à chaque tour
+    for (var i = 0; i < noms.length; i++) {   
+        // on crée une fonction qui renvoie la salutation
+        var renvoieNom = function() {
+            return "Bonjour, je suis " + noms[i] + "!";
+        }
+        salutations.push(renvoieNom);
+    }
+	// l'array est construit, on le renvoie
+    return salutations;
+}
+
+// on appelle la fonction 
+var lesFunctionsDeSalutation = creerSalutations(noms);
+ 
+// obtenir la première fonction de l'array
+var f = lesFunctionsDeSalutation[0];
+ 
+// on la lance, mais elle ne fonctionne 
+// comme attendu car la valeur prise de "i" quand on appelle
+// sera celle d'après l'exécution de la boucle (cette fois dans le contexte de creerSalutations)
+console.log(f()); // on obtient "undefined" car "i" vaut 4
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+/* Loosely based on the Midnight Textmate theme */
+
+.cm-s-night { background: transparent; color: #FFFFFF; }
+.cm-s-night span.CodeMirror-selected { background: #FFCC00 !important; color: #000 !important}
+.cm-s-night .CodeMirror-gutter { background: transparent; border-right: 1px solid #aaa; padding-right: 4px;}
+.cm-s-night .CodeMirror-gutter-text { color: #888; }
+.cm-s-night .CodeMirror-cursor { border-left: 1px solid white !important; }
+
+.cm-s-night span.cm-keyword { color: #FF6600; }
+.cm-s-night span.cm-number { color: #ff9085; }
+.cm-s-night span.cm-atom { color: #ff9085; }
+.cm-s-night span.cm-string { color: #66FF00; }
+.cm-s-night span.cm-attribute { color: #339999; }
+.cm-s-night span.cm-comment { color: #9933CC; font-style: italic;}
+
+.cm-s-night span.cm-tag { color: #399;}
+.cm-s-night span.cm-variable {}
+
+.cm-s-night span.cm-property {color: #399;}
+
+.cm-s-night span.cm-variable-3 {}
+.cm-s-night span.cm-def {color: #FFCC00;}
+.cm-s-night span.cm-variable-2 {}
+
+.cm-s-night span.cm-error {color: #f22;}
+
+.cm-s-night span.cm-meta { color: #FFCC00; }
+.cm-s-night span.cm-bracket {}
+.cm-s-night span.cm-builtin, .cm-s-night span.cm-special {}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+<head>
+<body>
+<ul id="listeVilles">
+	<li>Bruxelles</li>
+	<li>Gent</li>
+	<li>Namur</li>
+	<li>Charleroi</li>
+</ul>
+<div id="div2"><ul id="listeVilles2"></ul></div>
+
+<script>
+
+
+
+// avec delegation et clonage, sans doublons
+listeVilles.addEventListener ("click", function (event){
+	if (event.target.tagName=="LI"){
+		// on utilise une nouvelle propriété (bool) pour 
+		// savoir si on a cliqué déjà sur le LI
+		if (event.target.dejaClique != true){	
+			let liClone = event.target.cloneNode (true);
+			
+			listeVilles2.appendChild (liClone);
+			event.target.dejaClique = true;
+		}
+		
+	}
+});
+
+
+</script>
+
+</body>
+<script>
+
+
+</script>
+</body>
+</html>

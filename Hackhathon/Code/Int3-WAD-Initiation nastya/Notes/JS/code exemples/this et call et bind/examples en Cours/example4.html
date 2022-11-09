@@ -1,0 +1,45 @@
+<html>
+<head>
+<meta charset='utf-8' />
+</head>
+<body>
+<script>
+
+var chaise = {
+	couleur: 'bleue',
+	pliable: true,
+	nombrePieds: 4,
+	plier: function () {
+		// console.log (this); // this fait référence à cet objet
+		if (this.pliable === true){
+			console.log ("Je me plie");
+		}
+		else {
+			console.log ("Je ne suis pas pliable");
+		}
+	},
+	afficher: function (){
+		console.log ("Je suis dans afficher, on va afficher le this");
+		console.log (this); // affiche l'objet où elle se trouve
+		console.log ("La chaise est " + this.couleur + " et a " + this.nombrePieds + " pieds");
+		// on va copier le this actuel, qui fait référence à l'objet
+		var self = this; // c'est la chaise!
+		
+		// on crée une fonction à l'interieur de la méthode
+		var autreFonction = function (){
+			console.log ("Je ne sers à rien");
+			console.log ("Je suis dans autreFonction, on va afficher le this");
+			console.log (this); // affiche le window
+			console.log (self); // affiche la chaise
+		}
+		autreFonction();
+	
+	}
+}
+
+chaise.afficher();
+
+</script>
+</body>
+</html>
+

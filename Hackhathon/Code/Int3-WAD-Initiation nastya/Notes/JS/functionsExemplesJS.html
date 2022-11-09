@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="div1">
+        Le contenu au départ du div 1
+    </div>
+    <div id="div2">
+        Le contenu au départ du div 2
+    </div>
+    
+    <button id="bouton1">clic pour div1</button>
+    <button id="bouton2">clic pour div2</button>
+
+    <div id="div3">
+        Hello, je suis le div3 et j'a un bouton
+        <button id="bouton3">clic pour bouton dans div3</button>
+    </div>
+    
+    <script>
+    let div1 = document.getElementById("div1");
+    console.log (div1);
+    console.log (typeof(div1));
+    div1.innerText = "Le nouveau contenu du div1";
+
+
+    bouton1.addEventListener ("click", function (evenement){
+        div1.innerText = "On a cliqué sur le bouton du div1";
+        console.log (evenement.target);
+    });
+
+    bouton3.addEventListener ("click", function (evenement){
+        // div3.innerText = "On a cliqué sur le bouton du div3";
+        console.log (evenement.target);
+        console.log (evenement.target.parentElement);
+    });
+
+    // 1. déclaration de base
+    function hello (message){
+        console.log ("hello " + message + "!");
+    }
+
+    hello ("Menem");
+    console.log (typeof(hello));
+
+    // 2. mise dans une variable
+    const bonjour = function (message){
+        console.log ("bonjour " + message);
+    } 
+    bonjour("Claude");
+
+    //
+    // debugger;
+    const f1 = function (){
+        console.log ("J'ai faim");
+    }
+
+    const f2 = function (){
+        console.log ("J'ai soif");
+    }
+
+    const faireQuelqueChose = function (maFonction){
+        console.log ("Voici, on fait quelque chose");
+        maFonction();
+    }
+
+    faireQuelqueChose(f1);
+    faireQuelqueChose(f2);
+
+    faireQuelqueChose (function (){
+        console.log ("Je suis anonyme");
+    });
+
+    document.addEventListener ('click',function (event){
+        console.log ("toto normal");
+        console.log (event.target);
+    })
+    // la même chose, mais en arrow function 
+    document.addEventListener ('click', (event) => {
+        console.log ("toto arrow");
+        console.log (event.target);
+    });
+
+    document.addEventListener ('click',f1);
+
+
+
+
+
+
+    // let t1 = [3,4,4,3];
+
+    // function maFonction (tableau1){
+    //     console.log (tableau1)
+    // }
+    // maFonction (t1);
+
+
+    </script>
+</body>
+
+</html>

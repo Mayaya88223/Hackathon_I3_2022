@@ -1,0 +1,55 @@
+<html>
+<head>
+<meta charset="utf-8" />
+</head>
+<body>
+<script>
+
+
+
+// 2 + 3;	// expression qui renvoie 5
+// personne.nom === "Marie";	// expression qui renvoie une valeur
+// a + 5;	// expression qui renvoie a + 5
+
+// ci-dessous une instruction if. Elle contient 
+// une expression (a>18) mais l'instruction en soi elle 
+// ne renvoie rien.
+
+// if (a >18) {
+//		console.log ("Entrez!");
+// }
+
+
+// Fonction tel qu'instruction et fonction tel qu'expression
+
+// 1. Fonction tel qu'instruction
+// Quand le moteur de JS lit cette déclaration, aucune valeur n'est générée
+function bonjour (){
+	console.log ("Bonjour à toutes!");
+}
+
+// 2. Fonction tel qu'expression
+// Quand le moteur de JS lit cette déclaration, une valeur este générée et stockée dans une variable
+// Cette fois la fonction n'a pas de nom. Quand 
+var salut = function (){
+	console.log ("Salut à toutes!");
+}
+
+// - les appels se font de la même manière
+bonjour();
+salut();
+// - le hoisting n'affecte pas les fonctions qui sont declarées comme expression (ex: salut)
+// (essayez d'appeler la fonction salut avant de l'avoir déclarée. Quelle est la différence avec la fonction bonjour?)
+
+
+// les deux sont des objets
+// avantage de l'expression: on peut utiliser la fonction 
+// de la même manière qu'on utilise une variable
+
+
+
+
+
+</script>
+</body>
+</html>

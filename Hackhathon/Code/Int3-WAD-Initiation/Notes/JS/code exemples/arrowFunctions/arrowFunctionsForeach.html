@@ -1,0 +1,92 @@
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<button id="bouton1">Bouton 1</button>
+<script>
+
+// Exemples de forEach pour simplifier le parcours d'un array
+var unArray = ["oranges", "pommes", "citrons"];
+
+// version avec for
+console.log ("Version avec for");
+for (var i = 0; i < unArray.length; i++){
+	console.log (unArray[i]);
+}
+
+// même chose avec forEach
+// appel à la fonction forEach pour parcourir un array et realiser une action.
+// forEach lance la fonction qu'on lui indique pour chaque élément
+console.log ("Version avec forEach");
+unArray.forEach (function (unElement){
+	console.log (unElement);
+});
+
+
+// note: sachez que si on modifie l'élément dans la fonction du forEach (ex: unElement = "pommes")
+// l'élément ne sera pas modifié dans l'array (car c'est une copie de la variable).
+console.log ("Version avec forEach, l'array ne change pas");
+unArray.forEach (function (unElement){
+	unElement = "citrons";
+});
+console.log (unArray);
+
+
+
+// Dans le for on agit sur l'array en soi, pas sur une copie!
+console.log ("Version avec forEach, l'array change");
+for (var i = 0; i < unArray.length; i++){
+	unArray[i]="citron";
+}
+console.log (unArray);
+
+
+// Exemple:
+
+// même chose mais avec un array qui contient des objets
+
+// On crée une clase, car on aura plein d'objets du même type
+class Auteur {
+	constructor (nom, prenom, nationalite) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.nationalite = nationalite;
+	}
+	afficherConsole () {
+		console.log ("Le nom de cet auteur est " + this.nom);
+		console.log ("Le prénom cet auteur est " + this.prenom);
+		console.log ("L'auteur de cet auteur est " + this.nationalite);
+	}
+}
+
+var auteur1 = new Auteur ("Baroja", "Pio", "espagnole");
+var auteur2 = new Auteur ("Nothomb", "Amélie", "belge");
+var auteur3 = new Auteur ("Taleb", "Nassim", "marocaine");
+
+var listeAuteurs = [auteur1, auteur2, auteur3];
+
+for (var i = 0; i < listeAuteurs.length; i++){
+	listeAuteurs[i].afficherConsole();
+}
+
+// appel à la fonction forEach pour parcourir un array et realiser une action
+
+// version sans arrow function
+listeAuteurs.forEach (function (unAuteur){
+	unAuteur.afficherConsole();
+});
+// version avec arrow function
+listeAuteurs.forEach ((unAuteur) => {
+	unAuteur.afficherConsole();
+});
+
+
+
+
+
+
+</script>
+</body>
+</html>
+

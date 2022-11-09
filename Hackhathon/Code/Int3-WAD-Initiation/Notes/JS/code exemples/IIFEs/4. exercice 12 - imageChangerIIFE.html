@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+</head> 
+<body>
+<img id="uneImage" src="./img/img1.jpg">
+<img id="autreImage" src="./img/img1.jpg">
+</body>
+
+
+<script>
+// L'utilité la plus importante des IIFEs est de créer un contexte séparé et d'eliminer des 
+// variables globales
+
+// Ici on a un compteur ("i") qui doit être incrementé à chaque événement (click ou mouseout)
+// grace aux IIFEs on peut avoir deux contextes séparés (chaque fonction a le sien!)
+// et avoir alors de variables qui portent le même nom - sans avoir peur de modifier 
+// involontairement leurs valeurs:
+
+// Dans ce cas, "i" se trouve maintenant dans les deux fonctions mais ce sont 
+// deux variables indépendantes
+// tel qu'il arrive dans imageChangerGlobalProblem.html 
+
+// Ce sont de fonctions qu'on lance une fois. Leur but n'est pas d'être réutilisées
+
+(function (){
+	var i=0;
+	var imageSuivante = function (e){
+		//console.log (e.target);
+		
+		console.log(i);
+		var imgs=["img1.jpg","img2.jpg","img3.jpg"];
+		i = (i + 1) % imgs.length;
+		document.getElementById("uneImage").src = "./img/"+imgs[i];
+		//console.log (i);
+	}
+
+	document.getElementById("uneImage").addEventListener("click", imageSuivante);
+})();
+
+(function(){
+	var i=0;
+	var imageSuivante = function (e){
+		
+		console.log (i);
+		var imgs=["img4.jpg","img5.jpg","img6.jpg"];
+		//console.log (e.target);
+		
+		i = (i + 1) % imgs.length;
+		document.getElementById("autreImage").src = "./img/"+imgs[i];
+		//console.log (i);
+	}
+	document.getElementById("autreImage").addEventListener("mouseout", imageSuivante);
+})();
+
+</script>
+
+</html>
+
+
+

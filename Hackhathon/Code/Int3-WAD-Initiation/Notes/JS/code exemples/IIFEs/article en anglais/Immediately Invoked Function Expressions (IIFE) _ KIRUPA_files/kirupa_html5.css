@@ -1,0 +1,1777 @@
+﻿/* general */
+body {
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	line-height: 1.75;
+	padding: 0px;
+	margin: 0px;
+	text-align: left;
+	text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-font-feature-settings: "liga" on;
+	background-color: #FFF;
+}
+
+div#mainBody .sectionTop {
+    padding-bottom: 15px;
+}
+
+div#mainBody .sectionTop p {
+	margin-bottom: 30px;	
+}
+
+.videoframe {
+	padding-bottom: 240px;
+    background-image: url("/images/videocaption_72.png");
+    background-repeat: no-repeat;
+    background-size: 168px;
+    background-position: calc(50% + 65px) calc(100% - 20px);	
+}
+
+	/* retina display */
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+		.videoframe {
+			background-image: url("/images/videocaption.png");
+		}
+	}
+
+.embed-container iframe, .embed-container object, .embed-container embed { 
+	position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+}
+.embed-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    border: #333 solid 5px;
+}
+#mobileFooter {
+	display: none;
+}
+#mobileHeader, #navigationSlider {
+	display: none;
+}
+div#mainContent ol li {
+	margin-bottom: 12px;
+}
+
+#tutorialInformation {
+	overflow:hidden;
+	margin-top: 5px;
+	margin-bottom: 30px;
+}
+#tutorialInformation img {
+	border: 4px solid #333;
+    padding: 0px;
+    clear: both;
+    overflow: hidden;
+    border-radius: 50%;
+    /* margin-right: 5px; */
+}
+#tutorialInformation img:hover {
+	background-color: #F2F2F2;
+}
+.authorImage {
+	float: left;
+    margin-right: 10px;
+    margin-top: 4px;
+    width: 51px;
+	display: none;
+}
+.authorText {
+	float: left;
+	width: 100%;
+	margin-top: 1px;
+}
+.inlineCode {
+	background-color: #F7F7F7;
+    color: #000000;
+    font-family: Consolas,"courier new",courier,monospace;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 5px;
+    padding-bottom: 3px;
+}
+h1 {
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 48px;
+    color: #333333;
+    margin-bottom: -5px;
+    margin-top: 0px;
+    line-height: 60px;
+    font-weight: 300;
+}
+h1 a {
+	transition: background-color .2s ease-in;
+}
+h2 {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 36px;
+    margin-bottom: -14px;
+    font-weight: 300;
+}
+
+h3 {
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 32px;
+	margin-bottom: -14px;
+	font-weight: 300;
+}
+h4 {
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 24px;
+	margin-bottom: -14px;
+	font-weight: 300;
+}
+
+h5 {
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 18px;
+	margin-bottom: -14px;
+}
+
+.tutorialInfo {
+    font-size: 18px;
+    color: #999;
+    margin-bottom: 0;
+    margin-top: 5px;
+    margin-left: 0px;
+	letter-spacing: 2px;
+	font-weight: 300;
+}
+.tutorialInfo a {
+	color: #0890ff;
+	font-weight: bold;
+	text-decoration: none;
+}
+.tutorialInfo a:hover {
+	text-decoration: underline;
+}
+a.blueHomePageEmphasis {
+	border-width: 1px;
+	color: #0066CC;
+	border-bottom-style: dotted;
+	transition: background-color .2s ease-out;
+}
+a.blueHomePageEmphasis:hover {
+	background-color: #EFF4FA;
+}
+.yellowEmphasis {
+	color: #937500;
+	background-color: #FFFF99;
+}
+.yellowEmphasis:hover {
+	border-style: none none dotted none;
+	border-width: 1px;
+}
+p {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.75;
+	color: #585858;
+}
+p.contentDescription {
+	margin-top: 5px;
+    font-size: 16px;
+    /* color: #999; */
+    opacity: .9;	
+	margin-bottom: 23px;
+}
+.centerImage {
+	text-align: center;
+}
+p.centerImage iframe {
+	border: #333 solid 10px;
+	margin-top: 30px;
+    margin-bottom: 25px;	
+}
+
+.centerImageNoBorder {
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+p.kCaption {
+    color: #000000;
+    font-family: Verdana;
+    font-size: 8pt;
+    text-align: center;
+}
+div#mainContent p.grayEmphasis {
+	display: none;	
+}
+span.credit_date {
+	font-family: Verdana;
+	font-size: 8pt;
+	color: #808080;
+}
+a:link {
+	text-decoration: none;
+}
+a.dottedLineLink {
+	border-style: none none dotted none;
+	border-width: 1px;
+	font-size: 16px;
+	color: #003366;
+	font-weight: normal;
+	transition: background-color .2s ease-out;
+}
+
+a.dottedLineLink:hover {
+	background-color: #EFF4FA;
+}
+.greenEmphasis {
+	background-color: #ECFFB3;
+	color: #336600;
+}
+a.greenEmphasis {
+	background-color: #FFF;
+	border-style: none none dotted none;
+	border-width: 1px;
+}
+a.greenEmphasis:hover {
+	background-color: #ECFFB3;
+}
+.grayEmphasis {
+	background-color: #F7F7F7;
+	color: #808080;
+}
+a.homeLinkSM {
+	font-size: 14px;
+	color: #151515;
+	right: auto;
+}
+a.blueEmphasis {
+	text-decoration: none;
+	border-radius: 2px;
+	border-style: none none dotted none;
+	border-width: 1px;
+	transition: background-color .2s ease-out;
+	background-color: #FFF;
+}
+a.extraEmphasis {
+	background-color: #E3F2F9;
+	padding: 5px;
+	border-radius: 3px;
+	text-decoration: none;
+	color: #005D89;
+}
+a.extraEmphasis:hover {
+	background-color: #CBE7F3;
+}
+a.blueEmphasis:hover {
+	background-color: #E3F2F9;
+}
+p.mainLink {
+	line-height: 16px;
+}
+.blueEmphasis {
+	background-color: #EEF7FB;
+	color: #0890ff;
+}
+.redEmphasis {
+	background-color: #FFCACA;
+	color: #990000;
+}
+
+/* main body area */
+#theHorizontalLine {
+	padding: 0px;
+	height:2px;
+	border-bottom: 1px #CCCCCC solid;
+	margin-top: -5px;
+	margin-bottom: 5px;
+	width: 100%;
+}
+.horizontalLine {
+	padding: 0px;
+	height:2px;
+	border-bottom: 1px #CCCCCC solid;
+	margin-left: -25px;
+	margin-top: -5px;
+	margin-bottom: 5px;
+}
+
+
+.headingText {
+	border-bottom-style: solid;
+	border-width: 1px;
+	border-color: #D3D2CB;
+	margin-left: 5px;
+    margin-top: -5px;
+}
+.headingText_Left {
+	border-bottom-style: solid;
+	border-width: 1px;
+	border-color: #D3D2CB;
+	margin-right: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.subHeadingText p, .subHeadingText a {
+    font-family: Arial, Helvetica, serif;
+    font-size: 9px;
+    text-align: left;
+    font-weight: bold;
+    color: #747474;
+    text-decoration: none;
+}
+
+p.subHeadingText {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#mainContent {
+	padding-left: 5px;
+    padding-top: 0px;
+    float: left;
+    width: 670px;
+    margin-bottom: 10px;
+    padding-right: 15px;
+    border-right: #CCC 1px solid;
+    margin-right: 20px;
+    margin-left: 24px;
+}
+
+div#mainContent p.horizontalLine {
+	margin-left: 0px;
+}
+#mainContent span.inlineCode a {
+	text-decoration: none;
+	border-radius: 2px;
+	background-color: #EEF7FB;
+	color: #336699;
+	border-style: none none dotted none;
+	border-width: 1px;
+}
+#mainContent span.inlineCode a:hover {
+	background-color: #CFE9F3; 
+}
+#mainBody {
+	width: 1000px;
+	margin: 0 auto;
+	padding-top: 0px;
+	clear: both;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+#rightContents {
+	width: 250px;
+    float: left;
+}
+
+#rightContents h4 {
+	font-size: 16px;
+    font-weight: bold;
+    border-top: #CCC solid 1px;
+    padding-top: 30px;
+}
+
+#rightNewsletter p {
+	font-size: 16px;
+}
+
+#tutorialInformation div.tags p {
+	padding: 0;
+	margin: 0;
+	margin-bottom: 15px;
+	margin-right: 5px;
+	line-height: 1;
+	display: inline-block;
+}
+
+#tutorialInformation div.tags a {
+	background-color: #c5e8ff;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 5px;
+    color: #2196f3;
+    line-height: 0;
+}
+
+#tutorialInformation div.tags a:hover {
+	background-color: #006bb3;
+    color: #FFF;
+}
+
+.bookContent {
+	margin-top: 30px;
+    margin-bottom: 25px;
+    border-bottom: 1px #CCC solid;
+    border-top: 1px #CCC solid;
+    padding-top: 30px;
+    padding-bottom: 30px;
+	display: flex;
+}
+
+.bookContent #bookImage {
+	width: 160px;
+    margin-right: 30px;
+}
+#animBookContent.bookContent #bookImage {
+	width: 130px;
+}
+
+.bookContent #bookContent {
+    width: 460px;
+}
+
+.bookContent #bookContent h4 {
+	font-size: 18px;
+    font-weight: bold;
+	margin: 0;
+	margin-top: 5px;
+}
+
+.bookContent #bookContent p {
+	font-size: 16px;
+    font-weight: 400;
+	margin-top: 0;
+}
+
+/* header */
+
+#headerMain {
+    /* background-image: url("//www.kirupa.com/ssi/newDesign/light_gray_background.png"); */
+    background-color: #FFFFFF;
+    border: 1px solid #999999;
+    height: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    width: 990px;
+    margin-top: -1px;
+    position: relative;
+    z-index: 10000;
+    box-shadow: 0px 0px 5px 0px #999;
+    top: 0px;
+}
+#headerContainer {
+	border-bottom: #CCC solid 1px;
+    margin-bottom: 15px;	
+}
+#headerContent {
+	width: 950px;
+    margin: 0 auto;	
+	height: 75px;
+}
+#headerContent ul li {
+	display: inline-block;
+	list-style-type: none;
+}
+#headerContent ul li:last-child {
+	margin-left: 71px;
+	margin-top: -10px;
+}
+#headerContent ul li:last-child a {
+	padding: 10px;
+	background-color: #0099FF;
+	color: #FFF;
+}
+#headerContent ul li:last-child a:hover {
+	background-color: #333;
+}
+#headerContent ul li a {
+	font-size: 14px;
+	color: #333;	
+}
+#headerContent ul {
+	padding: 0;
+	display: flex;
+    align-items: center;
+}
+#headerContent ul li.mainItems a {
+	padding-bottom: 2px;
+    margin-right: 8px;
+    margin-left: 8px;
+}
+#headerContent ul li.mainItems {
+	margin-left: 10px;
+    margin-top: -7px;
+}
+#headerContent ul li.textItem {
+    margin-top: -10px;
+}
+#headerContent ul li.textItem.activeLink a {
+	border-bottom: #333 2px solid;
+	font-weight: bold;
+}
+#headerContent ul li.textItem a:hover {
+	border-bottom: #333 4px solid;	
+}
+#headerContent ul li.firstItem {
+	margin-left: 75px;
+}
+#headerContent ul li.mainItems img {
+    margin-top: 8px;
+}
+#headerContent ul li.mainItems.headerIcon img:hover {
+	transform: scale(1.2);
+}
+
+#searchArea input {
+	border-color: #333;
+	border-width: 3px;
+	border-style: solid;
+	color: #333333;
+	font-size: 15px;
+	font-weight: bold;
+	height: 30px;
+	margin-top: 5px;
+	padding: 0 5px 0 7px;
+	width: 200px;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+#searchArea button {
+	padding: 5px;
+	border: 4px #20A6FF solid;
+	background-color: #20A6FF;
+	width: 36px;
+	height: 36px;
+	color: transparent;
+	line-height: 0;
+	position: relative;
+	top: -2px;
+	background-image: url("//www.kirupa.com/images/mag_white.svg");
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+#searchArea button:hover {
+	background-color: #9DD101;
+	border-color: #9DD101;
+	cursor: pointer;
+}
+
+#searchLink img {
+	margin-left: -10px;
+    margin-right: -10px;
+	padding: 10px;
+}
+#searchLink img:hover {
+    border-radius: 50%;
+	background-color: #FFD400;
+}
+
+#miniHeader {
+	border-bottom: #CCC solid 1px;
+    margin-bottom: 15px;
+	width: 100%;
+	background-color: rgba(255,255,255,.8);
+	position: fixed;
+	z-index: 1000;
+	top: 0px;
+	transform: translate3d(0, -100px, 0);
+	transition: transform .2s cubic-bezier(0, 1.22, .76, .99);
+	padding-top: 4px;
+}
+#miniHeader.miniVisible {
+	transform: translate3d(0, 0px, 0);
+}
+#miniHeader #miniHeaderContent {
+	width: 950px;
+    margin: 0 auto;
+}
+#miniHeader #miniHeaderContent div {
+	display: inline-block;
+}
+
+#miniLogo img {
+	/* border-right: #CCC solid 1px; */
+}
+
+#miniLogo {
+	padding-right: 15px;
+}
+#miniShare {
+	padding-left: 15px;
+}
+
+#miniHelp {
+	float: right;
+}
+#miniHelp a {
+	padding: 10px;
+    margin-top: 7px;
+    display: inline-block;
+    background-color: #00C201;
+    font-size: 16px;
+    line-height: 10px;
+    border-width: 0px;
+    color: #FFF;
+    margin-right: 30px;
+    background-image: url(https://www.kirupa.com/images/comment_bubble.svg);
+    padding-left: 35px;
+    background-repeat: no-repeat;
+    background-position: -10px center;
+    background-size: 55px;
+}
+#miniHelp a:hover {
+	background-color: #00A301;
+}
+
+#bottomBanner {
+	border-width: 1px;
+	border-color: #D3D2CB;
+	width: 990px;
+	margin: 0 auto;
+	border-top-style: solid;
+	text-align: center;
+	clear: both;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+#mainFooter {
+	margin: 0 auto;
+    width: 100%;
+    display: inline-block;
+    border-top: #CCC solid 2px;
+    background-color: #F9F9F9;
+}
+
+#kcom_footer {
+	height: 	135px;
+	background-color: #3F3F3F;
+}
+
+#kcom_footer_content {
+	margin: 0 auto;
+    width: 990px;	
+}
+
+#kcom_footer_content img {
+	margin-top: 50px;	
+}
+/*
+#kcom_footer_content p {
+	display: inline-block;
+    margin-left: 30px;
+    border-left: #4E4E4E 2px solid;
+    padding-left: 30px;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    color: #FFF;
+    font-size: 24px;
+    line-height: 24px;
+    padding-bottom: 15px;
+	padding-top: 5px;
+}
+*/
+
+#kcom_footer_content a {
+	color: #FFF;	
+}
+
+#kcom_footer_content a:hover {
+	text-decoration: underline;
+}
+
+#kcom_footer_content form p {
+	font-size: 14px;
+    color: #666;
+    font-weight: 700;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+#rightNewsletter #mce-EMAIL {
+    background-color: #FFFFFF;
+    border: #CCC 2px solid;
+    font-size: 16px;
+    padding: 7px;
+    margin-right: 15px;
+    color: #333;
+    width: 207px;
+    background-image: url(https://www.kirupa.com/images/mail_newsletter.svg);
+    background-repeat: no-repeat;
+    background-position: 7px center;
+    padding-left: 32px;
+}
+
+.greenButton {
+	background-color: #00c201;
+    padding: 6.5px;
+    font-size: 16px;
+    color: #FFF;
+    border: 0;
+    font-weight: 400;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.greenButton:hover {
+	background-color: #00A301;
+	cursor: pointer;
+}
+
+#kcom_footer_content form {
+	display: inline-block;
+    margin-left: 30px;
+    border-left: #4E4E4E 2px solid;
+    padding-left: 33px;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    color: #FFF;
+    font-size: 24px;
+    line-height: 24px;
+    padding-bottom: 15px;
+	padding-top: 5px;
+}
+
+#socialIcons {
+	margin-top: 85px;
+	margin-left: 125px;
+}
+#socialIcons img {
+	margin-right: 30px;
+}
+#socialIcons img:hover {
+	transform: scale3d(1.2, 1.2, 1);
+}
+
+
+#footer {
+    width: 990px;
+    height: 290px;
+    margin: 0 auto;
+    clear: left;
+    margin-top: 25px;
+	background-image: url("//www.kirupa.com/images/colored_bar.png");
+    background-size: 990px 5px;
+    background-repeat: no-repeat;
+    background-position: 0px bottom;
+}
+#footerBottom {
+	width: 990px;
+	clear: both;
+	height: 300px;
+	margin: 0 auto;
+	text-align: right;
+    background-image: url("//www.kirupa.com/images/mountains_footer.svg");
+    background-repeat: no-repeat;
+    background-position: 35px bottom;
+    background-size: 350px;
+}
+
+#footerBottom img {
+	width: 270px;
+    padding: 20px;
+}
+
+#welcome {
+	float: left;
+    width: 490px;
+    padding-top: 0px;
+	background-image: url("//www.kirupa.com/images/kirupa_sig.png");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 60px) calc(100% - 5px);
+    background-size: 130px;
+}
+
+#welcome p {
+	font-weight: 300;
+	font-size: 16px;
+	padding-right: 50px;	
+}
+
+.footerStuff {
+	height: 260px;	
+}
+
+.footerStuff li a {
+	position: relative;
+}
+
+    .footerStuff li a:hover::after {
+      width: calc(100% + 1px);
+    }
+    .footerStuff li a::after {
+      content: "";
+      position: absolute;
+      display: inline-block;
+      left: 0px;
+      bottom: 0px;
+      height: 2px;
+      width: 0px;
+      background-color: #333;
+      transition: width .3s cubic-bezier(.15, .56, .17, .94);
+    }
+	
+	#followUs.footerStuff li a::after {
+		left: 34px;
+	}
+	
+	#followUs.footerStuff li a:hover::after {
+      width: calc(100% - 33px);
+    }
+
+#footer h4 {
+	color: #CCC;
+    font-weight: 100;
+    margin-top: 0px;
+    font-size: 24px;
+}
+
+#stuff {
+    float: left;
+    width: 200px;
+    border-left: #CCC 2px solid;
+    padding-left: 50px;
+}
+
+#stuff li {
+	list-style: none;
+	margin-bottom: 10px;
+}
+
+#stuff li a {
+    font-weight: 300;
+    color: #333;
+    font-size: 18px;
+}
+
+#stuff ul {
+	padding-left: 0;	
+}
+
+#followUs {
+    float: left;
+    width: 200px;
+    border-left: #CCC 2px solid;
+    padding-left: 40px;
+}
+
+#followUs ul {
+	padding-left: 0px;	
+}
+
+#followUs li {
+	list-style: none;
+    margin-bottom: 10px;
+	margin-left: 10px;
+}
+
+#followUs li a {
+    font-weight: 300;
+    color: #333;
+    font-size: 16px;
+    padding-left: 35px;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position-y: center;
+}
+
+
+.footerHeading {
+    font-size: 24px;
+    color: #333;
+    margin-top: 0px;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+.footerText {
+	font-size: 18px;
+    line-height: 1.5;
+    margin-left: 10px;
+    margin-top: -15px;
+}
+.connectItem {
+	float: left;
+	width: 150px;
+	height: 45px;
+}
+.connectItemWrapper {
+	margin-top: -15px;
+}
+.footerList {
+	margin: 0px;
+	padding-left: 20px;
+}
+
+#footer3rdbox {
+	float: left;
+	width: 395px;
+	padding: 5px;
+	margin-top: 14px;
+	padding-top: 0px;
+	margin-left: 4px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    background-color: #EBEBEB;
+    height: 174px;
+    display: inline-block;
+    background-image: url("//www.kirupa.com/ssi/newDesign/mt_logo_footer.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-right: 10px #F16767 solid;
+}
+#footer3rdbox:hover {
+	border-right: 10px #48E0A4 solid;
+	opacity: .9;
+}
+#writeTutorialBox {
+	background-color: #F5F5F5;
+	margin-top: -10px;
+}
+#writeTutorialBox a:hover {
+	cursor: pointer;
+}
+#writeTutorialBox a {
+    color: #000000;
+    display: block;
+    font-size: 14px;
+    line-height: 24px;
+    text-decoration: none;
+    padding: 40px;
+    padding-left: 80px;
+	background-image: url("//www.kirupa.com/ssi/newDesign/submit_plus.png");
+	background-position: 10px 37px;
+	background-repeat: no-repeat;
+}
+#writeTutorialBox:hover {
+	background-color: #E6F76F;
+	cursor: pointer;
+}
+
+
+/* footer links */
+#bottomFooterLinks {
+	width: 100%;
+    height: 50px;
+    margin: 0 auto;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	text-align: center;
+}
+#bottomFooterLinks p {
+	font-size: 12px;
+	color: #999999;
+}
+
+.copyrightClass {
+	padding-left: 180px;
+}
+.rightBorder {
+	
+}
+p.centerImage img {
+	border: 2px solid #666;
+}
+
+iframe.centerImage {
+	border: 1px solid #666;
+}
+
+div #mainContent ol {
+	list-style-type: lower-roman;
+    font-size: 18px;
+    color: #585858;
+}
+table.data p {
+	margin: -5px;
+}
+
+
+#tutorialBox {
+	display: none;
+	background-color: #F8F8F8;
+	margin-top: 10px;
+}
+#tutorialBox p {
+	padding: 6px;
+	padding-left: 30px;
+	padding-top: 9px;
+	background-image: url('//www.kirupa.com/images/small_questionmark.png');
+	background-repeat: no-repeat;
+	background-position: 8px center;
+	margin-right: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	color: #555;
+}
+#tutorialBox p a {
+	color: #59B200;
+	font-weight: bold;
+}
+#tutorialBox p a:hover {
+	border-bottom: 1px #59B200 dashed;
+}
+#getHelpTutorialLink {
+	width: 500px;
+	display: inline-block;
+}
+#shareTutorialLink {
+	display: inline-block;
+	float: right;
+	margin: 13px;
+	min-width: 120px;
+}
+#mainContent ul li {
+	line-height: 1.75;
+	font-size: 18px;
+	margin-bottom: 15px;
+	color: #585858;
+}
+
+
+#kirupaName {
+	background-image: url("//www.kirupa.com/images/kirupa_pic_large.jpg");
+    background-repeat: no-repeat;
+    display: block;
+    background-size: 126px;
+    background-position: left center;
+    padding-left: 150px;
+    border-top: #E5E5E5 2px solid;
+    border-bottom: #E5E5E5 2px solid;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+#sigCaption {
+    margin-left: 57px;
+    margin-bottom: -20px;
+    width: 350px;
+    margin-top: 20px;
+}
+
+#kirupaName span {
+    font-weight: 700;
+    font-size: 32px;
+	line-height: 10px;
+}
+
+#followRight {
+	border-top: #CCC 1px solid;
+    text-align: center;
+    height: 170px;
+    background-image: url("//www.kirupa.com/images/follow_caption.png");
+    background-size: 220px;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
+
+#followRight img {
+	width: 21px;
+    padding: 15px;
+    margin-top: 40px;
+	position: relative;
+	border-radius: 50%;
+}
+
+#followRight img:hover {
+	transition: all .2s cubic-bezier(0, .72, .81, 1.3);
+	transform: scale3d(1.1, 1.1, 1.1);
+}
+
+#followRight #twitter:hover {
+	background-color: rgba(0, 187, 246, 0.18);	
+}
+
+#followRight #facebook:hover {
+	background-color: rgba(207, 207, 207, 0.38)
+}
+
+#followRight #youtube:hover {
+	background-color: rgba(253, 0, 0, 0.14);	
+}
+
+#followRight #pinterest:hover {
+	background-color: rgba(240, 52, 50, 0.22);	
+}
+
+#bookBannerContent {
+	margin-top: 0px;
+	margin-left: 5px;
+	padding-bottom: 1px;
+	margin-bottom: 20px;
+}
+#bookBannerContent img {
+	margin-left: 32px;
+	margin-top: -10px;
+}
+
+#bookBannerContent p {
+	margin-top: 0px;
+}
+#bookBannerContent li {
+	margin-bottom: 15px;
+	margin-left: 0px;
+	list-style: none;
+	padding-left: 70px;
+	padding-top: 5px;
+	margin-right: 10px;
+	background-repeat: no-repeat;
+	background-position: 3px 5px;
+	line-height: 20px;
+	padding-bottom: 15px;
+	background-size: 60px;
+}
+#bookBannerContent li:hover {
+	background-size: 63px;
+	background-position: 0px 3px;	
+}
+#bookBannerContent ul  {
+	padding: 0;
+	margin-left: 5px;
+}
+
+#bookBannerContent ul ul.buyNowRight li {
+	padding: 0;
+	margin: 0;
+}
+
+#bookBannerContent ul ul.buyNowRight {
+	padding: 0;
+	margin: 0;
+}
+
+#bookBannerContent ul ul.buyNowRight li a {
+	padding: 5px;
+	margin-top: 7px;
+	display: inline-block;
+	background-color: #00C201;
+	font-size: 12px;
+	line-height: 10px;
+	color: #FFF;
+}
+
+#bookBannerContent ul ul.buyNowRight li a:hover {
+	text-decoration:none;
+	background-color: #00A301;
+}
+
+#bookBannerContent li a {
+	color: #333;
+    font-size: 14px;
+    background-repeat: no-repeat;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-position: 0 3px;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+#bookBannerContent #bookAd {
+	border-bottom: 1px #CCC solid;
+	padding-bottom: 10px;
+	margin-left: -3px;
+}
+#bookBannerContent li a:hover {
+	text-decoration: underline;
+}
+
+
+#bookBannerContent li.animationRight {
+	background-image: url("//www.kirupa.com/book/images/cwa.png");
+	background-size: 55px;
+}
+
+#bookBannerContent li.js101Right {
+	background-image: url("//www.kirupa.com/images/js_abg.png");
+}
+
+#bookBannerContent li.learningReactRight {
+	background-image: url("//www.kirupa.com/book/images/learning_react.gif");
+}
+
+#rightContents #bookBannerContent li.canvasRight:hover {
+	background-size: 63px;
+	background-position: 0px 3px;
+}
+
+#bookBannerContent li.canvasRight {
+	background-image: url("https://www.kirupa.com/images/canvas_book_small.png");
+	background-size: 60px;
+}
+
+#bookBannerContent .lessemphasis {
+	color: #666;
+}
+
+#sigNewsletter {
+	border-top: 1px #CCC solid;
+    border-bottom: 1px #CCC solid;
+}
+
+#sigNewsletter h4 {
+	margin: 0;
+    font-size: 18px;
+    margin-top: 30px;
+    font-weight: bold;
+}
+#sigNewsletter p {
+	margin: 0;
+    font-size: 18px;
+    font-weight: 400;
+}
+.strikethrough {
+	text-decoration: line-through;
+}
+
+#sigNewsletter #mce-EMAIL {
+	background-color: #FFFFFF;
+    border: #CCC 2px solid;
+    font-size: 16px;
+    padding: 7px;
+    margin-right: 15px;
+    color: #333;
+    width: 320px;
+    background-image: url(https://www.kirupa.com/images/mail_newsletter.svg);
+    background-repeat: no-repeat;
+    background-position: 7px center;
+    padding-left: 32px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#sigNewsletter #mc-embedded-subscribe {
+	background-color: #00c201;
+    padding: 8.5px;
+    font-size: 16px;
+    color: #FFF;
+    border: 0;
+    font-weight: 400;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#sigNewsletter #mc-embedded-subscribe:hover {
+	background-color: #00A301;
+	cursor: pointer;
+}
+
+#sigNewsletter .smallText {
+	font-size: 12px;
+	margin-bottom: 35px;
+}
+
+#pageComments {
+	background-color: #0099FF;
+    color: #FFF;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 40px;
+    text-align: center;
+    background-image: url(https://www.kirupa.com/images/comment_bubble.svg);
+    background-repeat: no-repeat;
+    background-position: 180px center;
+    padding-left: 60px;
+    background-size: 80px;
+	pointer-events: none;
+}
+#pageCommentsImage {
+	height: 0;
+    position: relative;
+    top: -29px;
+    left: 40px;
+
+}
+
+h2#pageComments a.helpLinkTag {
+	background-color: rgba(255,255,255,0);
+	color: #CC0000;
+}
+
+#bookPromo #js101Signature {
+	background-image: url("//www.kirupa.com/images/js_abg_sig.jpg");
+    height: 200px;
+    background-repeat: no-repeat;
+    background-position: 0 -10px;
+    background-size: 650px;
+}
+
+#bookPromo #animationSignature {
+	background-image: url("//www.kirupa.com/images/animation_signature.png");
+	height: 250px;
+	background-repeat: no-repeat;
+	background-position: -8px 5px;
+}
+
+#bookPromo #canvasSignature {
+	background-image: url("//www.kirupa.com/canvas/images/canvas_book_signature_sm.png");
+	height: 250px;
+	background-repeat: no-repeat;
+	background-position: -8px 5px;
+	background-size: 670px;
+}
+
+#bookPromo #reactSignature {
+	background-image: url("//www.kirupa.com/images/react_signature.gif");
+	height: 250px;
+	background-repeat: no-repeat;
+	background-position: 5px 10px;
+	background-size: 670px;
+}
+
+#bookPromo #canvasSignature ul {
+	padding-top: 150px;
+    padding-left: 257px;
+}
+
+#bookPromo ul {
+	padding-top: 130px;
+	padding-left: 255px;
+}
+#bookPromo li {
+	display: inline;
+}
+#bookPromo li a {
+	padding: 7px;
+	background-color: #669900;
+	color: #FFF;
+	font-weight: bold;
+	margin-right: 5px;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 14px;
+}
+#bookPromo li a:hover {
+	background-color: #00A301;
+}
+
+#oldComments {
+	padding: 10px;
+}
+
+
+
+/* section content */
+
+#mainContent ul.navigationContent {
+	padding: 0;
+	margin-top: 50px;
+}
+
+#mainContent ul.navigationContent li {
+	border-bottom: #EEE solid 1px;
+    padding-bottom: 25px;
+	padding-left: 90px;
+	background-position: 15px 0px;
+	background-repeat: no-repeat;
+	list-style-type: none;
+	background-size: 50px;
+}
+
+#mainContent ul.navigationContent li:last-child {
+	border: none;
+}
+
+#mainContent ul.exampleSection li {
+    background-image: url("/css_animations/images/flask_icon.svg");
+    background-size: 85px 85px;
+    background-position: 10px 0px;
+}
+
+#mainContent ul.navigationContent li h2 {
+	margin: 0;
+    line-height: 1.5;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+
+
+#mainContent ul.navigationContent li h2 a.blueEmphasis {
+	border-width: 0px;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+#mainContent ul.navigationContent li h3 {
+	margin: 0;
+	font-size: 20px;
+}
+
+
+#mainContent ul.navigationContent li h3 a {
+	color: #131313;
+}
+
+#mainContent ul.navigationContent li p.contentDescription {
+	padding-left: 5px;
+}
+
+#mainContent ul.navigationContent li p.chapterHeadings {
+	margin: 0;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+	color: #CCC;
+	display: none;
+}
+
+#mainContent ul.navigationContent li a.buttons {
+	margin: 0;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: #FFF;
+    background-color: #3fa9f5;
+    padding: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-right: 15px;
+}
+
+#mainContent ul.navigationContent li a.buttons:hover {
+	background-color: #04CDFD;
+}
+
+#mainContent ul.navigationContent li a.buttons:nth-of-type(2) {
+	background-color: #01588f;	
+}
+
+#mainContent ul.navigationContent li a.buttons:nth-of-type(2):hover {
+	background-color: #0A2D44;
+}
+
+#mainContent ul.navigationContent li a.buttons:nth-of-type(3) {
+	background-color: #FFC107;	
+}
+
+#mainContent ul.navigationContent li a.buttons:nth-of-type(3):hover {
+	background-color: #EEB200;
+}
+
+
+
+.callout {
+	border-style: solid;
+	border-width: 0px 0px 0px 5px;
+	border-color: #999;
+	background: none repeat scroll 0 0 #FFFFFF;
+	color: #000000;
+	margin: 0;
+	padding-left: 10px;
+}
+
+.exampleCallout {
+	border-style: solid;
+    border-width: 0px 0px 0px 5px;
+    border-color: #99CC00;
+    background-color: #A8E100;
+    color: #000000;
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+div.exampleCallout p {
+	padding: 10px;
+}
+/* mobile stuff */
+@media all and (max-width: 1024px) {
+	#kirupaName {
+		background-position: left 30px;	
+	}
+	#miniHeader {
+		display: none;
+	}
+	#mainContent ul.navigationContent li h2 {
+		font-size: 24px;	
+	}
+	#animationHeader {
+		padding: 10px;
+	}
+	#sigCaption {
+		width: 250px;	
+	}
+	#pageComments {
+		background-position: left;
+	}
+	#pageCommentsImage {
+		display: none;
+		padding-left: 0;
+	}
+	h1 {
+		font-size: 32px;
+		line-height: 1.5;	
+	}
+	h2 {
+		font-size: 28px;
+		line-height: 1.5;	
+	}
+	h3 {
+		font-size: 24px;
+		line-height: 1.5;	
+	}
+	h4 {
+		font-size: 20px;
+		line-height: 1.5;	
+	}
+	.scrollOff {
+		overflow: hidden;
+	}
+	#navigationSlider.hidden {
+		opacity: 0;
+	}
+	body {
+		padding: 0px;
+	}
+	#mobileHeader ul {
+		margin: 0;
+		padding: 0;
+		height: 45px;
+	}
+	#navMobile, #searchMobile {
+	  padding: 5px;
+	  margin-top: 10px;
+	}
+	#navMobile {
+   		margin-right: 8px;
+	}
+	#searchMobile {
+		margin-right: 8px;
+		  background-color: #444;
+		  border-radius: 25%;
+		  margin-top: 6px;
+	}
+	#mobileHeader ul li {
+		display: inline-block;
+		float: left;
+	}
+	#mobileHeader ul li:last-child {
+		float: right;
+	}
+	#mainBody, #footer {
+		padding: 5px;
+		width: 95%;
+		margin: 0;
+	}
+	#headerContainer {
+		display: none;
+	}
+	#mobileHeader {
+		display: block;
+		background-color: #FFF;
+		border-bottom: #CCC 1px solid;
+	}
+	#navigationSlider {
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		
+		transform: translate3d(100%, 0, 0);
+		transition: transform .15s ease-in;
+		
+		-webkit-transform: translate3d(100%, 0, 0);
+		-webkit-transition: -webkit-transform .15s ease-in;
+		
+		z-index: 200;
+		/* overflow-y: scroll; */
+		overflow: hidden;
+		display: none;
+	}
+	
+	#mobileNavBackground {
+		width: 100%;
+		height: 100%;
+		background-color: white;
+		z-index: 150;
+		opacity: 0;
+		position: absolute;
+		
+  	}
+	
+	.syntaxhighlighter {
+	  font-size: 16px !important; 
+	}
+	
+		#navigationSlider.slideRight {
+			transform: translate3d(0%, 0, 0);
+			-webkit-transform: translate3d(0%, 0, 0);
+			display: block;
+		}
+		
+	#mobileNavItems {
+		width: 75%;
+		background-color: #333333;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+ 		overflow-y: scroll;
+ 		position: fixed;
+		-webkit-overflow-scrolling: touch;
+		margin-left: 25%;
+	}
+	#mobileNavItems li {
+		font-weight: bold;
+		font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+		font-size: 24px;
+		
+	}
+	#mobileNavItems li a {
+		color: #FFF;
+		display: block;
+		padding: 15px;
+		padding-left: 50px;
+		background-repeat: no-repeat;
+		background-position: 5px center;
+		background-position: 12px center;
+		background-size: 25px auto;
+	}
+	#animationMobileLink {
+		background-image: url("//www.kirupa.com/ssi/newDesign/header/animation.svg");
+	}
+	#javascriptMobileLink {
+		background-image: url("//www.kirupa.com/ssi/newDesign/header/rocket.svg");
+	}	
+	#htmlMobileLink {
+		background-image: url("//www.kirupa.com/ssi/newDesign/header/code.svg");
+	}	
+	#flashMobileLink{
+		background-image: url("//www.kirupa.com/ssi/newDesign/header/airplane.svg");
+	}	
+	#bookMobileLink {
+		background-image: url("//www.kirupa.com/ssi/newDesign/header/book.svg");
+		border-top: 2px #666 solid;
+		border-bottom: 2px #666 solid;
+	}	
+	#forumMobileLink{
+		background-image: url("//www.kirupa.com/ssi/newDesign/header/heart.svg");
+	}		
+	#mobileLogo {
+		margin-top: 2px;
+		padding-bottom: 0px;
+		margin-left: 10px;
+	}
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+    #rightContents {
+        display: none;
+    }
+    
+    #mainContent {
+		width: calc(100% - 5px);
+		margin: 0;
+		border: 0;
+		padding: 0;
+		padding-left: 5px;
+	}
+	
+	#mainBody {
+		
+	}
+	#headerContainer {
+		width: 100%;
+	}
+	#adArea {
+		border-bottom: 1px #CCC solid;
+	}
+	#headerMain {
+		display: none;
+	}
+	#footer, #bottomFooterLinks {
+		display: none;
+	}
+	#theHorizontalLine {
+		width: 100%;
+	}
+	
+	#adArea {
+		width: 100%;
+		float: left;
+		height: 67px;
+	}
+	
+	#adArea li {
+		margin: 0;
+		padding: 0;
+		padding: 3px;
+	}
+	
+	#adArea li a {
+		padding: 5px;
+	}
+	#adArea ul {
+		float: left;
+		padding: 2px;
+	}
+	
+	.authorText {
+		width: 100%;
+	}
+	
+	.authorImage {
+		display: none;
+	}
+	
+	#shareTutorialLink {
+		display: none;
+	}
+	
+	#tutorialBox {
+		display: none;
+	}
+	
+	.tutorialInfo {
+		margin-top: 5px;
+	}
+	
+	div#mainContent p {
+		padding-right: 5px;
+	}
+	#mobileFooter {
+		display: block;
+		font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+		font-weight: 700;
+		margin-top: -30px;
+		clear: both;
+	}
+	
+	#topFooter {
+	  padding: 10px;
+	  background-color: #D3085D;
+	  text-align: center;
+	}
+	#topFooter a {
+		color: white;
+	}
+	#bottomLinks {
+		background-color: #0C0C0C;
+		padding-bottom: 100px;
+	}
+	#bottomLinks h3 {
+	  margin: 0;
+	  padding: 10px;
+	  color: #EEE;
+	  text-align: center;
+	  font-size: 16px;
+	}
+	
+	#bookPromo {
+		display: none;
+	}
+	#disqusCaption {
+		display: none;
+	}
+	
+	#bookBannerContent {
+		margin: 0;
+		background-color: #333;
+		padding-top: 30px;
+	}
+	#bookBannerContent li {
+	  padding-bottom: 20px;
+	  padding-top: 10px;
+	}
+	#bookBannerContent li a {
+		color: #FFF;
+	}
+	
+	#mainFooter {
+		border-width: 0px;	
+		display: none;
+	}
+	#sigNewsletter #mce-EMAIL {
+		width: calc(100% - 40px);
+	}
+		
+}

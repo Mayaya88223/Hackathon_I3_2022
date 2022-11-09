@@ -1,0 +1,26 @@
+<html>
+<body>
+<script>
+
+function f1(){
+	var x=30;  // variable qui existe uniquement dans le contexte d'exécution de f1
+}
+
+function f2(){
+	x=50; // danger!!: je suis en train de modifier la valeur GLOBALE car je realise une affectation 
+		// (il manque "var" pour indiquer qu'il s'agit de la création d'une nouvelle variable au lieu d'une affectation)
+		// Si le "x" n'existe pas dans le contexte global, je suis en train de la créer
+		// Cette type d'affectation sont à éviter car on modifie le contexte global depuis l'interieur d'une fonction!
+}
+
+
+//f1();		
+//console.log (x);  // erreur, x n'est pas définie dans le contexte d'exécution global
+f2();
+console.log (x);	// affiche 50 car l'exécution de f2 crée la variable dans le contexte global
+
+
+
+</script>
+</body>
+</html>

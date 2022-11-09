@@ -1,0 +1,37 @@
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+</head>
+<body id="body1">
+<form id="form1">
+<input id="input1" value="hello dolly">
+<input id="input2" value="loulou is back in town">
+</form>
+</body>
+
+<script>
+document.getElementById ("input1").addEventListener ("click",function (e){
+	console.log ("je suis l'input1, on m'a fait clique!");
+	// console.log (this);
+	console.log (e.target);
+	console.log (e.currentTarget); // currentTarget est l'input = this
+	
+});
+
+
+document.getElementById ("form1").addEventListener ("click",function (e){
+	console.log ("je suis le form, on m'a fait clique!");
+	// console.log (this);
+	console.log (e.target);
+	console.log (e.currentTarget); // currentTarget est le form maintenant = this
+	
+	
+});
+document.getElementById ("body1").addEventListener ("click",function (e){
+	console.log ("je suis le body, on m'a fait clique!");
+});
+
+
+
+</script>
+</html>

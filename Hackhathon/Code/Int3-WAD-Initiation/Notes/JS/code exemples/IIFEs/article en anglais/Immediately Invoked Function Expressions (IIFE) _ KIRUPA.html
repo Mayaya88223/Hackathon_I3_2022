@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<link rel="shortcut icon" href="https://www.kirupa.com/favicon.png">
+<link rel="apple-touch-icon" href="https://www.kirupa.com/favicon_ios.png">
+<link rel="alternate" type="application/rss+xml" title="kirupa.com Updates" href="https://www.kirupa.com/modular/kirupa.xml">
+<!--<link rel="stylesheet" media="print" href="//www.kirupa.com/ssi/newDesign/print.css" type="text/css">-->
+<meta property="og:site_name" content="kirupa.com">
+<meta property="fb:admins" content="700218">
+<meta property="og:type" content="article">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta content="javascript, scope, functions, invoked, immediately, iife, revealing module pattern" name="keywords">
+<meta content="Learn all about the very mysterious and awesome IIFEs that execute code in their own scope and vanish without a trace." name="description">
+<meta content="Immediately Invoked Function Expressions (IIFE) | KIRUPA" name="title">
+
+<title>Immediately Invoked Function Expressions (IIFE) | KIRUPA</title>
+<meta name="author" content="Kirupa Chinnathambi">
+<link href="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/kirupa_html5.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" async="" src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/embed.js"></script></head>
+
+<body data-article="js">
+
+<script async="" src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/analytics.js"></script><script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-1952673-1', 'forum.kirupa.com');
+ga('require', 'displayfeatures');
+ga('send', 'pageview');
+</script>
+
+<!--
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<link href='https://fonts.googleapis.com/css?family=Carrois+Gothic|Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+-->
+
+<div id="navigationSlider" class="hidden">
+	<ul id="mobileNavItems">
+		<li><a id="animationMobileLink" href="https://www.kirupa.com/learn/index.htm">Learn</a></li>
+		<!--<li><a id="javascriptMobileLink" href="//www.kirupa.com/random/index.htm">Blog</a></li>-->
+		<li><a id="bookMobileLink" href="https://www.kirupa.com/book/index.htm">Books</a></li>
+		<li><a id="forumMobileLink" href="http://forum.kirupa.com/">Forums</a></li>
+		<li></li>
+	</ul>
+</div>
+
+<div id="miniHeader" class="miniHidden miniVisible">
+  <div id="miniHeaderContent">
+		<div id="miniLogo"> <a href="https://www.kirupa.com/"><img src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/orange_logo.svg"></a>
+	  </div>
+		<div id="miniShare">
+			<div class="addthis_sharing_toolbox"></div>
+		</div>
+		<div id="miniHelp">
+			<a href="http://forum.kirupa.com/">GET HELP</a>
+		</div>
+	</div>
+</div>
+
+<div id="mobileHeader">
+	<ul>
+		<li>
+			<a href="https://www.kirupa.com/">
+				<img id="mobileLogo" alt="kirupa.com logo!" src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/orange_logo_svg.svg">
+			</a>
+		</li>
+		<li>
+			<img id="navMobile" alt="kirupa.com logo!" src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/nav_rows.svg" width="24">
+		</li>
+	</ul>
+</div>
+
+<div id="headerContainer">
+<div id="headerContent">
+	<ul>
+    <li><a href="https://www.kirupa.com/"><img src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/orange_logo_svg.svg" alt="KIRUPA logo"></a></li>
+    <li id="searchLink" class="mainItems firstItem"><a href="http://forum.kirupa.com/"><img src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/help.svg" alt="" width="16"></a></li>
+    <li id="tutorialsLink" class="mainItems textItem"><a href="https://www.kirupa.com/learn/index.htm">LEARN</a></li>
+    <li id="bookLink" class="mainItems textItem"><a href="https://www.kirupa.com/book/index.htm">BOOKS</a></li>
+    <li id="forumLink" class="mainItems textItem"><a href="http://forum.kirupa.com/">FORUM</a></li>
+    <li class="mainItems headerIcon"><a href="https://www.facebook.com/kirupa" target="_blank"><img src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/fb_svg.svg" alt=""></a></li>
+    <li class="mainItems headerIcon"><a href="https://www.twitter.com/kirupa"><img src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/twitter_svg.svg" alt=""></a></li>
+    <li id="searchArea">
+        <form action="/searchresults.htm" method="get" style="margin-bottom: 0px">
+            <input id="sbi" class="inputTextStyle" name="q" size="20" role="textbox" aria-autocomplete="list" aria-haspopup="true" type="text">
+            <button id="searchButton" type="submit">GO</button>
+        </form>
+    </li>
+    
+    </ul>
+</div>
+</div>
+
+
+
+<div id="mainBody">
+	
+	<div id="mainContent">
+<div id="tutorialInformation">
+	<div class="tags">
+		<p><a href="https://www.kirupa.com/html5/learn_javascript.htm">JAVASCRIPT</a></p>
+		<p><a href="https://www.amazon.com/exec/obidos/ASIN/0789758067/kirupacom" target="_blank">BOOK</a></p>
+	</div>
+	<div class="authorImage">
+		<a href="https://www.kirupa.com/me/index.htm">
+		<img alt="Look, it's a kirupa!!!" src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/kirupa_me.png"></a></div>
+	<div class="authorText">
+		<h1>Immediately Invoked Function Expressions (aka IIFE)</h1>
+		<p class="tutorialInfo">by <a href="https://www.kirupa.com/me/index.htm">kirupa</a>&nbsp;&nbsp; |&nbsp;&nbsp; 
+		6 February 2015</p>
+	</div>
+</div>
+<div id="tutorialBox">
+
+</div>
+
+		<p>By now, you probably know enough about 
+		<a class="blueEmphasis" href="https://www.kirupa.com/html5/functions_in_javascript.htm">functions 
+		in JavaScript</a> to be dangerously 
+		productive. Functions allow you to group statements together. If you 
+		give your function a name, you can re-use those grouped statements 
+		a whole bunch of times:</p>
+		<div><div id="highlighter_306823" class="syntaxhighlighter nogutter kirupa_code js"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">function</code> <code class="js plain">areYouLucky() {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">foo = Math.round(Math.random() * 100);</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">if</code> <code class="js plain">(foo &gt; 50) {</code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">alert(</code><code class="js string">"You are lucky!"</code><code class="js plain">);</code></div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">} </code><code class="js keyword">else</code> <code class="js plain">{</code></div><div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">alert(</code><code class="js string">"You are not lucky!"</code><code class="js plain">);&nbsp; </code></div><div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number9 index8 alt2"><code class="js plain">}</code></div><div class="line number10 index9 alt1">&nbsp;</div><div class="line number11 index10 alt2"><code class="js comments">// calling this function!</code></div><div class="line number12 index11 alt1"><code class="js plain">areYouLucky();</code></div></div></td></tr></tbody></table></div></div>
+		<p>If you don't give your functions a name, that is totally cool as 
+		well. They are known as <strong>anonymous</strong> functions, and they 
+		look as follows:</p>
+		<div><div id="highlighter_909309" class="syntaxhighlighter nogutter kirupa_code js"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js comments">// anonymous function #1</code></div><div class="line number2 index1 alt1"><code class="js keyword">var</code> <code class="js plain">isLucky = </code><code class="js keyword">function</code><code class="js plain">() {</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">foo = Math.round(Math.random() * 100);</code></div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">if</code> <code class="js plain">(foo &gt; 50) {</code></div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js string">"You are lucky!"</code><code class="js plain">;</code></div><div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">} </code><code class="js keyword">else</code> <code class="js plain">{</code></div><div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js string">"You are not lucky!"</code><code class="js plain">;</code></div><div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number10 index9 alt1"><code class="js plain">};</code></div><div class="line number11 index10 alt2">&nbsp;</div><div class="line number12 index11 alt1"><code class="js keyword">var</code> <code class="js plain">me = isLucky();</code></div><div class="line number13 index12 alt2"><code class="js plain">alert(me);</code></div><div class="line number14 index13 alt1">&nbsp;</div><div class="line number15 index14 alt2">&nbsp;</div><div class="line number16 index15 alt1"><code class="js comments">// anonymous function #2</code></div><div class="line number17 index16 alt2"><code class="js plain">window.setTimeout(</code><code class="js keyword">function</code><code class="js plain">() {</code></div><div class="line number18 index17 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">alert(</code><code class="js string">"Everything is awesome!!!"</code><code class="js plain">);</code></div><div class="line number19 index18 alt2"><code class="js plain">}, 2000);</code></div></div></td></tr></tbody></table></div></div>
+		<p>These anonymous functions can only be called if they are associated with a 
+		variable as shown in the first example. They can also be called if they 
+		are provided as part of another function (such as
+		<span class="inlineCode">setTimeOut</span>) that knows what to do with 
+		them.</p>
+		<p>In this article, we are going to look at another function variation 
+		known as an <strong>Immediately Invoked Function Expression</strong>. 
+		Friends like us just call it <strong>IIFE</strong> (pronounced "iffy"). 
+		At first, what it does might seem a bit boring and unnecessary. As we 
+		get more familiar with it, I will describe some of its use cases and why 
+		you may find yourself both seeing and using these IIFEs a whole lot. By 
+		the end, IIFEs will probably still be very boring, but at least they 
+		will seem quite useful and necessary...hopefully!</p>
+		<p>Onwards!</p>
+<div id="jsBookContent" class="bookContent">
+	<div id="bookImage"> <a href="https://www.amazon.com/exec/obidos/ASIN/0789758067/kirupacom" target="_blank"><img src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/jsabg2.png" width="150"></a>
+	</div>
+	<div id="bookContent">
+	<h4>OMG! A JavaScript Book Written by Kirupa?!!</h4>
+	<p>To kick your JavaScript skills into outer space, everything you see 
+here and more (with all its casual clarity!) is available in both 
+paperback and digital editions.</p>
+	<a href="https://www.amazon.com/exec/obidos/ASIN/0789758067/kirupacom" target="_blank" class="greenButton">BUY ON AMAZON</a>
+	</div>
+</div>
+		<h3>Writing a Simple IIFE</h3>
+		<p>To be very blunt, an IIFE is nothing more than a function surrounded 
+		by a whole bunch of parenthesis that <strong>executes immediately</strong>. Before we do anything else, let's just 
+		write an IIFE and prove to ourselves that it actually does whatever it 
+		is supposed to do. Below is a 
+		simple IIFE:</p>
+		<div><div id="highlighter_470318" class="syntaxhighlighter nogutter kirupa_code js"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">(</code><code class="js keyword">function</code><code class="js plain">() {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">shout = </code><code class="js string">"I AM ALIVE!!!"</code><code class="js plain">;</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">alert(shout);</code></div><div class="line number4 index3 alt1"><code class="js plain">})();</code></div></div></td></tr></tbody></table></div></div>
+		<p>Go ahead and add these few lines of code and preview it in your 
+		browser. If everything worked properly, you will see <strong>I AM 
+		ALIVE!!!</strong> displayed. If things didn't work properly and you 
+		don't see that, make sure your many parentheses are in the correct 
+		locations. The most common illness that afflicts IIFEs are mismatched or 
+		misplaced parentheses! Anyway, now that you have created a working IIFE, let’s peel back the layers 
+		and look at what exactly is going on.</p>
+		<p>First, you have your function with 
+		the code you want to execute:</p>
+		<div><div id="highlighter_366973" class="syntaxhighlighter nogutter kirupa_code js"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">function</code><code class="js plain">() {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">shout = </code><code class="js string">"I AM ALIVE!!!"</code><code class="js plain">;</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">alert(shout);</code></div><div class="line number4 index3 alt1"><code class="js plain">}</code></div></div></td></tr></tbody></table></div></div>
+		<p>This is just a simple anonymous function that displays some obnoxious 
+		all-caps text. As this function stands, though, JavaScript has no idea 
+		what to do with it. This function is invalid syntax. To get it more 
+		valid, add the <span class="inlineCode">()</span> after the function 
+		body:</p>
+		<div><div id="highlighter_97033" class="syntaxhighlighter nogutter kirupa_code js"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">function</code><code class="js plain">() {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">shout = </code><code class="js string">"I AM ALIVE!!!"</code><code class="js plain">;</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">alert(shout);</code></div><div class="line number4 index3 alt1"><code class="js plain">}()</code></div></div></td></tr></tbody></table></div></div>
+		<p>Adding the <span class="inlineCode">()</span> generally means you 
+		intend for whatever preceded the <span class="inlineCode">()</span> to 
+		execute immediately. When you do this, JavaScript will still complain 
+		because this is also not valid syntax. The reason is that you need to 
+		tell JavaScript that this function you want to execute is actually an 
+		expression. The easiest way to do that is to wrap <strong>your function 
+		inside another pair of parentheses</strong>:</p>
+		<div><div id="highlighter_328198" class="syntaxhighlighter nogutter kirupa_code js"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">(</code><code class="js keyword">function</code><code class="js plain">() {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">shout = </code><code class="js string">"I AM ALIVE!!!"</code><code class="js plain">;</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">alert(shout);</code></div><div class="line number4 index3 alt1"><code class="js plain">})();</code></div></div></td></tr></tbody></table></div></div>
+		<p>Your entire function is now treated as an expression. Following this 
+		with the <span class="inlineCode">()</span> you saw a few moments ago 
+		allows your function expression to be executed. You could say that this
+		<strong class="yellowEmphasis">function expression</strong> gets 
+		executed (aka <strong class="yellowEmphasis">invoked</strong>) almost
+		<strong class="yellowEmphasis">immediately</strong> once JavaScript 
+		encounters it.</p>
+		<h3>Writing an IIFE that Takes Arguments</h3>
+		<p>At first, the most difficult thing to grasp about IIFE's is that they are 
+		nothing more than simple functions. These simple functions just happen to wear all sorts 
+		of crazy parentheses to help them execute immediately. Despite that, 
+		there are some minor differences in how you work with IIFEs. Once major 
+		minor difference is how you deal with passing in arguments, and so let's 
+		address that next!</p>
+		<p>The general structure for creating an IIFE that takes arguments is as follows:</p>
+		<div><div id="highlighter_657895" class="syntaxhighlighter nogutter kirupa_code js"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">(</code><code class="js keyword">function</code><code class="js plain">(a, b) {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">/* code */</code></div><div class="line number3 index2 alt2"><code class="js plain">})(arg1, arg2);</code></div></div></td></tr></tbody></table></div></div>
+		<p>Just like with any function call, the order of the arguments you pass 
+		in maps to 
+		the order of the arguments in your function signature.</p>
+		<p>Here is a slightly fuller example:</p>
+		<div><div id="highlighter_259344" class="syntaxhighlighter nogutter kirupa_code js"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">(</code><code class="js keyword">function</code><code class="js plain">(first, last) {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">alert(</code><code class="js string">"My name is "</code> <code class="js plain">+ last + </code><code class="js string">", "</code> <code class="js plain">+ first + </code><code class="js string">" "</code> <code class="js plain">+ last + </code><code class="js string">"."</code><code class="js plain">);</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="js plain">})(</code><code class="js string">"James"</code><code class="js plain">, </code><code class="js string">"Bond"</code><code class="js plain">);</code></div></div></td></tr></tbody></table></div></div>
+		<p>If you run this in your browser (or run it in your mind), what gets displayed is <strong>My name is Bond, James Bond. </strong>And with 
+		this, you have learned the basics of how to write an IIFE. This is the 
+		easy part. The more interesting (and difficult) part is figuring out 
+		the cases when to use an IIFE.</p>
+		<div class="callout">
+		<h4>Quick Review of Scoping and Functions&nbsp;</h4>
+		<p>To help make the next few sections digestible, let's review one 
+		important detail. From the 
+		<a class="blueEmphasis" href="https://www.kirupa.com/html5/variable_scope_js.htm">Variable Scope</a> article, you learned that JavaScript doesn’t 
+		have the concept of block scoping. It only has lexical scope. This means 
+		that variables declared inside a block such as an 
+		<span class="inlineCode">if</span> statement or loop 
+		will actually be accessible to the entire enclosing function:</p>
+		<div><div id="highlighter_809256" class="syntaxhighlighter nogutter kirupa_code js"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">function</code> <code class="js plain">scopeDemo() {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">if</code> <code class="js plain">(</code><code class="js keyword">true</code><code class="js plain">) {</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">foo = </code><code class="js string">"I know what you did last summer!"</code><code class="js plain">;&nbsp;&nbsp; </code></div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number5 index4 alt2">&nbsp;</div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">alert(foo); </code><code class="js comments">// totally exists!</code></div><div class="line number7 index6 alt2"><code class="js plain">}</code></div><div class="line number8 index7 alt1"><code class="js plain">scopeDemo();</code></div></div></td></tr></tbody></table></div></div>
+		<p>As you can see in this example, the <span class="inlineCode">foo</span> variable, despite being stuck 
+		inside the <span class="inlineCode">if</span> statement, is accessible 
+		outside of it because your <span class="inlineCode">if</span> is not a 
+		scopable block. This ability to have your "supposedly inner" variables 
+		promoted and accessible to the entire enclosing function is known as
+		<strong>variable hoisting</strong>!</p>
+		</div>
+		<h2>When to Use an IIFE</h2>
+		<p>At this point, the value IIFEs bring to the table seems a little odd. 
+		After all, what is so different about an IIFE compared to a function you 
+		declare and call immediately like you have always done? 
+		<strong class="greenEmphasis">The main difference is that 
+		an IIFE leaves behind no evidence of its existence after it has run</strong>. 
+		This is largely because 
+		IIFEs are anonymous functions that are nameless. This means you can't 
+		track them by examining variables. Because the code you put inside an 
+		IIFE is actually inside a function, any variables you declare <strong>
+		are local to that function</strong>.</p>
+		<p class="callout">Putting all of this together, an IIFE 
+		provides you with a very simple way of running code fully inside its own 
+		bubble and then disappearing without a trace.</p>
+		<p>Now that you know what makes IIFEs unique (and extremely confusing), 
+		let's look at when you will need to use them.</p>
+		<h3>Avoiding Code Collisions</h3>
+		<p>One of the biggest advantages IIFEs bring is their ability to 
+		insulate any code from outside interference. This is important if you 
+		are writing code that will be used widely in someone else's 
+		application. You want to ensure that any existing (or new) code 
+		doesn't accidentally clobber over your variables or override functions 
+		and methods. The way to ensure that such accidents don't happen is to 
+		wrap all of your code inside an IIFE.</p>
+		<p>For example, here is a version of the
+		<a class="blueEmphasis" href="https://www.kirupa.com/html5/creating_a_sweet_content_slider.htm">
+		Sweet Content Slider</a> code wrapped into an IIFE:</p>
+		<div><div id="highlighter_835174" class="syntaxhighlighter nogutter kirupa_code js"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">(</code><code class="js keyword">function</code><code class="js plain">() {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">// just querying the DOM...like a boss!</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">links = document.querySelectorAll(</code><code class="js string">".itemLinks"</code><code class="js plain">);</code></div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">wrapper = document.querySelector(</code><code class="js string">"#wrapper"</code><code class="js plain">);</code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">// the activeLink provides a pointer to the currently displayed item</code></div><div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">activeLink = 0;</code></div><div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">// setup the event listeners</code></div><div class="line number10 index9 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">for</code> <code class="js plain">(</code><code class="js keyword">var</code> <code class="js plain">i = 0; i &lt; links.length; i++) {</code></div><div class="line number11 index10 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">link = links[i];</code></div><div class="line number12 index11 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">link.addEventListener(</code><code class="js string">'click'</code><code class="js plain">, setClickedItem, </code><code class="js keyword">false</code><code class="js plain">);</code></div><div class="line number13 index12 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number14 index13 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">// identify the item for the activeLink</code></div><div class="line number15 index14 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">link.itemID = i;</code></div><div class="line number16 index15 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number17 index16 alt2">&nbsp;</div><div class="line number18 index17 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">// set first item as active</code></div><div class="line number19 index18 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">links[activeLink].classList.add(</code><code class="js string">"active"</code><code class="js plain">);</code></div><div class="line number20 index19 alt1">&nbsp;</div><div class="line number21 index20 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">function</code> <code class="js plain">setClickedItem(e) {</code></div><div class="line number22 index21 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">removeActiveLinks();</code></div><div class="line number23 index22 alt2">&nbsp;</div><div class="line number24 index23 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">clickedLink = e.target;</code></div><div class="line number25 index24 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">activeLink = clickedLink.itemID;</code></div><div class="line number26 index25 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number27 index26 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">changePosition(clickedLink);</code></div><div class="line number28 index27 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number29 index28 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number30 index29 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">function</code> <code class="js plain">removeActiveLinks() {</code></div><div class="line number31 index30 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">for</code> <code class="js plain">(</code><code class="js keyword">var</code> <code class="js plain">i = 0; i &lt; links.length; i++) {</code></div><div class="line number32 index31 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">links[i].classList.remove(</code><code class="js string">"active"</code><code class="js plain">);</code></div><div class="line number33 index32 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number34 index33 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number35 index34 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number36 index35 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">// Handle changing the slider position as well as ensure</code></div><div class="line number37 index36 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">// the correct link is highlighted as being active</code></div><div class="line number38 index37 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">function</code> <code class="js plain">changePosition(link) {</code></div><div class="line number39 index38 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">position = link.getAttribute(</code><code class="js string">"data-pos"</code><code class="js plain">);</code></div><div class="line number40 index39 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">wrapper.style.left = position;</code></div><div class="line number41 index40 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number42 index41 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">link.classList.add(</code><code class="js string">"active"</code><code class="js plain">);</code></div><div class="line number43 index42 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number44 index43 alt1"><code class="js plain">})();</code></div></div></td></tr></tbody></table></div></div>
+		<p>As highlighted in this example, just add the first and last line that 
+		wraps everything you are doing into a function that gets immediately 
+		executed. You don't have to make any additional modifications. Because 
+		all of the code inside the IIFE runs in its own scope and disappears, 
+		you don't have to worry about someone else creating their own copies of 
+		things found in <strong>your</strong> code and breaking <strong>your</strong> 
+		functionality.</p>
+		<h3>Closures and Locking In State</h3>
+		<p>There is an important detail about closures that I didn't highlight in the
+		<a class="blueEmphasis" href="https://www.kirupa.com/html5/closures_in_javascript.htm">
+		Closures in JavaScript</a> article. That detail is that 
+		<strong class="greenEmphasis">
+		Closures store their outer values by referencing them. They don't 
+		directly store the actual values.</strong> I am fairly certain that line 
+		doesn't make much sense, so let's take a look at an example.</p>
+		<p>Let's say we have a function called <span class="inlineCode">quotatious</span>:</p>
+		<div><div id="highlighter_320443" class="syntaxhighlighter nogutter kirupa_code js"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">function</code> <code class="js plain">quotatious(names) {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">quotes = [];</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">for</code> <code class="js plain">(</code><code class="js keyword">var</code> <code class="js plain">i = 0; i &lt; names.length; i++) {&nbsp;&nbsp; </code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">theFunction = </code><code class="js keyword">function</code><code class="js plain">() {</code></div><div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js string">"My name is "</code> <code class="js plain">+ names[i] + </code><code class="js string">"!"</code><code class="js plain">;</code></div><div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number10 index9 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">quotes.push(theFunction);</code></div><div class="line number11 index10 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number12 index11 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js plain">quotes;</code></div><div class="line number13 index12 alt2"><code class="js plain">}</code></div></div></td></tr></tbody></table></div></div>
+		<p>What this function does should seem pretty simple. It takes an array of 
+		names and returns an array of functions that print out the name when 
+		called. To use this function, add the following lines of code:</p>
+		<div><div id="highlighter_202580" class="syntaxhighlighter nogutter kirupa_code js"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js comments">// our list of names</code></div><div class="line number2 index1 alt1"><code class="js keyword">var</code> <code class="js plain">people = [</code><code class="js string">"Tony Stark"</code><code class="js plain">, </code><code class="js string">"John Rambo"</code><code class="js plain">, </code><code class="js string">"James Bond"</code><code class="js plain">, </code><code class="js string">"Rick James"</code><code class="js plain">];</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="js comments">// getting an array of functions</code></div><div class="line number5 index4 alt2"><code class="js keyword">var</code> <code class="js plain">peopleFunctions = quotatious(people);</code></div><div class="line number6 index5 alt1">&nbsp;</div><div class="line number7 index6 alt2"><code class="js comments">// get the first function</code></div><div class="line number8 index7 alt1"><code class="js keyword">var</code> <code class="js plain">person = peopleFunctions[0];</code></div><div class="line number9 index8 alt2">&nbsp;</div><div class="line number10 index9 alt1"><code class="js comments">// execute the first function</code></div><div class="line number11 index10 alt2"><code class="js plain">alert(person());</code></div></div></td></tr></tbody></table></div></div>
+		<p>When the last line with the <span class="inlineCode">alert</span> 
+		statement is executed, what would you expect to see? Because our
+		<span class="inlineCode">person</span> variable is getting the first 
+		item from the array of functions returned by <span class="inlineCode">
+		peopleFunctions</span>, it would seem reasonable to expect "<strong>My name 
+		is Tony Stark!</strong>" to appear.</p>
+		<p>What you actually will see is the following:</p>
+		<p class="centerImageNoBorder">
+		<img alt="something is wrong here, right?" src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/dialog_undefined_72.png" width="337" height="203"></p>
+		<p>You will see <strong>undefined</strong> appearing instead of any 
+		person's name from the <span class="inlineCode">people</span> array...much 
+		less the supposedly correct value of Tony Stark. 
+		What is going on here?</p>
+		<p>What is going on is very subtle and highlighted in the following two 
+		lines of code:</p>
+		<div><div id="highlighter_57513" class="syntaxhighlighter nogutter kirupa_code js"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">function</code> <code class="js plain">quotatious(names) {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">quotes = [];</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number4 index3 alt1 highlighted"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">for</code> <code class="js plain">(</code><code class="js keyword">var</code> <code class="js plain">i = 0; i &lt; names.length; i++) {&nbsp;&nbsp; </code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">theFunction = </code><code class="js keyword">function</code><code class="js plain">() {</code></div><div class="line number7 index6 alt2 highlighted"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js string">"My name is "</code> <code class="js plain">+ names[i] + </code><code class="js string">"!"</code><code class="js plain">;</code></div><div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number10 index9 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">quotes.push(theFunction);</code></div><div class="line number11 index10 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number12 index11 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js plain">quotes;</code></div><div class="line number13 index12 alt2"><code class="js plain">}</code></div></div></td></tr></tbody></table></div></div>
+		<p>Your <span class="inlineCode">theFunction</span> function relies 
+		on the value of <span class="inlineCode">names[i]</span>. The value of
+		<span class="inlineCode">i</span> is defined by the
+		<span class="inlineCode">for</span> loop, and the
+		<span class="inlineCode">for</span> loop is outside of the
+		<span class="inlineCode">theFunction</span>'s scope. What you have is basically a closure with the <span class="inlineCode">theFunction</span> function 
+		and the variable <span class="inlineCode">i</span> being an outer 
+		variable:</p>
+		<p class="centerImageNoBorder">
+		<img alt="a closure" src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/closure_example_72.png" width="369" height="196"></p>
+		<p>Here is where the important detail I mentioned about closures comes 
+		into play. The value of <span class="inlineCode">i</span> is never 
+		locked into the <span class="inlineCode">theFunction</span> or the 
+		closure. Its value is simply <strong>referenced</strong>. What you have 
+		is something similar to this visualization:</p>
+		<p class="centerImageNoBorder">
+		<img alt="closure reference" src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/closure_example_reference_72.png" width="437" height="243"></p>
+		<p>Because the value of the <span class="inlineCode">i</span> variable is 
+		actually referenced, the value of
+		<span class="inlineCode">i</span> that your closures reference is 
+		increased by one with each iteration of your
+		<span class="inlineCode">for</span> loop. That isn't the behavior we want. We 
+		want each function in the <span class="inlineCode">quotes</span> array 
+		to store the value of <span class="inlineCode">i</span> that it had when 
+		the function was first created. By the time our loop has fully run to 
+		completion, the value of <span class="inlineCode">i</span> is <strong>4</strong>.</p>
+		<p>Here is a visualization of what is going on:</p>
+		<p class="centerImageNoBorder">
+		<img alt="ah, now I see what is going on" src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/closure_iife_problem_72.png" width="424" height="422"></p>
+		<p>Because <span class="inlineCode">i</span> is <strong>4</strong> and 
+		greater than the number of items 
+		in the <span class="inlineCode">names</span> array input, you get <strong>undefined</strong> when the following 
+		line executes with <span class="inlineCode">names[4]</span>:</p>
+		<div><div id="highlighter_410382" class="syntaxhighlighter nogutter kirupa_code js"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">function</code> <code class="js plain">quotatious(names) {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">quotes = [];</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">for</code> <code class="js plain">(</code><code class="js keyword">var</code> <code class="js plain">i = 0; i &lt; names.length; i++) {&nbsp;&nbsp; </code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">theFunction = </code><code class="js keyword">function</code><code class="js plain">() {</code></div><div class="line number7 index6 alt2 highlighted"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js string">"My name is "</code> <code class="js plain">+ names[i] + </code><code class="js string">"!"</code><code class="js plain">;</code></div><div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number10 index9 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">quotes.push(theFunction);</code></div><div class="line number11 index10 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number12 index11 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js plain">quotes;</code></div><div class="line number13 index12 alt2"><code class="js plain">}</code></div></div></td></tr></tbody></table></div></div>
+		<p>At this point, we understand what the code does and why it doesn't 
+		work as it is currently written. The solution is to lock in the value of our outer variable, the 
+		troublesome <span class="inlineCode">i</span>, inside the closure. This 
+		will involve, as you might have guessed, the assistance of an IIFE.</p>
+		<p>Below is the modified version of 
+		the <span class="inlineCode">quotatious</span> function that does what 
+		we want it to do:</p>
+		<div><div id="highlighter_331495" class="syntaxhighlighter nogutter kirupa_code js"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">function</code> <code class="js plain">quotatious(names) {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">quotes = [];</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">for</code> <code class="js plain">(</code><code class="js keyword">var</code> <code class="js plain">i = 0; i &lt; names.length; i++) {&nbsp;&nbsp; </code></div><div class="line number5 index4 alt2 highlighted"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">(</code><code class="js keyword">function</code><code class="js plain">(index) {</code></div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">theFunction = </code><code class="js keyword">function</code><code class="js plain">() {</code></div><div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js string">"My name is "</code> <code class="js plain">+ names[index] + </code><code class="js string">"!"</code><code class="js plain">;</code></div><div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">quotes.push(theFunction);</code></div><div class="line number10 index9 alt1 highlighted"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">})(i);</code></div><div class="line number11 index10 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number12 index11 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js plain">quotes;</code></div><div class="line number13 index12 alt2"><code class="js plain">}</code></div></div></td></tr></tbody></table></div></div>
+		<p>Notice that the <span class="inlineCode">i</span> variable is passed 
+		in as an argument to our IIFE. This argument, now referenced inside the 
+		IIFE by the <span class="inlineCode">index</span> variable, <strong>is 
+		local to whatever the function does</strong>. The state of what used to 
+		be an outer variable is now locked in! This change ensures that the 
+		function inside the <span class="inlineCode">quotes</span> array has its 
+		own copy of the array index it needs so that the right person is being 
+		referenced. You no longer have references to outer variables that change and cause 
+		your code to break. W00t!</p>
+		<div class="callout">
+			<h4>Sometimes referencing outer variables is what you want!</h4>
+			<p>&nbsp;I am most certainly not saying to always use an IIFE when 
+			an outer variable changes after a closure has been created. There 
+			may be times where you want your closure to work with the updated 
+			value of an outer variable, so in those cases, don't use an IIFE to 
+			lock-in the value.</p>
+		</div>
+		<h3>&nbsp;</h3>
+		<h3>Making Things Private</h3>
+		<p>In JavaScript, you don’t have an easy, built-in way to limit the 
+		visibility of variables and properties you end up creating. This means 
+		it is difficult to have parts of your app hidden from other parts of 
+		your app.</p>
+		<p>Take a look at the following example that 
+		highlights this problem:</p>
+		<div><div id="highlighter_998142" class="syntaxhighlighter nogutter kirupa_code js"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">weakSauce = {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">secretCode: </code><code class="js string">"Zorb!"</code><code class="js plain">,</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">checkCode: </code><code class="js keyword">function</code> <code class="js plain">(code) {</code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">if</code> <code class="js plain">(</code><code class="js keyword">this</code><code class="js plain">.secretCode == code) {</code></div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">alert(</code><code class="js string">"You are awesome!"</code><code class="js plain">);&nbsp;&nbsp; </code></div><div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">} </code><code class="js keyword">else</code> <code class="js plain">{</code></div><div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">alert(</code><code class="js string">"Try again!"</code><code class="js plain">);&nbsp;&nbsp; </code></div><div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number10 index9 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number11 index10 alt2"><code class="js plain">};</code></div></div></td></tr></tbody></table></div></div>
+		<p>You have an object called <span class="inlineCode">weakSauce</span> 
+		that has two properties called <span class="inlineCode">secretCode</span> 
+		and <span class="inlineCode">checkCode</span>. This is a very naive 
+		password checker. When you pass in a code 
+		value to the <span class="inlineCode">checkCode</span> function, it will 
+		check if what you entered matches the value of <span class="inlineCode">
+		secretCode</span>. If it matches, <strong>you are awesome</strong> will 
+		get displayed. 
+		If it isn’t, <strong>you are still awesome</strong>…despite what this 
+		code will tell you.</p>
+		<p>Now, here is where some privacy in your code may help. Nothing 
+		prevents me, you, or someone who uses this code from checking the value 
+		of <span class="inlineCode">secretCode</span> directly:</p>
+		<div><div id="highlighter_266260" class="syntaxhighlighter nogutter kirupa_code js"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">bar = Object.create(weakSauce);</code></div><div class="line number2 index1 alt1"><code class="js plain">alert(bar.secretCode) </code><code class="js comments">// sigh :(</code></div></div></td></tr></tbody></table></div></div>
+		<p>This is probably not what you intended when creating the
+		<span class="inlineCode">secretCode</span> property. The reason isn't 
+		because <span class="inlineCode">secretCode</span> is named with the 
+		word <strong>secret</strong> in it. It is part of an implementation 
+		detail that you may want to change at any time. The
+		<span class="inlineCode">checkCode</span> function is what you would 
+		intend people to use. Any other variable or property is fair game for 
+		you to change whenever you want. If other pieces of code take a 
+		dependency on implementation details, their code may break whenever you 
+		make a change. That's why keeping some items private is important. That 
+		is why the 
+		<span class="inlineCode">secretCode</span> property 
+		should be hidden to everything except the internals of the
+		<span class="inlineCode">weakSauce</span> 
+		object. In other languages, you could add an access modifier like
+		<span class="inlineCode">private</span> to <span class="inlineCode">
+		secretCode</span>, and that would be the end of this entire conversation. JavaScript isn't 
+		like other languages. You have to jump through hoops to solve your 
+		problem, and one such awesome hoop to is our friendly IIFE.</p>
+		<p>By taking advantage of the local scope IIFE’s 
+		create, you can selectively choose what to expose or what not to expose. 
+		Here is a version of the same example that works as we would like:</p>
+		<div><div id="highlighter_364629" class="syntaxhighlighter nogutter kirupa_code js"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">awesomeSauce = (</code><code class="js keyword">function</code> <code class="js plain">() {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">secretCode = </code><code class="js string">"Zorb!"</code><code class="js plain">;</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">function</code> <code class="js plain">privateCheckCode(code) {</code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">if</code> <code class="js plain">(secretCode == code) {</code></div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">alert(</code><code class="js string">"You are awesome!"</code><code class="js plain">);&nbsp;&nbsp; </code></div><div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">} </code><code class="js keyword">else</code> <code class="js plain">{</code></div><div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">alert(</code><code class="js string">"Try again!"</code><code class="js plain">);&nbsp;&nbsp; </code></div><div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number10 index9 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number11 index10 alt2">&nbsp;</div><div class="line number12 index11 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">// the public method we want to return</code></div><div class="line number13 index12 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js plain">{</code></div><div class="line number14 index13 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">checkCode: privateCheckCode</code></div><div class="line number15 index14 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div><div class="line number16 index15 alt1"><code class="js plain">})();</code></div></div></td></tr></tbody></table></div></div>
+		<p>Let's repeat what we tried earlier with this new
+		<span class="inlineCode">awesomeSauce</span> function:</p>
+		<div><div id="highlighter_303514" class="syntaxhighlighter nogutter kirupa_code js"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">foo = Object.create(awesomeSauce);</code></div><div class="line number2 index1 alt1"><code class="js plain">alert(foo.secretCode); </code><code class="js comments">// undefined</code></div></div></td></tr></tbody></table></div></div>
+		<p>This time around, you won't be able to access
+		<span class="inlineCode">secretCode</span>. The reason is that the 
+		contents of <span class="inlineCode">secretCode</span> are buried inside 
+		the IIFE and not accessible publicly. In fact, the only thing that is 
+		publicly exposed is what you have here:</p>
+		<div><div id="highlighter_575436" class="syntaxhighlighter nogutter kirupa_code js"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">awesomeSauce = (</code><code class="js keyword">function</code> <code class="js plain">() {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">secretCode = </code><code class="js string">"Zorb!"</code><code class="js plain">;</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">function</code> <code class="js plain">privateCheckCode(code) {</code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">if</code> <code class="js plain">(secretCode == code) {</code></div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">alert(</code><code class="js string">"You are awesome!"</code><code class="js plain">);&nbsp;&nbsp; </code></div><div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">} </code><code class="js keyword">else</code> <code class="js plain">{</code></div><div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">alert(</code><code class="js string">"Try again!"</code><code class="js plain">);&nbsp;&nbsp; </code></div><div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number10 index9 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number11 index10 alt2">&nbsp;</div><div class="line number12 index11 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">// the public method we want to return</code></div><div class="line number13 index12 alt2 highlighted"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js plain">{</code></div><div class="line number14 index13 alt1 highlighted"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">checkCode: privateCheckCode</code></div><div class="line number15 index14 alt2 highlighted"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div><div class="line number16 index15 alt1"><code class="js plain">})();</code></div></div></td></tr></tbody></table></div></div>
+		<p>By only returning the <span class="inlineCode">checkCode</span> 
+		property that internally references the <span class="inlineCode">privateCheckCode</span> 
+		function (which is a closure), you get all the functionality you 
+		originally had while only exposing <span class="inlineCode">checkCode</span> 
+		as the property in <span class="inlineCode">awesomeSauce</span> 
+		that other parts of your app can safely access.</p>
+		<p>There a more formal name for what I've just shown you here. It's 
+		known as the <strong>Revealing Module Pattern</strong>, and there is a 
+		ton of good stuff on the net about it. My favorite is the following
+		<a class="blueEmphasis" href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript" target="_blank">
+		concise take of this pattern by Addy Osmani</a>.</p>
+		<div class="callout">
+			<h4>Remember, your JavaScript code is an open book!</h4>
+			<p>While you may have just learned about a way to keep the internals 
+			of your code private, it is only private to the typical code you 
+			write. Unlike other languages, JavaScript's source is always fully 
+			accessible. Even with obfuscation and other techniques, if your 
+			browser can see your code, then anybody else with a few extra 
+			seconds to spare can as well.</p>
+			<p>For example, using the Chrome Developer Tools, I can easily inspect the 
+			closure stored by <span class="inlineCode">checkCode</span> and 
+			clearly see the value of the <span class="inlineCode">secretCode</span> 
+			variable:</p>
+			<p class="centerImage">
+			<img alt="the closure is not private after all :(" src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/chrome_closure_inspector.png" width="622" height="351"></p>
+			<p>Essentially, what I'm trying to say is this - don't rely on 
+			client-side JavaScript for dealing with things you truly want to 
+			keep private. Instead, do what everyone else does and use some 
+			server-side service that provides you with a private environment 
+			where top secret things get done. The server then only returns the 
+			things you want exposed publicly back to JavaScript.</p>
+		</div>
+		<h2>Conclusion</h2>
+		<p>An <strong>IIFE</strong> (short for <strong>Immediately Invoked 
+		Function Expression</strong>) is one of those bizarre things in 
+		JavaScript that turns out to play a very useful role once you give it a 
+		chance. The main reason you will need to 
+		learn about IIFEs is because JavaScript lacks privacy. This problem becomes more annoying when 
+		you are working on increasingly larger and more complex JavaScript apps 
+		(who usually have increasingly larger and more complex closures), so the 
+		local scope created by an IIFE is the ultimate blunt instrument for 
+		solving all of your problems. As with all blunt instruments, do be 
+		careful when using them.</p>
+		<p>
+		</p><p>If you have a question about this or any other topic, the easiest thing is to drop by <a class="blueEmphasis" href="http://forum.kirupa.com/">our forums</a> where a bunch of the friendliest people you'll ever run into will be happy to help you out!</p>
+
+
+<div id="bookPromo" style="display:none">
+<h3>Did You Like This?</h3>
+	<div id="js101Signature" style="display: none">
+		<ul>
+			<li>
+			<a onclick="_gaq.push(['_trackEvent', 'js101MoreInfo_Signature', 'clicked'])" href="http://www.quepublishing.com/store/javascript-absolute-beginners-guide-9780789758064">MORE INFO</a></li>
+			<li>
+			<a onclick="_gaq.push(['_trackEvent', 'js101BuyNow_Signature', 'clicked'])" href="https://www.amazon.com/exec/obidos/ASIN/0789758067/kirupacom">BUY NOW</a></li>
+		</ul>
+	</div>
+	<div id="animationSignature" style="display: none">
+		<ul>
+			<li>
+			<a onclick="_gaq.push(['_trackEvent', 'animationMoreInfo_Signature', 'clicked'])" href="https://www.kirupa.com/book/animation_in_html_css_and_javascript.htm">MORE INFO</a></li>
+			<li>
+			<a onclick="_gaq.push(['_trackEvent', 'animationBuyNow_Signature', 'clicked'])" href="http://www.amazon.com/dp/1502548704?_encoding=UTF8&amp;camp=15041&amp;creative=373501&amp;linkCode=as3&amp;tag=kirupacom">BUY NOW</a></li>
+		</ul>
+	</div>
+	<div id="canvasSignature" style="display: none">
+		<ul>
+			<li>
+			<a onclick="_gaq.push(['_trackEvent', 'canvasMoreInfo_Signature', 'clicked'])" href="https://www.kirupa.com/book/html5_canvas_noob_to_ninja.htm">MORE INFO</a></li>
+			<li>
+			<a onclick="_gaq.push(['_trackEvent', 'canvasBuyNow_Signature', 'clicked'])" href="http://www.amazon.com/gp/product/1523978090?redirect=true&amp;tag=kirupacom">BUY NOW</a></li>
+		</ul>
+	</div>
+  <div id="reactSignature">
+		<ul>
+			<li>
+			<a onclick="_gaq.push(['_trackEvent', 'reactMoreInfo_Signature', 'clicked'])" href="http://www.informit.com/store/learning-react-a-hands-on-guide-to-building-maintainable-9780134546315">MORE INFO</a></li>
+			<li>
+			<a onclick="_gaq.push(['_trackEvent', 'reactBuyNow_Signature', 'clicked'])" href="https://www.amazon.com/exec/obidos/ASIN/0134546318/kirupacom">BUY NOW</a></li>
+		</ul>
+  </div>
+</div>
+
+
+<p><a href="https://www.kirupa.com/about/whatiskirupa.htm"><img src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/kirupa_sig.png" alt="" width="150" height="65"></a> </p>
+	
+	<div id="sigNewsletter">
+		<h4>THE KIRUPA NEWSLETTER</h4>
+
+		<p>Get cool tips, tricks, <span class="strikethrough">selfies</span>, and more...personally hand-delivered to your inbox!</p>
+
+		<form action="//kirupa.us7.list-manage.com/subscribe/post?u=b0d69bc8873ebf34032eb7796&amp;id=47036a7bd4" class="validate" id="mc-embedded-subscribe-form" method="post" name="mc-embedded-subscribe-form" novalidate="" target="_blank">
+			<div id="mc_embed_signup_scroll">
+				<p><input class="email" id="mce-EMAIL" name="EMAIL" placeholder="email address" required="" type="email"><input class="button" id="mc-embedded-subscribe" name="subscribe" value="SIGN ME UP" type="submit"> <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups--></p>
+
+				<p>
+				</p>
+
+				<div style="position: absolute; left: -5000px;">
+					<input name="b_b0d69bc8873ebf34032eb7796_47036a7bd4" tabindex="-1" type="text">
+				</div>
+
+
+				<div class="clear">
+				</div>
+			</div>
+		</form>
+		<p class="smallText">( <a class="blueEmphasis" href="http://us7.campaign-archive1.com/home/?u=b0d69bc8873ebf34032eb7796&amp;id=47036a7bd4">View past issues</a> for an idea of what you've been missing out on all this time! )</p>
+	</div>
+
+<p> </p>
+		<h2 id="pageComments">WHAT DO YOU THINK?</h2>
+		<div id="pageCommentsImage">
+			<img src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/green_square.svg">
+		</div>
+		<div id="oldComments">	
+			<div id="discourse-comments"><iframe src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/comments.html" id="discourse-embed-frame" scrolling="no" width="100%" height="1019px" frameborder="0"></iframe></div>
+
+			<script type="text/javascript">
+			  DiscourseEmbed = { discourseUrl: 'https://forum.kirupa.com/',
+								 discourseEmbedUrl: "http://www.kirupa.com" + window.location.pathname.split("?")[0].split("#")[0] };
+
+			  (function() {
+				var d = document.createElement('script'); d.type = 'text/javascript'; d.async = true;
+				d.src = DiscourseEmbed.discourseUrl + 'javascripts/embed.js';
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
+			  })();
+			</script>
+		</div>
+        
+        <!-- Go to www.addthis.com/dashboard to customize your tools 
+        <h2>You May Also Like</h2>
+<div class="addthis_recommended_horizontal"></div>--><p></p>
+	</div>
+	<div id="rightContents">
+	<div id="bookBannerContent">
+		<ul>
+			<li class="animationRight">
+				<a onclick="ga('send', 'event', 'button', 'click', 'animBook')" href="http://shop.oreilly.com/product/0636920050858.do" target="_blank"><strong>Creating</strong><span class="lessemphasis"> Web Animations</span></a>
+				<ul class="buyNowRight">
+					<li>
+				  <a onclick="ga('send', 'event', 'button', 'click', 'animBook_button')" href="https://www.amazon.com/exec/obidos/ASIN/1491957514/kirupacom" target="_blank">BUY</a></li>
+			  </ul>
+		  </li>
+        	<li class="learningReactRight">
+			  <a onclick="ga('send', 'event', 'button', 'click', 'learningReactBook')" href="https://www.amazon.com/exec/obidos/ASIN/0134546318/kirupacom"><strong>Learning React:</strong><br>
+              <span class="lessemphasis">A Hands-on Guide</span></a>
+				<ul class="buyNowRight">
+					<li>
+					<a onclick="ga('send', 'event', 'button', 'click', 'learningReactBook_button')" href="https://www.amazon.com/exec/obidos/ASIN/0134546318/kirupacom">BUY</a></li>
+			  </ul>
+		  </li>
+        	<li class="js101Right">
+				<a onclick="ga('send', 'event', 'button', 'click', 'js101Book')" href="http://www.quepublishing.com/store/javascript-absolute-beginners-guide-9780789758064"><strong>JavaScript</strong> <span class="lessemphasis">Absolute Beginner's Guide</span></a>
+				<ul class="buyNowRight">
+					<li>
+				  <a onclick="ga('send', 'event', 'button', 'click', 'js101Book_button')" href="https://www.amazon.com/exec/obidos/ASIN/0789758067/kirupacom">BUY</a></li>
+			  </ul>
+		  </li>
+
+			<!--
+ 			<li class="canvasRight">
+				<strong><a onclick="ga('send', 'event', 'button', 'click', 'canvasBook')" href="https://www.kirupa.com/book/html5_canvas_noob_to_ninja.htm">HTML5 Canvas:</a></strong><a onclick="ga('send', 'event', 'button', 'click', 'canvasBook')" href="https://www.kirupa.com/book/html5_canvas_noob_to_ninja.htm"><br>
+                <span class="lessemphasis">From Noob to Ninja</span></a>
+				<ul class="buyNowRight">
+					<li>
+					<a onclick="ga('send', 'event', 'button', 'click', 'canvasBook_button')" href="http://www.amazon.com/gp/product/1523978090?redirect=true&tag=kirupacom" target="_blank">BUY</a></li>
+			  </ul>
+		  </li>
+-->
+		</ul>
+		<img alt="new books - yay!!!" src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/caption_books.png" width="165" height="66">
+	</div>
+    <!--
+    <div id="followRight"> <a href="http://www.twitter.com/kirupa" target="_blank"><img id="twitter" src="//www.kirupa.com/ssi/newDesign/twitter.svg"/></a>
+        <a href="http://www.facebook.com/kirupa" target="_blank"><img id="facebook" src="//www.kirupa.com/ssi/newDesign/facebook.svg"/></a>
+        <a href="http://www.youtube.com/kirupa" target="_blank"><img id="youtube" src="//www.kirupa.com/ssi/newDesign/youtube.svg"/></a>
+        <a href="http://www.pinterest.com/kirupa" target="_blank"><img id="pinterest" src="//www.kirupa.com/ssi/newDesign/pinterest.svg" alt=""/></a>
+        <img src="//www.kirupa.com/ssi/newDesign/linkedin.svg"/>
+    </div>
+    -->
+    <div id="rightNewsletter">
+    	<h4>NEWSLETTER</h4>
+    	<p>No spam. No fluff. Just awesome content sent straight to your inbox!</p>
+    	<form action="//kirupa.us7.list-manage.com/subscribe/post?u=b0d69bc8873ebf34032eb7796&amp;id=47036a7bd4" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+    <div id="mc_embed_signup_scroll">
+	<p>
+	  <input name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required="" type="email">
+	  </p>
+	<p>
+	  <input value="SIGN ME UP" name="subscribe" id="mc-embedded-subscribe" class="button greenButton" type="submit">
+	  <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+	  </p>
+	<div style="position: absolute; left: -5000px;"><input name="b_b0d69bc8873ebf34032eb7796_47036a7bd4" tabindex="-1" type="text"></div>
+    <div class="clear"></div>
+    </div>
+</form>
+    </div>
+</div>
+
+</div>
+<div id="mainFooter">
+    
+    <div id="footer">
+        <div id="welcome" class="footerStuff">
+    		<h4>HELLO and welcome</h4>
+            <p>This site was started in 1998 with the goal of teaching 
+designers and developers how to create cool things for the web. That 
+we'd still be around today was never part of the plan. We figured the 
+whole internet thing would have died down around 2004. I guess we were 
+off in our calculations.</p>
+        </div>
+        
+        <div id="stuff" class="footerStuff">
+        	<h4>STUFF</h4>
+            <ul>
+            	<li><a href="https://www.kirupa.com/about/the_peeps.htm">About + Team</a></li>
+            	<li><a href="https://www.kirupa.com/me/credits.htm">Credits</a></li>
+                <li><a href="https://www.kirupa.com/me/howtohelp.htm">How to Help</a></li>
+                <li><a href="https://www.kirupa.com/contact.htm">Contact</a></li>
+            </ul>
+        </div>
+        
+        <div id="followUs" class="footerStuff">
+        	<h4>FOLLOW us</h4>
+            <ul>
+            	<li><a href="http://www.twitter.com/kirupa" target="_blank" style="background-image:url(&quot;//www.kirupa.com/ssi/newDesign/twitter.svg&quot;);">Twitter</a></li>
+            	<li><a href="https://www.facebook.com/kirupa/" target="_blank" style="background-image:url(&quot;//www.kirupa.com/ssi/newDesign/facebook.svg&quot;);">Facebook</a></li>
+                <li><a href="https://www.youtube.com/user/kirupa" target="_blank" style="background-image:url(&quot;//www.kirupa.com/ssi/newDesign/youtube.svg&quot;);">YouTube</a></li>
+                <li><a href="https://www.pinterest.com/kirupa/" target="_blank" style="background-image:url(&quot;//www.kirupa.com/ssi/newDesign/pinterest.svg&quot;);">Pinterest</a></li>
+                <li><a href="https://www.linkedin.com/in/kirupa" target="_blank" style="background-image:url(&quot;//www.kirupa.com/ssi/newDesign/linkedin.svg&quot;);">LinkedIn</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="footerBottom"> <a href="https://mediatemple.net/" target="_blank"><img src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/mt_hosting.png" alt="Awesome and high-performance web hosting!"></a>
+    </div>
+</div>
+<div id="bottomFooterLinks">
+	<p>© 2016 Kirupa, Inc.</p>
+</div>
+
+<div id="mobileFooter">
+	<div id="topFooter"><a href="#">BACK TO TOP</a></div>
+	
+		<div id="bookBannerContent">
+		<ul>
+         	<li class="canvasRight">
+				<a onclick="_gaq.push(['_trackEvent', 'canvasMoreInfo', 'clicked'])" href="https://www.kirupa.com/book/html5_canvas_noob_to_ninja.htm">HTML5 Canvas: From Noob to Ninja</a>
+				<ul class="buyNowRight">
+					<li>
+					<a onclick="_gaq.push(['_trackEvent', 'canvasBuyNow', 'clicked'])" href="http://www.amazon.com/gp/product/1523978090?redirect=true&amp;tag=kirupacom">BUY NOW</a></li>
+				</ul>
+			</li>
+			<li class="animationRight">
+				<a onclick="_gaq.push(['_trackEvent', 'animationMoreInfo', 'clicked'])" href="https://www.kirupa.com/book/animation_in_html_css_and_javascript.htm">Animation in HTML, CSS, and JavaScript</a>
+				<ul class="buyNowRight">
+					<li>
+					<a onclick="_gaq.push(['_trackEvent', 'animationBuyNow', 'clicked'])" href="http://www.amazon.com/dp/1502548704?_encoding=UTF8&amp;camp=15041&amp;creative=373501&amp;linkCode=as3&amp;tag=kirupacom" target="_blank">BUY NOW</a></li>
+				</ul>
+			</li>
+			<li class="js101Right">
+				<a onclick="_gaq.push(['_trackEvent', 'js101MoreInfo', 'clicked'])" href="http://www.quepublishing.com/store/javascript-absolute-beginners-guide-9780789758064">JavaScript: Absolute Beginner's Guide</a>
+				<ul class="buyNowRight">
+					<li>
+					<a onclick="_gaq.push(['_trackEvent', 'js101BuyNow', 'clicked'])" href="https://www.amazon.com/exec/obidos/ASIN/0789758067/kirupacom">BUY NOW</a></li>
+				</ul>
+			</li>
+		</ul>
+		<img alt="new books - yay!!!" src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/caption_books.png" width="165" height="66">
+	</div>
+	
+	<div id="bottomLinks">
+		<h3>Copyright 2017 Kirupa, Inc.</h3>
+	</div>
+</div>
+
+<script async="" src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/kirupa.js"></script> 
+
+
+<link href="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/shCore.css" rel="stylesheet" type="text/css">
+<link href="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/shThemeDefault.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/shCore.js"></script>
+<script type="text/javascript" src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/shBrushJScript.js"></script>
+<script type="text/javascript" src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/shBrushXml.js"></script>
+<script type="text/javascript" src="Immediately%20Invoked%20Function%20Expressions%20(IIFE)%20_%20KIRUPA_files/shBrushCss.js"></script>
+
+<!-- Go to www.addthis.com/dashboard to customize your tools 
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=kirupa" async="async"></script>
+-->
+
+<script type="text/javascript">
+	 SyntaxHighlighter.defaults['gutter'] = false;
+	 SyntaxHighlighter.defaults['toolbar'] = false;
+	 SyntaxHighlighter.defaults['class-name'] = 'kirupa_code';
+     SyntaxHighlighter.all();
+</script>
+
+
+
+
+
+</body></html>

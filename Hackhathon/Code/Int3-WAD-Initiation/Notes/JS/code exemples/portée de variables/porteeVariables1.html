@@ -1,0 +1,26 @@
+<html>
+<body>
+<script>
+
+
+
+function f2(){
+	var y; // y existe uniquement dans f1, dans son contexte d'exécution
+}
+
+function f1(){
+	var x=50; // x existe uniquement dans f2, dans son contexte d'exécution
+	f2();
+	console.log (x);
+}
+
+
+var x=100; // une autre x qui existe uniquement dans le contexte global
+f1();
+console.log (x);
+
+
+
+</script>
+</body>
+</html>

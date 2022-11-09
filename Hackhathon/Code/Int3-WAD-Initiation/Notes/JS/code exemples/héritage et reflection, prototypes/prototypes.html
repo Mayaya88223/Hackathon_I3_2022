@@ -1,0 +1,144 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <title></title>
+    </head>
+    <body>
+
+<script>
+
+
+function voler (){
+	console.log ("J'aime bien voler libre");
+}
+voler (); // appel
+console.log (voler); // affiche l'objet fonction
+console.log (voler.__proto__); // affiche le prototype de la fonction
+console.log (voler.prototype); // affiche la propriété "prototype" de la fonction
+
+
+
+// un objet a ses propriétés, méthodes et un prototype accesible via __proto__
+var personne = {
+	nom : "Marie",
+	age : 25,
+	danser : function (){
+		console.log ("Je m'amuse bien en dansant");
+	}
+}
+
+console.log (personne);
+console.log (personne.nom);
+personne.danser();
+console.log (personne.__proto__); // l'objet Object
+console.log (personne.__proto__.__proto__); // null, car Object est à la racine
+
+
+var monArray = [4,5,6];
+console.log (monArray);
+console.log (monArray.__proto__); // l'objet Array
+console.log (monArray.__proto__.__proto__); // l'objet Object
+
+
+// 1. Function constructor
+var ChocolatGen = function (type, prixKg){
+	// tous les objets crées par ce constructeur
+	// auront ces deux propriétés
+	this.type = type;
+	this.prixKg = prixKg;
+}
+
+var choco1 = new ChocolatGen ("blanc", 50);
+var choco2 = new ChocolatGen ("noir", 100);
+console.log ("choco 1 est du type : " + choco1.type); // blanc
+console.log ("choco 1 coûte : " + choco1.prixKg); // 50
+
+
+
+
+
+// Cette fonction "constructeur" est un objet.
+// JS crée une nouvelle propriété "prototype"dans ChocolatGen qui pointe vers
+// un objet ChocolaGen.prototype
+console.log (ChocolatGen.prototype);
+
+// ainsi que dans les objets crées avec ce constructeur
+// (maintenant ils sont une propriété "prototype"!)
+console.log (choco1.__proto__);
+console.log (choco2.__proto__);
+
+console.log ("__proto__ de choco1 est ChocolatGen.prototype?");
+console.log (ChocolatGen.prototype === choco1.__proto__ );
+console.log ("__proto__ de choco2 est ChocolatGen.prototype?");
+console.log (ChocolatGen.prototype === choco2.__proto__ );
+
+console.log (ChocolatGen.prototype.__proto__); // objet Objet générique
+console.log (ChocolatGen.__proto__) ; // objet Fonction générique
+console.log (ChocolatGen.__proto__.__proto__) ; // objet Objet générique
+
+// Quand on crée une fonction Constructeur :
+
+//-	Une propriété est automatiquement rajoutée dans cette fonction : la propriété prototype (pas __proto__) qui pointe vers un objet qu'on appellera ChocolatGen.prototype
+//-	L'objet ChocolatGen.prototype a une propriété constructor, à son tour, qui pointe vers ChocolatGen
+//-	Les __proto__ des objets crées avec le constructeur pointent vers cet objet ChocolatGen.prototype
+//-	Le __proto__ de ChocolatGen pointe vers le __proto__ générique de function
+//-	Le __proto__ de function pointe vers le __proto__ d'objet (null)
+//-	Le __proto__ de ChocolatGen.prototype pointe diréctement vers le __proto__ d'objet, car il est une objet et pas une fonction
+
+// Pour créer l'héritage basé en prototypes, on modifie l'objet prototype et
+// pas la fonction
+
+// Héritage de méthodes
+ChocolatGen.prototype.manger = function (){
+		console.log ("am am am le chocolat " + this.type + " comment c'est bon!!");
+};
+choco1.manger();
+
+// Partage de propriétés (l'héritage éxiste déjà avec les propriétés définies dans le constructeur)
+ChocolatGen.prototype.origin = "Belgique";
+console.log (choco1.origin); // la propriété est définie dans le prototype SAUF si on la défini pour
+							// chaque objet. Dans ce cas, JS prendra la valeur propre à l'objet!
+ChocolatGen.prototype.origin = "Equateur";
+choco2.origin = "Seville"; // on écrasse la valeur par défaut, hérité du prototype
+console.log (choco1.origin); // prends la valeur du prototype ("Equateur")
+console.log (choco2.origin); // prends sa propre valeur
+console.log (choco1.__proto__.origin);  // prends la valeur du prototype
+console.log (choco2.__proto__.origin);  // prends la valeur du prototype, qui n'est plus la même que la copie de l'objet
+choco1.origin = "Chine";
+ChocolatGen.prototype.origin = "Italie";
+console.log (choco1.origin); // affiche sa propre valeur
+console.log (choco2.origin); // affiche sa propre valeur
+
+
+
+// Si on avait crée la méthode dans la fonction constructeur en soi, le code de la méthode
+// se trouverait dans chaque objet, ce qui ne nous convient pas
+var ChocolatGen2 = function (type, prixKg){
+	// tous les objets crées par ce constructeur
+	// auront ces deux propriétés
+	this.type = type;
+	this.prixKg = prixKg;
+	this.manger = function (){
+		console.log ("am am am le chocolat " + this.type + " comment c'est bon!!");
+	};
+}
+var choco3 = new ChocolatGen2 ("blanc", 50);
+var choco4 = new ChocolatGen2 ("noir", 100);
+console.log (choco3);
+console.log (choco4);
+
+// Observez que pour ChocolatGen nous n'avons pas le code de la méthode pour chaque objet
+console.log (choco1);
+console.log (choco2);
+// il se trouve dans le prototype!
+console.log (choco1.__proto__);
+console.log (choco2.__proto__);
+
+
+
+
+
+</script>
+</body>
+</html>

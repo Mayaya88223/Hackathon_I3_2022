@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+		
+        <title></title>
+    </head>
+    <body>
+	
+<script>
+
+var tab = [4,5];
+console.log (tab.__proto__); 
+// array est un sous-type d'objet. On peut obtenir le prototype du prototype d'array (il est Object)
+console.log (tab.__proto__.__proto__);
+
+
+var f1 = function (){
+	console.log ("Hello");
+}
+console.log (f1.__proto__);
+// fonction est un sous-type d'objet. On peut obtenir le prototype du prototype de function (il est Object)
+console.log (f1.__proto__.__proto__);
+
+	
+
+var monSandwich = {
+	nom: "club",
+	ingredients: ['jambon','fromage']
+}
+
+console.log (monSandwich.__proto__);
+// fonction est un sous-type d'objet. On NE peut PAS obtenir le prototype du prototype d'Object 
+// car il est à la racine des prototypes
+console.log (monSandwich.__proto__.__proto__);
+
+
+</script>
+</body>
+</html>

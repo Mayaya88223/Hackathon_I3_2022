@@ -1,0 +1,31 @@
+<script>
+
+// Exemple: un exemple de base
+var produit = {
+	nom: 'Parfum',
+	prix: 50,
+	getInfoProduit: function (){
+		var info = this.nom + ' coute ' + this.prix;
+		return info;
+	}
+}
+
+var affiche = function (){
+	console.log ("Info: " + this.getInfoProduit());
+}
+
+// var afficheProduit = affiche(produit); // erreur car this est window dans la fonction affiche
+
+// mais on peut fixer le this pour la fonction "affiche" en utilisant bind
+// bind crée une copie de la fonction en fixant le this. Call ne crée pas de copie, c'est juste 
+// un appel!	
+var afficheProduit = affiche.bind (produit);
+afficheProduit();
+
+// call fait un appel, pas une copie de la fonction
+// call reçoit l'objet qui sera this et , optionnellement, une liste de paramétres pour la fonction
+// apply est comme call mais il reçoit un array en plus de l'objet qui sera this, 
+// au lieu des paramètres séparés par virgules
+
+</script>
+

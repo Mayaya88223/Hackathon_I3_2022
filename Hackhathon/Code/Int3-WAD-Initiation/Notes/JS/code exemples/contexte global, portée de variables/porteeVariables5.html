@@ -1,0 +1,32 @@
+<html>
+<body>
+<script>
+
+
+
+function f3(){
+	var x=70;
+	function f2(){
+		function f1(){
+			var x=80;
+			console.log (x); // quelle x va afficher?
+		}
+		f1();
+		console.log (x); // quelle x va afficher?
+	}
+	f2();
+}
+
+var x=90;
+f3();
+
+// Le contexte immédiatement extérieur à f1 est le contexte de f2
+// Le contexte immédiatement extérieur à f2 est le contexte de f3
+// Le contexte immédiatement extérieur à f3 est le global
+
+// note: si JS ne trouve pas la variable, il la cherchera dans le scope immédiatement superieur
+
+
+</script>
+</body>
+</html>

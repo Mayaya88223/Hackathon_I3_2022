@@ -1,0 +1,26 @@
+<html>
+<body>
+<script>
+
+function f1(){
+	console.log (x); // quelle x va afficher?
+}
+
+function f2(){
+	var x=50;
+	f1();
+}
+
+
+var x=90;
+f2();
+
+// f1 cherche x dans son contexte mais elle ne la trouve pas
+// Le contexte lexical immédiatement extérieur de f1 est le global car elle est écrite physiquement dans le contexte global
+// Si elle était crée (pas appelée!) à l'interieur de f2, son contexte lexical serait celui de f2 
+// Le contexte lexical immédiatement extérieur de f2 est le global car elle est écrite physiquement dans le contexte global
+
+
+</script>
+</body>
+</html>

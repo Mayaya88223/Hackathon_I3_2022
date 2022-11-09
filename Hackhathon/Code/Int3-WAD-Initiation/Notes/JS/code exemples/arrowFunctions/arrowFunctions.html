@@ -1,0 +1,74 @@
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<button id="bouton1">Bouton 1</button>
+<script>
+
+// exemples de fonctions et transformation en arrow fonctions
+// c'est juste un changement de syntaxe!
+
+// version sans arrow
+controlerEntree = function (age) {
+	if (age >= 18){
+		console.log ("Ok vous pouvez entrer");
+	}
+	else {
+		console.log ("Vous êtes trop jeune");
+	}
+}
+
+// version avec arrow
+controlerEntree = (age) => {
+	if (age >= 18){
+		console.log ("Ok vous pouvez entrer");
+	}
+	else {
+		console.log ("Vous êtes trop jeune");
+	}
+}
+// l'appel est pareille dans les deux cas
+controlerEntree (19);
+
+
+// exemple: utilisation d'une arrow function dans un événement
+
+// version sans arrow:
+bouton1.addEventListener ('click', function (evenement) {
+		console.log ("vous avez cliqué: " + evenement.currentTarget.id);
+});
+
+// version avec arrow
+bouton1.addEventListener ('click', (evenement) => {
+		console.log ("vous avez cliqué: " + evenement.currentTarget.id);
+});
+
+
+// La syntaxe peut être encore plus simplifiée pour les fonctions qui ont qu'un return
+// dans leur code:
+
+// voici une fonction normale
+var calculeSomme = function (val1, val2){
+	return (val1 + val2);
+}
+
+// version en arrow function notation normale
+var calculeSomme = (val1, val2) => {
+	return (val1 + val2);
+}
+
+// version simplifiée pour les fonctions qui contiennent qu'un return
+calculeSomme = (val1, val2) => (val1 + val2);
+
+// l'appel est toujours la même...
+console.log (calculeSomme (4,5));
+
+
+
+
+
+</script>
+</body>
+</html>
+

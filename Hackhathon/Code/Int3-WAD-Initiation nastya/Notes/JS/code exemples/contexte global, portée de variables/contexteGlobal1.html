@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta charset="utf-8" />
+</head>
+<body>
+<script>
+var age = 30;
+nom = "hello";
+
+
+var nom = "Marie";
+function f1(){
+	var varF1 = 10;
+	console.log (nom);
+}
+function f2(){
+	var varF2 = 15;
+	uneAutreVarF2 = "uneAutreVarF2";
+	// modification d'une variable globale depuis une fonction
+	age *= 2;
+}
+
+function f3(){
+	var age = 15; // une autre variable "age" à l'interieur d'une fonction
+	age *= 3;
+	console.log ("Age dans la fonction: " + age);
+}
+
+
+f1();
+// f2();
+//console.log (varF1);
+//console.log (uneAutreVarF2);
+console.log ("Valeur d'âge: " + age);
+f3();
+console.log ("Valeur d'âge après l'appel: " + age);
+
+
+
+
+
+/*var nom = "Marie";
+
+function bonjour (){
+	console.log ("Coucou");
+}
+
+var toto="lala";
+
+window.onclick = function(){
+	alert ("click sur la fenetre");
+}
+
+
+
+
+console.log (window);
+
+*/
+</script>
+</body>
+</html>

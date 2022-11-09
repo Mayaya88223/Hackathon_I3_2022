@@ -1,0 +1,31 @@
+<html>
+<body>
+<script>
+
+
+
+function f2(){
+
+	function f1(){
+		console.log (x); // quelle x va afficher?
+	}
+
+	// var x=50; // et si on change cette ligne?
+	f1();
+	
+}
+
+
+var x=90;
+f2();
+f1(); // ne fonctionne plus, JS ne trouve pas f1 dans le contexte lexical global
+
+// Le contexte lexical immédiatement extérieur de f1 est le contexte de f2 (f1 est créé à l'interieur de f2!)
+// Le contexte lexical immédiatement extérieur de f2 est le global
+
+// note: si JS ne trouve pas la variable, il la cherchera dans le contexte immédiatement superieur
+
+
+</script>
+</body>
+</html>

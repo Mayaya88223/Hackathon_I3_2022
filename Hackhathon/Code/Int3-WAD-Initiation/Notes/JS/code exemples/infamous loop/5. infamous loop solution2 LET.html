@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+</head> 
+<body>
+<button type="button">Salut</button>
+<button type="button">Hola</button>
+<button type="button">Hello</button>
+
+
+
+
+
+<script>
+// Solution infamous loop
+var boutons = document.getElementsByTagName ("button");
+
+for (let i=0; i< boutons.length; i++){
+	// let crée dans la mémoire une copie de la variable i à chaque tour de la boucle
+	// Quand le click se produit, on ne prend pas la valeur de i actuelle (3)
+	// mais la valeur de la copie de i qui a été faite quand 
+	// on a rajouté l'événement 
+	boutons[i].addEventListener ("click", function (evenement){
+		console.log ("click sur le bouton " + i);
+	});
+}
+
+
+</script>
+</body>
+</html>

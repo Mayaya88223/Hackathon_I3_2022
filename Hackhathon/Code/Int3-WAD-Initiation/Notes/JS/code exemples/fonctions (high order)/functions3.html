@@ -1,0 +1,144 @@
+<html>
+<head>
+<meta charset="utf-8" />
+</head>
+<body>
+<script>
+// 1.	Stocker une fonction dans une variable ou une autre structure de données (array, objet...)
+// --------------------------------------------------------------
+// Stockage dans une variable
+var salut = function (){
+	console.log ("Salut à toutes!");
+}
+
+salut();
+
+
+// Stockage dans un array
+
+// D'abord on crée trois fonctions qu'on va stocker dans un array
+var uneFonction = function (){
+	console.log ("J'aime le sushi!");
+}
+var autreFonction = function (){
+	for (i=0;i<10;i++){
+		console.log (i*2);
+	}
+}
+var encoreAutreFonction = function (){
+	var nom = prompt ("Vous êtes?");
+	console.log ("Bienvenu " + nom);
+}
+
+// on crée un array de fonctions
+var operations = [uneFonction, autreFonction, encoreAutreFonction];
+
+// on fait appel à chaque fonction dans l'array
+for (i=0;i<operations.length;i++){
+		operations[i]();
+}
+
+
+// 2. Passer une fonction comme paramètre à une autre fonction
+// ---------------------------------------------------
+
+// Exemple:
+
+// voici la fonction qui reçoit un paramètre
+function afficheVariable(uneVariable){
+	console.log (uneVariable);
+}
+
+// on peut envoyer un type primitif comme paramètre
+var a=8;
+afficheVariable (a);
+
+// on peut envoyer une fonction comme paramètre. 
+// cet exemple montre uniquément qu'on peut le faire
+// mais n'a aucune utilité pratique
+var uneFonction = function (){
+	console.log ("Je suis la fonction");
+};
+afficheVariable (uneFonction); // on peut passer une fonction à une autre fonction, c'est juste un objet
+
+// on peut envoyer un objet comme paramètre
+var voiture={ 
+	marque: "Honda",
+	modele: "Civic"
+};
+afficheVariable (voiture);
+
+
+// Exemple pratique: on peut passer une 
+// fonction à une autre fonction pour que ça soit elle qui 
+// l'execute. On peut même créer la fonction dans l'appel
+
+// fonction quie reçoit une fonction en paramètre
+function saluer (uneFonction){
+	uneFonction(); // à priori on ne sait pas qu'est-ce qu'on va lancer: 
+					// on reçoit la fonction en paramètre
+}
+
+// appel à la fonction 
+saluer (function (){
+	console.log ("Salut");
+});
+
+saluer (function (){
+	console.log ("Bonne nuit");
+});
+
+saluer (function (){
+	console.log ("Coucou");
+});
+
+
+
+// fonction qui reçoit une fonction en paramètre
+function calculer (uneFonction){
+	// on fera quoi qui ce soit avec les valeurs 10 et 20, par exemple
+	uneFonction(10,20); // à priori on ne sait pas qu'est-ce qu'on va lancer: on reçoit la fonction en paramètre
+}
+
+// on fait appel à la fonction et en envoie 
+// de différentes fonctions en paramètre
+calculer (function (x,y){
+	console.log ("Multiplication: ");
+	console.log (x*y);
+});
+
+
+calculer (function (x,y){
+	console.log ("Addition: ");
+	console.log (x+y);
+});
+
+calculer (function (x,y){
+	console.log ("Soustraction: ");
+	console.log (x-y);
+});
+
+
+// 3.	Renvoyer une fonction dans un return
+// (on verra de cas pratiques dans la manipulation du dom)
+
+function genereFonction(message){ 
+	var maFonc = function (){
+		console.log ("Je suis une fonction et je vais être renvoyée!");
+		console.log ("Je veux aussi dire: " + message);
+	}
+	return maFonc;
+}
+
+// à chaque fois j'obtient une nouvelle fonction "personnalisée"
+var maFonctionPerso = genereFonction ("hey hey hey!!!!");
+maFonctionPerso();
+
+var maFonctionPerso = genereFonction ("la la la la!!!!");
+maFonctionPerso(); // observez qu'on fait le même appel qu'avant mais le résultat est différent
+
+
+
+</script>
+</body>
+</html>

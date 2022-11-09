@@ -1,0 +1,149 @@
+/*
+Intro css 
+*/
+@font-face {
+    font-family:"RobotoLight";
+    src: url("../fonts/roboto/Roboto-Light.ttf");
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@100&display=swap');
+
+
+*{
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 16px;
+}
+
+body{
+    letter-spacing: 1px;
+}
+
+
+
+div.container{
+    width:1170px;
+    margin: auto;
+    /* margin:auto auto auto auto;
+    margin:top right bottom left;*/
+    margin-top:60px;
+    /* margin:60px auto auto auto;*/
+}
+
+/* div.container div{} selecteur enfant global */
+
+div.container > div{ /*selecteur enfant direct */
+    margin:15px;
+}
+
+div.presentation{
+    background-color: #18c5cc;
+    width:360px;
+    height:625px;
+    float:left;
+    padding:30px;
+    padding-top:150px;
+    color:white;
+}
+
+div.presentation h2{
+    font-size: 3rem;
+    /* 3 rem = 3*font-size de html... */
+
+
+    font-family: "Roboto";
+}
+
+div.presentation p{
+    margin-top:40px;
+    font-size: 1.12rem;
+    line-height: 1.6;
+    font-family: "RobotoLight";
+}
+
+div.cartable{
+    background-image: url("../images/cartable.jpg");
+    background-size: cover;
+}
+
+div.pommier{
+    background-image: url("../images/pommier.jpg");
+    background-size: cover;
+}
+
+div.pommier, div.cartable{
+    width:360px;
+    height: 312px;
+    float:left;
+}
+
+div.title{
+    padding:36px;
+    border:2px solid #18c5cc;
+    text-align: center;
+}
+
+div.title h1{
+    font-size: 3rem;
+    color:#18c5cc;
+    text-transform: uppercase;
+    font-family: 'Inconsolata';
+    font-weight: 200;
+    line-height: 1.1;
+}
+
+div.reveil{
+    background-image: url("../images/reveil.jpg");
+    background-size: cover;
+}
+
+div.title, div.reveil{
+    width:360px;
+    height:283px;
+    float:left;
+}
+
+div.ecoliere{
+    background-image: url("../images/blondinette.jpg");
+    background-size: cover;
+    width: 360px;
+    height: 307px;
+    float:left;
+}
+
+div.description{
+    width: 750px;
+    height: 307px;
+    float:left;
+    padding:30px;
+    background-color: #f86942;
+    color:white;
+}
+
+div.description h3{
+    font-size: 2rem;
+    font-family: "Roboto";
+}
+
+div.description p{
+    font-size: 1.12rem;
+    margin-top: 20px;
+    line-height: 1.6;
+    font-family: "RobotoLight";
+    margin:30px 0;
+}
+
+div.description a{
+    padding:10px 30px;
+    background-color: #ffffff;
+    color: #111111;
+    /* padding:10px 30px 10px 30px;*/
+    margin-top:30px;
+    letter-spacing: 3px;
+    font-family: "Roboto";
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-decoration: none;
+}

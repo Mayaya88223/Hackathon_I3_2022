@@ -1,0 +1,49 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Assets/css/reset.css">
+    <link rel="stylesheet" href="/Assets/css/style.css">
+    <title>Document</title>
+</head>
+
+<h2>
+<h3>
+<h4>
+<p>
+
+# rajouter barre de menu nouvelle et le mettre partout
+# ajouter les liens au menu
+# faire le design des itinéraires (ordi et mobile)
+# media queries pour la page de login
+# page d'inscription (HTML, CSS, PHP)
+
+
+Bonjour test commit loic
+
+
+commande pour compiler le sass : 
+sass --watch assets/sass:assets/css
+
+obtenir URL de la page actuelle :
+					<?php  
+    if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
+         $url = "https://";   
+    else  
+         $url = "http://";   
+    // Append the host(domain name, ip) to the URL.   
+    $url.= $_SERVER['HTTP_HOST'];   
+    
+    // Append the requested resource location to the URL   
+    $url.= $_SERVER['REQUEST_URI'];    
+      
+    echo $url;  
+  ?>
+
+  <?php 
+# trouver le chemin du serveur et du répertoire racine
+    $path = (@$_SERVER["HTTPS"] == "on") ? "https://" : "http://";
+    $path .=$_SERVER["SERVER_NAME"]. dirname($_SERVER["PHP_SELF"]);        
+    echo $path;
+
+# Utiliser <?php echo $path . " "; pour des liens ?>

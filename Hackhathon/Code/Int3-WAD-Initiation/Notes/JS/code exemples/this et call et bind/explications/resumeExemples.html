@@ -1,0 +1,78 @@
+<html>
+<head>
+<meta charset='utf-8' />
+</head>
+<body>
+lalala
+
+</body>
+<script>
+
+// au niveau le plus global
+console.log (window);
+console.log (this);
+console.log (window === this);
+
+// this directement dans une méthode de l'objet
+// nous donne l'objet courant
+var cafe = {
+	type: "au lait",
+	prix: 2,
+	chauffer: function (){
+		console.log ("Le cafe " + this.type +  " chauffe...");
+	},
+	refroidire: function (){
+		console.log ("Le cafe " + this.type +  " refroidit...");
+	},
+}
+
+console.log (cafe.type);
+console.log (cafe.prix);
+cafe.chauffer();
+
+var soupe = {
+	type: "à la tomate",
+	prix: 4,
+	chauffer: function (){
+		console.log (this);
+		console.log ("La soupe " + this.type +  " chauffe...");
+		console.log ("La soupe coute " + this.prix);
+		
+		
+		allumerGas();
+		function allumerGas(){
+			console.log ("On allume le gas pour chauffer la soupe ");
+			// this fait référence à Window
+			console.log (this);		
+		}		
+	},
+	refroidire: function (){
+		console.log ("La soupe " + this.type +  " refroidit...");
+		
+		
+	}
+}
+soupe.chauffer();
+
+// this dans une simple fonction
+function f (){
+	console.log ("je suis la fonction f");
+	console.log (this);
+}
+
+// this dans une fonction à l'interieur d'une  fonction
+function f1 (){
+	console.log ("je suis la fonction f1");
+	
+	
+	function f2 (){
+		console.log ("je suis la fonction f2");
+		console.log (this);
+	}
+	f2();
+	console.log (this);
+}
+f1();
+
+</script>
+</html>

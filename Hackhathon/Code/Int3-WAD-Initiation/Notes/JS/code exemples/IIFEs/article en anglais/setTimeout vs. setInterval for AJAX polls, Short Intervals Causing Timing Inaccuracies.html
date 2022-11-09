@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html dir="ltr" style="min-height: 11782px;" lang="en-US"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>setTimeout vs. setInterval for AJAX polls, Short Intervals Causing Timing Inaccuracies</title>
+<meta name="description" content="Javascript tutorials you can actually use.">
+
+<link href="setTimeout%20vs.%20setInterval%20for%20AJAX%20polls,%20Short%20Intervals%20Causing%20Timing%20Inaccuracies_files/css.css" rel="stylesheet" type="text/css">
+<link href="setTimeout%20vs.%20setInterval%20for%20AJAX%20polls,%20Short%20Intervals%20Causing%20Timing%20Inaccuracies_files/css_002.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="setTimeout%20vs.%20setInterval%20for%20AJAX%20polls,%20Short%20Intervals%20Causing%20Timing%20Inaccuracies_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" href="setTimeout%20vs.%20setInterval%20for%20AJAX%20polls,%20Short%20Intervals%20Causing%20Timing%20Inaccuracies_files/codemirror.css" type="text/css" media="all">
+<link rel="stylesheet" href="setTimeout%20vs.%20setInterval%20for%20AJAX%20polls,%20Short%20Intervals%20Causing%20Timing%20Inaccuracies_files/night.css" type="text/css" media="all">
+<link rel="pingback" href="http://reallifejs.com/xmlrpc.php">
+<link rel="shortcut icon" href="http://reallifejs.com/favicon.ico">
+
+<script type="text/javascript" async="" src="setTimeout%20vs.%20setInterval%20for%20AJAX%20polls,%20Short%20Intervals%20Causing%20Timing%20Inaccuracies_files/ga.js"></script><script type="text/javascript">
+var HOSTNAME = "reallifejs.com"; var PRODUCTION = true; var REDIRECTION_MAP = {"http:\/\/reallifejs.com\/brainchunks\/":"http:\/\/reallifejs.com\/brainchunks\/","http:\/\/reallifejs.com\/brainchunks\/including-jquery\/":"http:\/\/reallifejs.com\/brainchunks\/including-jquery\/","http:\/\/reallifejs.com\/brainchunks\/repeated-events-timeout-or-interval\/":"http:\/\/reallifejs.com\/brainchunks\/repeated-events-timeout-or-interval\/","http:\/\/reallifejs.com\/evolve\/":"http:\/\/reallifejs.com\/evolve\/","http:\/\/reallifejs.com\/":"http:\/\/reallifejs.com\/","http:\/\/reallifejs.com\/the-meat\/calculators\/":"http:\/\/reallifejs.com\/the-meat\/calculators\/","http:\/\/reallifejs.com\/the-meat\/calculators\/big-number-calculator\/":"http:\/\/reallifejs.com\/the-meat\/calculators\/big-number-calculator\/","http:\/\/reallifejs.com\/the-meat\/calculators\/big-number-calculator\/big-number-calculator-example\/":"http:\/\/reallifejs.com\/the-meat\/calculators\/big-number-calculator\/big-number-calculator-example\/","http:\/\/reallifejs.com\/the-meat\/calculators\/oop-calculator\/":"http:\/\/reallifejs.com\/the-meat\/calculators\/oop-calculator\/","http:\/\/reallifejs.com\/the-meat\/calculators\/oop-calculator\/oop-calculator-example\/":"http:\/\/reallifejs.com\/the-meat\/calculators\/oop-calculator\/oop-calculator-example\/","http:\/\/reallifejs.com\/the-meat\/calculators\/simple-calculator\/":"http:\/\/reallifejs.com\/the-meat\/calculators\/simple-calculator\/","http:\/\/reallifejs.com\/the-meat\/calculators\/simple-calculator\/simple-calculator-example\/":"http:\/\/reallifejs.com\/the-meat\/calculators\/simple-calculator\/simple-calculator-example\/","http:\/\/reallifejs.com\/the-meat\/getting-closure\/":"http:\/\/reallifejs.com\/the-meat\/getting-closure\/","http:\/\/reallifejs.com\/the-meat\/getting-closure\/im-still-using-that\/":"http:\/\/reallifejs.com\/the-meat\/getting-closure\/im-still-using-that\/","http:\/\/reallifejs.com\/the-meat\/getting-closure\/never-forget\/":"http:\/\/reallifejs.com\/the-meat\/getting-closure\/never-forget\/","http:\/\/reallifejs.com\/the-meat\/getting-closure\/the-real-life\/":"http:\/\/reallifejs.com\/the-meat\/getting-closure\/the-real-life\/","http:\/\/reallifejs.com\/the-meat\/getting-closure\/the-real-life\/animated-navigation\/":"http:\/\/reallifejs.com\/the-meat\/getting-closure\/the-real-life\/animated-navigation\/","http:\/\/reallifejs.com\/the-meat\/getting-closure\/the-real-life\/cancel-link-action\/":"http:\/\/reallifejs.com\/the-meat\/getting-closure\/the-real-life\/cancel-link-action\/","http:\/\/reallifejs.com\/the-real-real-life\/":"http:\/\/reallifejs.com\/the-real-real-life\/"}; </script>
+
+<!--[if IE 6]><script type="text/javascript">var IE_VERSION = 6; </script><![endif]-->
+<!--[if IE 7]><script type="text/javascript">var IE_VERSION = 7; </script><![endif]-->
+<!--[if IE 8]><script type="text/javascript">var IE_VERSION = 8; </script><![endif]-->
+<!--[if IE 9]><script type="text/javascript">var IE_VERSION = 9; </script><![endif]-->
+
+<script type="text/javascript" src="setTimeout%20vs.%20setInterval%20for%20AJAX%20polls,%20Short%20Intervals%20Causing%20Timing%20Inaccuracies_files/jquery.js"></script>
+<script type="text/javascript" src="setTimeout%20vs.%20setInterval%20for%20AJAX%20polls,%20Short%20Intervals%20Causing%20Timing%20Inaccuracies_files/jquery_002.js"></script>
+<script type="text/javascript" src="setTimeout%20vs.%20setInterval%20for%20AJAX%20polls,%20Short%20Intervals%20Causing%20Timing%20Inaccuracies_files/jquery_003.js"></script>
+<script type="text/javascript" src="setTimeout%20vs.%20setInterval%20for%20AJAX%20polls,%20Short%20Intervals%20Causing%20Timing%20Inaccuracies_files/codemirror.js"></script>
+<script type="text/javascript" src="setTimeout%20vs.%20setInterval%20for%20AJAX%20polls,%20Short%20Intervals%20Causing%20Timing%20Inaccuracies_files/htmlmixed.js"></script>
+<script type="text/javascript" src="setTimeout%20vs.%20setInterval%20for%20AJAX%20polls,%20Short%20Intervals%20Causing%20Timing%20Inaccuracies_files/javascript.js"></script>
+<script type="text/javascript" src="setTimeout%20vs.%20setInterval%20for%20AJAX%20polls,%20Short%20Intervals%20Causing%20Timing%20Inaccuracies_files/xml.js"></script>
+<script type="text/javascript" src="setTimeout%20vs.%20setInterval%20for%20AJAX%20polls,%20Short%20Intervals%20Causing%20Timing%20Inaccuracies_files/css.js"></script>
+<script type="text/javascript" src="setTimeout%20vs.%20setInterval%20for%20AJAX%20polls,%20Short%20Intervals%20Causing%20Timing%20Inaccuracies_files/main.js"></script>
+
+
+<link rel="stylesheet" id="codecolorer-css" href="setTimeout%20vs.%20setInterval%20for%20AJAX%20polls,%20Short%20Intervals%20Causing%20Timing%20Inaccuracies_files/codecolorer.css" type="text/css" media="screen">
+<link rel="canonical" href="http://reallifejs.com/brainchunks/repeated-events-timeout-or-interval/">
+
+</head>
+
+
+<body class="page page-id-334 page-child parent-pageid-79 page-template-default" style="min-height: 11782px;">
+
+<div id="wrapper"><div id="container" style="overflow: hidden; min-height: 11782px;">
+
+	<div class="page" id="page-0" style="left: 1094.2px; cursor: pointer;">
+		<div class="page-container">
+		
+			<div class="side" style="height: 11782px;">
+				<div class="logo-wrapper" style="position: absolute;"><div class="logo">RealLifeJS</div></div>
+				
+			<div class="nav">
+				<ul class="shallow"><li><a href="http://reallifejs.com/" address="true">The Meat</a><ul><li class="page_item page-item-786"><a href="http://reallifejs.com/the-meat/calculators/" title="Calculators" address="true"><span>Calculators</span></a>
+<ul class="children">
+	<li class="page_item page-item-790"><a href="http://reallifejs.com/the-meat/calculators/simple-calculator/" title="Simple Calculator" address="true"><span>Simple Calculator</span></a></li>
+	<li class="page_item page-item-842"><a href="http://reallifejs.com/the-meat/calculators/oop-calculator/" title="OOP Calculator" address="true"><span>OOP Calculator</span></a></li>
+	<li class="page_item page-item-920"><a href="http://reallifejs.com/the-meat/calculators/big-number-calculator/" title="Big Number Calculator" address="true"><span>Big Number Calculator</span></a></li>
+</ul>
+</li>
+<li class="page_item page-item-85"><a href="http://reallifejs.com/the-meat/getting-closure/" title="Getting Closure" address="true"><span>Getting Closure</span></a>
+<ul class="children">
+	<li class="page_item page-item-138"><a href="http://reallifejs.com/the-meat/getting-closure/im-still-using-that/" title="I’m Still Using That!" address="true"><span>I’m Still Using That!</span></a></li>
+	<li class="page_item page-item-281"><a href="http://reallifejs.com/the-meat/getting-closure/never-forget/" title="Never Forget" address="true"><span>Never Forget</span></a></li>
+	<li class="page_item page-item-230"><a href="http://reallifejs.com/the-meat/getting-closure/the-real-life/" title="The Real Life" address="true"><span>The Real Life</span></a></li>
+</ul>
+</li>
+</ul></li></ul>				</div></div>
+			
+			<div class="main"></div><!-- end div.main -->
+	
+						</div><!-- end div.page-container -->
+		<div class="shadow"></div></div><!-- end div.page -->
+
+	<div class="page" id="page-1" style="cursor: default;">
+		<div class="page-container"><div class="side" style="height: 11782px;"><div class="logo-wrapper" style="position: absolute;"><div class="logo" style="background-position: 0px 0px; display: block; left: 24px; top: 16px; opacity: 1;">RealLifeJS</div></div><div class="nav">
+				<ul class="shallow"><li class="current_page_ancestor"><a href="http://reallifejs.com/brainchunks/" address="true" tabindex="1">Brainchunks</a><ul><li class="page_item page-item-92"><a href="http://reallifejs.com/brainchunks/including-jquery/" title="Including jQuery" address="true" tabindex="2"><span>Including jQuery</span></a></li>
+<li class="page_item page-item-334 current_page_item"><a href="http://reallifejs.com/brainchunks/repeated-events-timeout-or-interval/" title="Repeated Events: Timeout&nbsp;or&nbsp;Interval?" address="true" tabindex="3"><span>Repeated Events: Timeout&nbsp;or&nbsp;Interval?</span></a></li>
+</ul></li></ul>				</div></div><div class="main">
+				<h1 style="cursor: text;" contenteditable="true">Repeated Events: Timeout&nbsp;or&nbsp;Interval?</h1>
+
+					
+	<div class="content">
+
+	
+		
+			<p>Every 101 on Javascript will tell you that <code class="codecolorer text default"><span class="text">setTimeout</span></code> is used for delaying a single action, while <code class="codecolorer text default"><span class="text">setInterval</span></code> is used for stuff that’s supposed to happen repeatedly.</p>
+<p>That’s only half the truth, though: If a function needs to be called repeatedly at a certain interval, you can easily use <code class="codecolorer text default"><span class="text">setTimeout</span></code> within the delayed function itself to set up a timed loop.</p>
+<p>So, there are two ways to do the same thing, one with <code class="codecolorer text default"><span class="text">setInterval</span></code>:</p>
+<div class="codecolorer-container javascript default" style="overflow: hidden; white-space: nowrap; cursor: pointer;" tabindex="4"><table><tbody><tr><td class="line-numbers"><div>1<br>2<br>3<br>4<br></div></td><td><div class="javascript codecolorer"><span class="kw2">var</span> doStuff <span class="sy0">=</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; <span class="co1">// Do stuff</span><br>
+<span class="br0">}</span><span class="sy0">;</span><br>
+setInterval<span class="br0">(</span>doStuff<span class="sy0">,</span> <span class="nu0">1000</span><span class="br0">)</span><span class="sy0">;</span></div></td></tr></tbody></table></div>
+<p>The other with <code class="codecolorer text default"><span class="text">setTimeout</span></code>:</p>
+<div class="codecolorer-container javascript default" style="overflow: hidden; white-space: nowrap; cursor: pointer;" tabindex="5"><table><tbody><tr><td class="line-numbers"><div>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br></div></td><td><div class="javascript codecolorer"><span class="co1">// A basic setTimeout loop, mimicking setInterval</span><br>
+<span class="kw2">var</span> doStuff <span class="sy0">=</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; <span class="co1">// Do stuff</span><br>
+&nbsp; &nbsp;setTimeout<span class="br0">(</span>doStuff<span class="sy0">,</span> <span class="nu0">1000</span><span class="br0">)</span><span class="sy0">;</span><br>
+<span class="br0">}</span><span class="sy0">;</span><br>
+setTimeout<span class="br0">(</span>doStuff<span class="sy0">,</span> <span class="nu0">1000</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+<br>
+<span class="co1">// If you want the first execution of the function to happen immediately,</span><br>
+<span class="co1">// you can change that to</span><br>
+<span class="kw2">var</span> doStuff <span class="sy0">=</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; <span class="co1">// Do stuff</span><br>
+&nbsp; &nbsp;setTimeout<span class="br0">(</span>doStuff<span class="sy0">,</span> <span class="nu0">1000</span><span class="br0">)</span><span class="sy0">;</span><br>
+<span class="br0">}</span><span class="sy0">;</span><br>
+doStuff<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+<br>
+<span class="co1">// ... or, which is the cooler way, use an immediately executed function:</span><br>
+<span class="br0">(</span><span class="kw2">function</span> doStuff<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; <span class="co1">// Do stuff</span><br>
+&nbsp; &nbsp;setTimeout<span class="br0">(</span>doStuff<span class="sy0">,</span> <span class="nu0">1000</span><span class="br0">)</span><span class="sy0">;</span><br>
+<span class="br0">}</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span></div></td></tr></tbody></table></div>
+<p>This inevitably leads to the&nbsp;…</p>
+<p><strong>Question:</strong> Are <code class="codecolorer text default"><span class="text">setInterval</span></code>- and self-invoking <code class="codecolorer text default"><span class="text">setTimeout</span></code>-loops interchangable?</p>
+<p><strong>Answer:</strong> No, they are not. The difference is somewhat
+ subtle, but if you care about writing good code, this is something you 
+will want to know.</p>
+<p>Alright, what’s going to happen is, <strong>first</strong>, I will tell you what the general issue is, <strong>second</strong>
+ I’ll start introducing some subtleties (some of which I haven’t seen 
+mentioned anywhere else), which will make one of the two options seem 
+much more attractive than the other, and <strong>third</strong> I will 
+tell you that you don’t actually need the other one at all. Then there’s
+ the conclusion, which states rather unexcitingly that <code class="codecolorer text default"><span class="text">setTimeout</span></code> is the superior choice. I will also compliment you on having seen that conclusion coming all along.</p>
+<h2>Clogging Up The Pipes</h2>
+<p>Ok, now that all the suspense is gone, let’s get down to business:</p>
+<p><strong>First: </strong>If the function you are trying to call 
+repeatedly wouldn’t take any time at all to run, there would be no 
+problem. It does, though, and it can do so in two different ways: it can
+ either just do some CPU intensive stuff that takes time, or it can 
+start an action outside of the script’s flow, which will come back later
+ with a result.</p>
+<p>Let’s have a look at the second one first. The typical action that 
+runs outside of the script’s flow is an AJAX call: your script won’t sit
+ there and wait for the server to respond, it will just run to the end, 
+and let the callback function worry about the AJAX response.</p>
+<p>Now, there are those sites that like to keep you updated on what’s 
+happening on the server, like Gmail refreshing your inbox when you got 
+new mail. There are techniques to make the server actually notify the 
+browser when something like that happens, but more often than not it is 
+done by AJAX polling, meaning that the browser is sending out polls to 
+the server at regular intervals, asking whether there’s anything it 
+should know about.</p>
+<p>“Regular intervals, hm?”, you might think, and jump right in there, wielding your good old <code class="codecolorer text default"><span class="text">setInterval</span></code>:</p>
+<p>(Notice that in the following code examples I will be using jQuery 
+syntax to make those AJAX examples a bit more succinct. This doesn’t 
+change anything timing-related.)</p>
+<div class="codecolorer-container javascript default" style="overflow: hidden; white-space: nowrap; cursor: pointer;" tabindex="6"><table><tbody><tr><td class="line-numbers"><div>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br></div></td><td><div class="javascript codecolorer"><span class="co1">// DON'T DO IT LIKE THIS</span><br>
+<span class="kw2">var</span> pollServerForNewMail <span class="sy0">=</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; $.<span class="me1">getJSON</span><span class="br0">(</span><span class="st0">'/poll_newmail.php'</span><span class="sy0">,</span> <span class="kw2">function</span> <span class="br0">(</span>response<span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; <span class="kw1">if</span> <span class="br0">(</span>response.<span class="me1">newMail</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; &nbsp; <span class="kw3">alert</span><span class="br0">(</span><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <span class="st0">"New mail. At last. You made me walk all the way to the server and back every "</span> <span class="sy0">+</span><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <span class="st0">"second for this, so if this isn't life-or-death, you got another thing coming."</span><br>
+&nbsp; &nbsp; &nbsp; <span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; &nbsp; <span class="br0">}</span><br>
+&nbsp; <span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span><br>
+<span class="br0">}</span><span class="sy0">;</span><br>
+setInterval<span class="br0">(</span>pollServerForNewMail<span class="sy0">,</span> <span class="nu0">1000</span><span class="br0">)</span><span class="sy0">;</span></div></td></tr></tbody></table></div>
+<p>That’s no good, though. A trip to the server and back takes time, and
+ who’s to say it takes less than a second? If it takes only slightly 
+more, the line will be constantly clogged up with your polls, and that’s
+ no fun at all.</p>
+<p>A typical beginner’s mistake might be to think that making the poll 
+interval a bit longer would be a good way to address this problem. Fact 
+of the matter is, though, that whatever magic number that interval is 
+set to, it still <em>might</em> be too short. What you need is some guaranteed breathing room between two polls, and that’s where <code class="codecolorer text default"><span class="text">setTimeout</span></code> comes in:</p>
+<div class="codecolorer-container javascript default" style="overflow: hidden; white-space: nowrap; cursor: pointer;" tabindex="7"><table><tbody><tr><td class="line-numbers"><div>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br></div></td><td><div class="javascript codecolorer"><span class="br0">(</span><span class="kw2">function</span> pollServerForNewMail<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; $.<span class="me1">getJSON</span><span class="br0">(</span><span class="st0">'/poll_newmail.php'</span><span class="sy0">,</span> <span class="kw2">function</span> <span class="br0">(</span>response<span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; <span class="kw1">if</span> <span class="br0">(</span>response.<span class="me1">newMail</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; &nbsp; <span class="kw3">alert</span><span class="br0">(</span><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <span class="st0">"You have received a letter, good sir. "</span> <span class="sy0">+</span> <br>
+&nbsp; &nbsp; &nbsp; &nbsp; <span class="st0">"I will have a quick lie-down and be on my way shortly."</span><br>
+&nbsp; &nbsp; &nbsp; <span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; &nbsp; <span class="br0">}</span><br>
+&nbsp; &nbsp; setTimeout<span class="br0">(</span>pollServerForMail<span class="sy0">,</span> <span class="nu0">1000</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span><br>
+<span class="br0">}</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span></div></td></tr></tbody></table></div>
+<p>The relentlessness of <code class="codecolorer text default"><span class="text">setInterval</span></code>
+ is completely gone here. Nothing happens until the server response 
+arrives, and when it does, the polling function, that poor bastard, is 
+given a second to relax before having to make the next trip. There’s no 
+chance that more than one polling function is running at any one time, 
+and after every poll there’s a guaranteed pause for other tasks to enjoy
+ the wonders of the internet connection.</p>
+<p>Of course, this means that there’s actually more than a second 
+between every two polls, depending on various factors like the 
+connection speed and the time it takes the server to come up with a 
+response. But obviously that’s not a problem for what we’re doing here.</p>
+<h2>On The Futility of Nagging</h2>
+<p>So much for actions outside of the script’s flow. The example was an 
+AJAX call, but the general principle applies to all sorts of event 
+handling. The other thing I mentioned are CPU intensive tasks, and that 
+brings me right to the next point, where a few subtleties will start to 
+crop up:</p>
+<p><strong>Second: </strong>Okay, we’ve seen in that out-of-flow AJAX example how a <code class="codecolorer text default"><span class="text">setTimeout</span></code>-loop doesn’t act on a strict schedule, but gives even slow tasks a breather, whereas <code class="codecolorer text default"><span class="text">setInterval</span></code> is a relentless bitch. Let’s have a look at how this works with in-the-flow actions:</p>
+<p>The <code class="codecolorer text default"><span class="text">setInterval</span></code> case:</p>
+<div class="codecolorer-container javascript default" style="overflow: hidden; white-space: nowrap; cursor: pointer;" data-executable="1" tabindex="8"><table><tbody><tr><td class="line-numbers"><div>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br></div></td><td><div class="javascript codecolorer"><span class="kw2">var</span> timesRun <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span><br>
+<span class="kw2">var</span> startTime <span class="sy0">=</span> <span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+<span class="kw2">var</span> doStuff <span class="sy0">=</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; <span class="kw2">var</span> now <span class="sy0">=</span> <span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+&nbsp; <span class="co1">// Run only 5 times</span><br>
+&nbsp; <span class="kw1">if</span> <span class="br0">(</span><span class="sy0">++</span>timesRun <span class="sy0">==</span> <span class="nu0">5</span><span class="br0">)</span> clearInterval<span class="br0">(</span>timer<span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+&nbsp; console.<span class="me1">log</span><span class="br0">(</span><span class="st0">'Action '</span> <span class="sy0">+</span> timesRun <span class="sy0">+</span> <span class="st0">' started '</span> <span class="sy0">+</span> <span class="br0">(</span>now <span class="sy0">-</span> startTime<span class="br0">)</span> <span class="sy0">+</span> <span class="st0">'ms after script start'</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+&nbsp; <span class="co1">// Waste some time</span><br>
+&nbsp; <span class="kw1">for</span> <span class="br0">(</span><span class="kw2">var</span> i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> <span class="nu0">100000</span><span class="sy0">;</span> i<span class="sy0">++</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; document.<span class="me1">getElementById</span><span class="br0">(</span><span class="st0">'unobtanium'</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+<br>
+&nbsp; console.<span class="me1">log</span><span class="br0">(</span><span class="st0">'and took '</span> <span class="sy0">+</span> <span class="br0">(</span><span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span> <span class="sy0">-</span> now<span class="br0">)</span> <span class="sy0">+</span> <span class="st0">'ms to run.'</span><span class="br0">)</span><span class="sy0">;</span><br>
+<span class="br0">}</span><span class="sy0">;</span><br>
+<br>
+<span class="kw2">var</span> timer <span class="sy0">=</span> setInterval<span class="br0">(</span>doStuff<span class="sy0">,</span> <span class="nu0">1000</span><span class="br0">)</span><span class="sy0">;</span></div></td></tr></tbody></table><div class="code-info">RUN ME</div></div>
+<p>With the output being something like:</p>
+<div class="codecolorer-container text default output" style="overflow:auto;white-space:nowrap;" data-output="1"><table><tbody><tr><td class="line-numbers"><div>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br></div></td><td><div class="text codecolorer">Action 1 started 1000ms after script start<br>
+and took 71ms to run.<br>
+Action 2 started 2001ms after script start<br>
+and took 73ms to run.<br>
+Action 3 started 3001ms after script start<br>
+and took 72ms to run.<br>
+Action 4 started 4002ms after script start<br>
+and took 112ms to run.<br>
+Action 5 started 5003ms after script start<br>
+and took 71ms to run.</div></td></tr></tbody></table></div>
+<p>There are no big surprises here. The actions take some time, but <code class="codecolorer text default"><span class="text">setInterval</span></code>
+ sticks to its schedule — sort of: you’ll notice that the start times 
+aren’t spaced at exact 1 second intervals. That’s because Javascript’s 
+timing functions just aren’t that reliable. How reliable they actually 
+are, depends on the browser, so if you’re trying to do something time 
+sensitive, you need to synchronize with an actual <code class="codecolorer text default"><span class="text">Date</span></code> object. We’ll see an example of that later.</p>
+<p>Now the <code class="codecolorer text default"><span class="text">setTimeout</span></code>-loop case:</p>
+<div class="codecolorer-container javascript default" style="overflow: hidden; white-space: nowrap; cursor: pointer;" data-executable="1" tabindex="9"><table><tbody><tr><td class="line-numbers"><div>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br></div></td><td><div class="javascript codecolorer"><span class="kw2">var</span> timesRun <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span><br>
+<span class="kw2">var</span> startTime <span class="sy0">=</span> <span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+<span class="kw2">var</span> doStuff <span class="sy0">=</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; <span class="kw2">var</span> now <span class="sy0">=</span> <span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+&nbsp; console.<span class="me1">log</span><span class="br0">(</span><span class="st0">'Action '</span> <span class="sy0">+</span> <span class="br0">(</span>timesRun <span class="sy0">+</span> <span class="nu0">1</span><span class="br0">)</span> <span class="sy0">+</span> <span class="st0">' started '</span> <span class="sy0">+</span> <span class="br0">(</span>now <span class="sy0">-</span> startTime<span class="br0">)</span> <span class="sy0">+</span> <span class="st0">'ms after script start'</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+&nbsp; <span class="co1">// Waste some time</span><br>
+&nbsp; <span class="kw1">for</span> <span class="br0">(</span><span class="kw2">var</span> i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> <span class="nu0">100000</span><span class="sy0">;</span> i<span class="sy0">++</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; document.<span class="me1">getElementById</span><span class="br0">(</span><span class="st0">'unobtanium'</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+<br>
+&nbsp; console.<span class="me1">log</span><span class="br0">(</span><span class="st0">'and took '</span> <span class="sy0">+</span> <span class="br0">(</span><span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span> <span class="sy0">-</span> now<span class="br0">)</span> <span class="sy0">+</span> <span class="st0">'ms to run.'</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+&nbsp; <span class="co1">// Run only 5 times</span><br>
+&nbsp; <span class="kw1">if</span> <span class="br0">(</span><span class="sy0">++</span>timesRun <span class="sy0">&lt;</span> <span class="nu0">5</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; setTimeout<span class="br0">(</span>doStuff<span class="sy0">,</span> <span class="nu0">1000</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+<span class="br0">}</span><span class="sy0">;</span><br>
+<br>
+setTimeout<span class="br0">(</span>doStuff<span class="sy0">,</span> <span class="nu0">1000</span><span class="br0">)</span><span class="sy0">;</span></div></td></tr></tbody></table><div class="code-info">RUN ME</div></div>
+<p>With the output being something like this:</p>
+<div class="codecolorer-container text default output" style="overflow:auto;white-space:nowrap;" data-output="1"><table><tbody><tr><td class="line-numbers"><div>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br></div></td><td><div class="text codecolorer">Action 1 started 1000ms after script start<br>
+and took 73ms to run.<br>
+Action 2 started 2075ms after script start<br>
+and took 78ms to run.<br>
+Action 3 started 3154ms after script start<br>
+and took 74ms to run.<br>
+Action 4 started 4229ms after script start<br>
+and took 81ms to run.<br>
+Action 5 started 4312ms after script start<br>
+and took 81ms to run.</div></td></tr></tbody></table></div>
+<p>No surprises here either; we already know that a <code class="codecolorer text default"><span class="text">setTimeout</span></code>-loop won’t stick to the schedule, and instead give its function all the time it needs before calling it again.</p>
+<p>Okay, all of that looked very familiar, so what exactly <em>is</em> the difference between this and the out-of-flow case? Consider this:</p>
+<p>In the example in the last section I lead you to imagine the timer 
+callback as this poor guy who gets a good whipping if he doesn’t trudge 
+to the server to check for new mail every second, but you may have 
+noticed that if the AJAX call hasn’t returned after a second, <code class="codecolorer text default"><span class="text">setInterval</span></code>
+ won’t care a bit  — in fact, it doesn’t even know — and just send 
+another one out (there can be lots of AJAX requests going on at the same
+ time). So, it’s more like there’s a whole army of those guys, and <code class="codecolorer text default"><span class="text">setInterval</span></code> sends one of them off into battle every second without even thinking about it, whereas the <code class="codecolorer text default"><span class="text">setTimeout</span></code>-loop will wait for each one of them to return and be properly debriefed before sending out the next.</p>
+<p>Now, in the case of in-the-flow actions, there’s really only <em>one guy</em> — unlike requests to the server and the like, no two pieces of Javascript can run at the same time. The <code class="codecolorer text default"><span class="text">setTimeout</span></code>-loop has no reason to do anything differently here, but <code class="codecolorer text default"><span class="text">setInterval</span></code>
+ is in a bit of a pickle: it hates falling behind schedule, but if it’s 
+time to start up the next action, when the previous one hasn’t even 
+finished yet, no amount of nagging will change anything about that. <code class="codecolorer text default"><span class="text">setInterval</span></code> has a choice to make: if the next call is already late, it can either <strong>1)</strong> start it immediately, the first chance it gets, or <strong>2)</strong> wait for the next scheduled execution time (in our case the next full second after script start).</p>
+<p>Okay, what’s actually happening? The answer is <strong>1)</strong>, so if you thought you could use <code class="codecolorer text default"><span class="text">setInterval</span></code> to set up a metronome that might occasionally miss a beat, but will never click out of rhythm, you thought wrong.</p>
+<h2>The World’s Worst Drummer</h2>
+<p>After it did miss a beat and awkwardly slipped in the next one out of rhythm, it has another choice to make:<strong> a) </strong>it can pretend this never happened and just get back into the original rhythm, or<strong> b) </strong>it can say “fuck it” and start a whole new rhythm, based on that last wrong beat.</p>
+<p>Why don’t you see for yourself how it chooses ( — it depends on your 
+system speed how much time it will actually waste, so you can adjust 
+those variables in the beginning to make sure it actually does miss a 
+beat):</p>
+<div class="codecolorer-container javascript default" style="overflow: hidden; white-space: nowrap; cursor: pointer;" data-executable="1" tabindex="10"><table><tbody><tr><td class="line-numbers"><div>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br></div></td><td><div class="javascript codecolorer"><span class="kw2">var</span> timeWastingCycles <span class="sy0">=</span> <span class="nu0">5000000</span><span class="sy0">;</span><br>
+<span class="kw2">var</span> timeBetweenCalls <span class="sy0">=</span> <span class="nu0">1000</span><span class="sy0">;</span> <span class="co1">// Milliseconds</span><br>
+<span class="kw2">var</span> numberOfCalls <span class="sy0">=</span> <span class="nu0">5</span><span class="sy0">;</span><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>
+<span class="kw2">var</span> timesRun <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span><br>
+<span class="kw2">var</span> startTime <span class="sy0">=</span> <span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+<span class="kw2">var</span> wasteSomeTime <span class="sy0">=</span> <span class="kw2">function</span> <span class="br0">(</span>cycles<span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; <span class="kw2">var</span> startTime <span class="sy0">=</span> <span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="kw1">for</span> <span class="br0">(</span><span class="kw2">var</span> i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> cycles<span class="sy0">;</span> i<span class="sy0">++</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; document.<span class="me1">getElementById</span><span class="br0">(</span><span class="st0">'unobtanium'</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+&nbsp; console.<span class="me1">log</span><span class="br0">(</span><span class="st0">'Wasting '</span> <span class="sy0">+</span> <span class="br0">(</span><span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span> <span class="sy0">-</span> startTime<span class="br0">)</span> <span class="sy0">+</span> <span class="st0">'ms'</span><span class="br0">)</span><span class="sy0">;</span><br>
+<span class="br0">}</span><span class="sy0">;</span><br>
+<br>
+<span class="kw2">var</span> timer <span class="sy0">=</span> setInterval<span class="br0">(</span><span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; <span class="kw2">var</span> now <span class="sy0">=</span> <span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+&nbsp; console.<span class="me1">log</span><span class="br0">(</span><span class="st0">'Beat at '</span> <span class="sy0">+</span> <span class="br0">(</span>now <span class="sy0">-</span> startTime<span class="br0">)</span> <span class="sy0">+</span> <span class="st0">'ms'</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; timesRun<span class="sy0">++;</span><br>
+<br>
+&nbsp; <span class="co1">// After the first beat, waste enough time for the timer to miss a beat</span><br>
+&nbsp; <span class="kw1">if</span> <span class="br0">(</span>timesRun <span class="sy0">==</span> <span class="nu0">1</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; wasteSomeTime<span class="br0">(</span>timeWastingCycles<span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+<br>
+&nbsp; <span class="kw1">if</span> <span class="br0">(</span>timesRun <span class="sy0">&gt;=</span> numberOfCalls<span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; clearInterval<span class="br0">(</span>timer<span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+<br>
+<span class="br0">}</span><span class="sy0">,</span> timeBetweenCalls<span class="br0">)</span><span class="sy0">;</span></div></td></tr></tbody></table><div class="code-info">RUN ME</div></div>
+<p>What were your findings? The truth is that the result is browser dependent: Firefox is of the <strong> a) </strong> type and does its best to get back on schedule, as long as it has only missed <em>one</em> beat. If a long action forces Firefox to miss more than that one single beat, though, it will change to <strong> b) </strong> and won’t even try to catch up any more. All the other browsers are of the “fuck it” <strong> b) </strong>
+ persuasion from the get-go, regardless of how many beats they miss. And
+ the fact that you don’t know which browser your code is running in (and
+ you certainly don’t want to resort to browser sniffing, especially 
+since this is totally undocumented behavior) means that it would be 
+really silly to use <code class="codecolorer text default"><span class="text">setInterval</span></code> with CPU-intensive tasks (or with short intervals) for anything remotely time sensitive.</p>
+<h2>Layoff Time</h2>
+<p>So, the thing is flawed. What’s the solution, though? Kick it to the curb! Here’s how to make do without:</p>
+<p><strong>Third: </strong>I mentioned a bunch of different behaviors 
+before, and it’s interesting to note that it’s very easy to rebuild each
+ and every one of those with a simple <code class="codecolorer text default"><span class="text">setTimeout</span></code> and a <code class="codecolorer text default"><span class="text">Date</span></code> object.</p>
+<p>Behavior <strong> 1a) </strong> (after missing a beat, do the next 
+one immediately, and then fall back into the rhythm), which is 
+implemented at least partially by Firefox’s <code class="codecolorer text default"><span class="text">setInterval</span></code>, can be done like this:</p>
+<div class="codecolorer-container javascript default" style="overflow: hidden; white-space: nowrap; cursor: pointer;" data-executable="1" tabindex="11"><table><tbody><tr><td class="line-numbers"><div>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br></div></td><td><div class="javascript codecolorer"><span class="kw2">var</span> timeBetweenCalls <span class="sy0">=</span> <span class="nu0">1000</span><span class="sy0">;</span> <span class="co1">// Milliseconds</span><br>
+<span class="kw2">var</span> numberOfCalls <span class="sy0">=</span> <span class="nu0">5</span><span class="sy0">;</span><br>
+<span class="kw2">var</span> timeWastingCycles <span class="sy0">=</span> <span class="nu0">5000000</span><span class="sy0">;</span><br>
+<br>
+<span class="kw2">var</span> timesRun <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span><br>
+<span class="kw2">var</span> startTime <span class="sy0">=</span> <span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+<span class="kw2">var</span> wasteSomeTime <span class="sy0">=</span> <span class="kw2">function</span> <span class="br0">(</span>cycles<span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; <span class="kw2">var</span> startTime <span class="sy0">=</span> <span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="kw1">for</span> <span class="br0">(</span><span class="kw2">var</span> i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> cycles<span class="sy0">;</span> i<span class="sy0">++</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; document.<span class="me1">getElementById</span><span class="br0">(</span><span class="st0">'unobtanium'</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+&nbsp; console.<span class="me1">log</span><span class="br0">(</span><span class="st0">'Wasting '</span> <span class="sy0">+</span> <span class="br0">(</span><span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span> <span class="sy0">-</span> startTime<span class="br0">)</span> <span class="sy0">+</span> <span class="st0">'ms'</span><span class="br0">)</span><span class="sy0">;</span><br>
+<span class="br0">}</span><span class="sy0">;</span><br>
+<br>
+<span class="br0">(</span><span class="kw2">function</span> timer <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; <span class="kw2">var</span> now <span class="sy0">=</span> <span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; timesRun<span class="sy0">++;</span><br>
+<br>
+&nbsp; <span class="co1">// This is the interesting part!</span><br>
+&nbsp; <span class="co1">// Every time the timer is set, the interval is recalculated, based on the start time</span><br>
+&nbsp; <span class="kw1">if</span> <span class="br0">(</span>timesRun <span class="sy0">&lt;</span> numberOfCalls<span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; setTimeout<span class="br0">(</span>timer<span class="sy0">,</span> timeBetweenCalls <span class="sy0">-</span> <span class="br0">(</span><span class="br0">(</span>now <span class="sy0">-</span> startTime<span class="br0">)</span> <span class="sy0">%</span> timeBetweenCalls<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+<br>
+&nbsp; console.<span class="me1">log</span><span class="br0">(</span><span class="st0">'Beat at '</span> <span class="sy0">+</span> <span class="br0">(</span>now <span class="sy0">-</span> startTime<span class="br0">)</span> <span class="sy0">+</span> <span class="st0">'ms'</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+&nbsp; <span class="co1">// After the first beat, waste enough time for the timer to miss a beat</span><br>
+&nbsp; <span class="kw1">if</span> <span class="br0">(</span>timesRun <span class="sy0">==</span> <span class="nu0">1</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; wasteSomeTime<span class="br0">(</span>timeWastingCycles<span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+<br>
+&nbsp; <span class="co1">// After the third beat, waste a little time</span><br>
+&nbsp; <span class="kw1">if</span> <span class="br0">(</span>timesRun <span class="sy0">==</span> <span class="nu0">3</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; wasteSomeTime<span class="br0">(</span><span class="nu0">50000</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+<span class="br0">}</span><span class="br0">)</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></div></td></tr></tbody></table><div class="code-info">RUN ME</div></div>
+<p>Since it resynchronizes with the start time on every run-through, it 
+can run for a long time without Javascript’s timing functions’ inherent 
+inaccuracies accumulating.</p>
+<p>Behavior <strong> 1b) </strong> (after missing a beat, do the next one immediately and start a new rhythm from there), which all of the browsers’ <code class="codecolorer text default"><span class="text">setInterval</span></code>s at least partially implement, can be done like this:</p>
+<div class="codecolorer-container javascript default overflown" style="overflow: hidden; white-space: nowrap; cursor: pointer;" data-executable="1" tabindex="12"><table><tbody><tr><td class="line-numbers"><div>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br></div></td><td><div class="javascript codecolorer"><span class="kw2">var</span> timeBetweenCalls <span class="sy0">=</span> <span class="nu0">1000</span><span class="sy0">;</span> <span class="co1">// Milliseconds</span><br>
+<span class="kw2">var</span> numberOfCalls <span class="sy0">=</span> <span class="nu0">5</span><span class="sy0">;</span><br>
+<span class="kw2">var</span> timeWastingCycles <span class="sy0">=</span> <span class="nu0">5000000</span><span class="sy0">;</span><br>
+<br>
+<span class="kw2">var</span> timesRun <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span><br>
+<span class="kw2">var</span> startTime <span class="sy0">=</span> <span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+<span class="kw2">var</span> wasteSomeTime <span class="sy0">=</span> <span class="kw2">function</span> <span class="br0">(</span>cycles<span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; <span class="kw2">var</span> startTime <span class="sy0">=</span> <span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="kw1">for</span> <span class="br0">(</span><span class="kw2">var</span> i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> cycles<span class="sy0">;</span> i<span class="sy0">++</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; document.<span class="me1">getElementById</span><span class="br0">(</span><span class="st0">'unobtanium'</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+&nbsp; console.<span class="me1">log</span><span class="br0">(</span><span class="st0">'Wasting '</span> <span class="sy0">+</span> <span class="br0">(</span><span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span> <span class="sy0">-</span> startTime<span class="br0">)</span> <span class="sy0">+</span> <span class="st0">'ms'</span><span class="br0">)</span><span class="sy0">;</span><br>
+<span class="br0">}</span><span class="sy0">;</span><br>
+<br>
+<span class="br0">(</span><span class="kw2">function</span> timer <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; <span class="kw2">var</span> now <span class="sy0">=</span> <span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="kw2">var</span> timeout<span class="sy0">;</span><br>
+&nbsp; timesRun<span class="sy0">++;</span><br>
+<br>
+&nbsp; <span class="co1">// This is the interesting part!</span><br>
+&nbsp; <span class="co1">// Schedule the next invocation a second from now, in case everything goes right</span><br>
+&nbsp; <span class="kw1">if</span> <span class="br0">(</span>timesRun <span class="sy0">&lt;</span> numberOfCalls<span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; timeout <span class="sy0">=</span> setTimeout<span class="br0">(</span>timer<span class="sy0">,</span> timeBetweenCalls<span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+<br>
+&nbsp; console.<span class="me1">log</span><span class="br0">(</span><span class="st0">'Beat at '</span> <span class="sy0">+</span> <span class="br0">(</span>now <span class="sy0">-</span> startTime<span class="br0">)</span> <span class="sy0">+</span> <span class="st0">'ms'</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+&nbsp; <span class="co1">// After the first beat, waste enough time for the timer to miss a beat</span><br>
+&nbsp; <span class="kw1">if</span> <span class="br0">(</span>timesRun <span class="sy0">==</span> <span class="nu0">1</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; wasteSomeTime<span class="br0">(</span>timeWastingCycles<span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+<br>
+&nbsp; <span class="co1">// After the third beat, waste a little time</span><br>
+&nbsp; <span class="kw1">if</span> <span class="br0">(</span>timesRun <span class="sy0">==</span> <span class="nu0">3</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; wasteSomeTime<span class="br0">(</span><span class="nu0">50000</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+<br>
+&nbsp; <span class="co1">// This is the interesting part!</span><br>
+&nbsp; <span class="co1">// In case a beat was missed, cancel the timeout, and just go from there, setting a new rhythm</span><br>
+&nbsp; <span class="kw1">if</span> <span class="br0">(</span>timesRun <span class="sy0">&lt;</span> numberOfCalls<span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; <span class="kw1">if</span> <span class="br0">(</span><span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span> <span class="sy0">-</span> now <span class="sy0">&gt;</span> timeBetweenCalls<span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; &nbsp; clearTimeout<span class="br0">(</span>timeout<span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; &nbsp; &nbsp; setTimeout<span class="br0">(</span>timer<span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; &nbsp; <span class="br0">}</span><br>
+&nbsp; <span class="br0">}</span><br>
+<span class="br0">}</span><span class="br0">)</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></div></td></tr></tbody></table><div class="code-info">RUN ME</div></div>
+<p>This doesn’t resynchronize when setting the timeout, so it will accumulate an error, just like <code class="codecolorer text default"><span class="text">setInterval</span></code> would. This can be easily remedied, though, by making some small changes:</p>
+<div class="codecolorer-container javascript default overflown" style="overflow: hidden; white-space: nowrap; cursor: pointer;" data-executable="1" tabindex="13"><table><tbody><tr><td class="line-numbers"><div>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br></div></td><td><div class="javascript codecolorer"><span class="kw2">var</span> timeBetweenCalls <span class="sy0">=</span> <span class="nu0">1000</span><span class="sy0">;</span> <span class="co1">// Milliseconds</span><br>
+<span class="kw2">var</span> numberOfCalls <span class="sy0">=</span> <span class="nu0">5</span><span class="sy0">;</span><br>
+<span class="kw2">var</span> timeWastingCycles <span class="sy0">=</span> <span class="nu0">5000000</span><span class="sy0">;</span><br>
+<br>
+<span class="kw2">var</span> timesRun <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span><br>
+<span class="kw2">var</span> startTime <span class="sy0">=</span> <span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+<span class="co1">// Since the rhythm can change, remember its start time</span><br>
+<span class="kw2">var</span> startRhythm <span class="sy0">=</span> startTime<span class="sy0">;</span><br>
+<br>
+<span class="kw2">var</span> wasteSomeTime <span class="sy0">=</span> <span class="kw2">function</span> <span class="br0">(</span>cycles<span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; <span class="kw2">var</span> startTime <span class="sy0">=</span> <span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="kw1">for</span> <span class="br0">(</span><span class="kw2">var</span> i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> cycles<span class="sy0">;</span> i<span class="sy0">++</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; document.<span class="me1">getElementById</span><span class="br0">(</span><span class="st0">'unobtanium'</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+&nbsp; console.<span class="me1">log</span><span class="br0">(</span><span class="st0">'Wasting '</span> <span class="sy0">+</span> <span class="br0">(</span><span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span> <span class="sy0">-</span> startTime<span class="br0">)</span> <span class="sy0">+</span> <span class="st0">'ms'</span><span class="br0">)</span><span class="sy0">;</span><br>
+<span class="br0">}</span><span class="sy0">;</span><br>
+<br>
+<span class="br0">(</span><span class="kw2">function</span> timer <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; <span class="kw2">var</span> now <span class="sy0">=</span> <span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="kw2">var</span> afterExecutionTime<span class="sy0">,</span> timeout<span class="sy0">;</span><br>
+&nbsp; timesRun<span class="sy0">++;</span><br>
+<br>
+&nbsp; <span class="co1">// This is the interesting part!</span><br>
+&nbsp; <span class="co1">// Just like before, only now synchronize with the start of the current rhythm</span><br>
+&nbsp; <span class="kw1">if</span> <span class="br0">(</span>timesRun <span class="sy0">&lt;</span> numberOfCalls<span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; timeout <span class="sy0">=</span> setTimeout<span class="br0">(</span>timer<span class="sy0">,</span> timeBetweenCalls <span class="sy0">-</span> <span class="br0">(</span><span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span> <span class="sy0">-</span> startRhythm<span class="br0">)</span> <span class="sy0">%</span> timeBetweenCalls<span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+<br>
+&nbsp; console.<span class="me1">log</span><span class="br0">(</span><span class="st0">'Beat at '</span> <span class="sy0">+</span> <span class="br0">(</span>now <span class="sy0">-</span> startTime<span class="br0">)</span> <span class="sy0">+</span> <span class="st0">'ms'</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+&nbsp; <span class="co1">// After the first beat, waste enough time for the timer to miss a beat</span><br>
+&nbsp; <span class="kw1">if</span> <span class="br0">(</span>timesRun <span class="sy0">==</span> <span class="nu0">1</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; wasteSomeTime<span class="br0">(</span>timeWastingCycles<span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+<br>
+&nbsp; <span class="co1">// After the third beat, waste a little time</span><br>
+&nbsp; <span class="kw1">if</span> <span class="br0">(</span>timesRun <span class="sy0">==</span> <span class="nu0">3</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; wasteSomeTime<span class="br0">(</span><span class="nu0">50000</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+<br>
+&nbsp; <span class="co1">// This is the interesting part!</span><br>
+&nbsp; <span class="co1">// Just like before, only now remember when exactly a new rhythm started,</span><br>
+&nbsp; <span class="co1">// so future invocations can be based on this</span><br>
+&nbsp; <span class="kw1">if</span> <span class="br0">(</span>timesRun <span class="sy0">&lt;</span> numberOfCalls<span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; afterExecutionTime <span class="sy0">=</span> <span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; &nbsp; <span class="kw1">if</span> <span class="br0">(</span>afterExecutionTime <span class="sy0">-</span> now <span class="sy0">&gt;</span> timeBetweenCalls<span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; &nbsp; startRhythm <span class="sy0">=</span> afterExecutionTime<span class="sy0">;</span><br>
+&nbsp; &nbsp; &nbsp; clearTimeout<span class="br0">(</span>timeout<span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; &nbsp; &nbsp; setTimeout<span class="br0">(</span>timer<span class="sy0">,</span> timeBetweenCalls<span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; &nbsp; <span class="br0">}</span><br>
+&nbsp; <span class="br0">}</span><br>
+<span class="br0">}</span><span class="br0">)</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></div></td></tr></tbody></table><div class="code-info">RUN ME</div></div>
+<p>Behavior <strong> 2) </strong> (after missing a beat, just wait for 
+the next one in order to keep the rhythm, no matter what), isn’t 
+implemented by any browser’s <code class="codecolorer text default"><span class="text">setInterval</span></code>, but can be done like this:</p>
+<div class="codecolorer-container javascript default" style="overflow: hidden; white-space: nowrap; cursor: pointer;" data-executable="1" tabindex="14"><table><tbody><tr><td class="line-numbers"><div>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br></div></td><td><div class="javascript codecolorer"><span class="kw2">var</span> timeBetweenCalls <span class="sy0">=</span> <span class="nu0">1000</span><span class="sy0">;</span> <span class="co1">// Milliseconds</span><br>
+<span class="kw2">var</span> numberOfCalls <span class="sy0">=</span> <span class="nu0">5</span><span class="sy0">;</span><br>
+<span class="kw2">var</span> timeWastingCycles <span class="sy0">=</span> <span class="nu0">5000000</span><span class="sy0">;</span><br>
+<br>
+<span class="kw2">var</span> timesRun <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span><br>
+<span class="kw2">var</span> startTime <span class="sy0">=</span> <span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+<span class="kw2">var</span> wasteSomeTime <span class="sy0">=</span> <span class="kw2">function</span> <span class="br0">(</span>cycles<span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; <span class="kw2">var</span> startTime <span class="sy0">=</span> <span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="kw1">for</span> <span class="br0">(</span><span class="kw2">var</span> i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> cycles<span class="sy0">;</span> i<span class="sy0">++</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; document.<span class="me1">getElementById</span><span class="br0">(</span><span class="st0">'unobtanium'</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+&nbsp; console.<span class="me1">log</span><span class="br0">(</span><span class="st0">'Wasting '</span> <span class="sy0">+</span> <span class="br0">(</span><span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span> <span class="sy0">-</span> startTime<span class="br0">)</span> <span class="sy0">+</span> <span class="st0">'ms'</span><span class="br0">)</span><span class="sy0">;</span><br>
+<span class="br0">}</span><span class="sy0">;</span><br>
+<br>
+<span class="br0">(</span><span class="kw2">function</span> timer <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; <span class="kw2">var</span> now <span class="sy0">=</span> <span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; timesRun<span class="sy0">++;</span><br>
+<br>
+&nbsp; console.<span class="me1">log</span><span class="br0">(</span><span class="st0">'Beat at '</span> <span class="sy0">+</span> <span class="br0">(</span>now <span class="sy0">-</span> startTime<span class="br0">)</span> <span class="sy0">+</span> <span class="st0">'ms'</span><span class="br0">)</span><span class="sy0">;</span><br>
+<br>
+&nbsp; <span class="co1">// After the first beat, waste enough time for the timer to miss a beat</span><br>
+&nbsp; <span class="kw1">if</span> <span class="br0">(</span>timesRun <span class="sy0">==</span> <span class="nu0">1</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; wasteSomeTime<span class="br0">(</span>timeWastingCycles<span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+<br>
+&nbsp; <span class="co1">// After the third beat, waste a little time</span><br>
+&nbsp; <span class="kw1">if</span> <span class="br0">(</span>timesRun <span class="sy0">==</span> <span class="nu0">3</span><span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; wasteSomeTime<span class="br0">(</span><span class="nu0">50000</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+<br>
+&nbsp; <span class="co1">// This is the interesting part!</span><br>
+&nbsp; <span class="co1">// Synchronize with the start time every run</span><br>
+&nbsp; <span class="kw1">if</span> <span class="br0">(</span>timesRun <span class="sy0">&lt;</span> numberOfCalls<span class="br0">)</span> <span class="br0">{</span><br>
+&nbsp; &nbsp; setTimeout<span class="br0">(</span>timer<span class="sy0">,</span> timeBetweenCalls <span class="sy0">-</span> <span class="br0">(</span><span class="br0">(</span><span class="kw2">new</span> Date<span class="br0">(</span><span class="br0">)</span>.<span class="me1">getTime</span><span class="br0">(</span><span class="br0">)</span> <span class="sy0">-</span> startTime<span class="br0">)</span> <span class="sy0">%</span> timeBetweenCalls<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span><br>
+&nbsp; <span class="br0">}</span><br>
+<span class="br0">}</span><span class="br0">)</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></div></td></tr></tbody></table><div class="code-info">RUN ME</div></div>
+<h2>The Gist</h2>
+<p>So, what’s the conclusion? You probably saw it coming all along: don’t use <code class="codecolorer text default"><span class="text">setInterval</span></code>,
+ if you care anything about your timing. Even without the rather erratic
+ behavior it presents when being forced to miss a beat or two, it’s just
+ not very exact. It’s marginally easier to set up than a recursive <code class="codecolorer text default"><span class="text">setTimeout</span></code>-loop,
+ but the latter gives you all the control you need to give your scripts 
+and callbacks enough time to breathe, and tops it off with actually 
+correct long-term timing, if you throw a <code class="codecolorer text default"><span class="text">Date</span></code> object into the mix.</p>
+			
+		
+	
+	</div>
+
+				</div></div>
+	<div class="shadow"></div></div>
+	<div class="page" id="page-2" style="cursor: pointer;">
+		<div class="page-container"><div class="side" style="height: 11782px;"><div class="logo-wrapper" style="position: absolute;"><div class="logo">RealLifeJS</div></div><div class="nav">
+				<ul class="shallow"><li><a href="http://reallifejs.com/the-real-real-life/" address="true">The Real Real Life</a><ul></ul></li></ul>				</div></div><div class="main"></div></div>
+	<div class="shadow"></div></div>
+	<div class="page" id="page-3" style="cursor: pointer;">
+		<div class="page-container"><div class="side" style="height: 11782px;"><div class="logo-wrapper" style="position: absolute;"><div class="logo">RealLifeJS</div></div><div class="nav">
+				<ul class="shallow"><li><a href="http://reallifejs.com/evolve/" address="true">Evolve</a><ul></ul></li></ul>				</div></div><div class="main"></div></div>
+	<div class="shadow"></div></div>
+
+	<noscript><!--
+		<div class="error">
+			This site is about Javascript, so, obviously, you're supposed to turn it on, you paranoid geek! You can get to all the content alright, but you won't be able to run any code examples. Also, the tutorialized making-of won't make much sense without actually seeing the thing in action.
+		</div>
+	 --></noscript>
+	
+<div class="page lightbox" style="left: 1089.02px; cursor: pointer; width: 974.2px; height: 11782px; z-index: 3;"><div class="lightbox-container"></div><div class="shadow"></div></div></div><!-- end div#container -->
+<div id="nav-notification" class="notification" style="left: 5.60001px; top: 210px;">Menu <span class="icon">[MOU]</span></div><div id="top-notification" class="notification" style="left: 5.60001px; top: 24px; cursor: pointer;">Top <span class="icon">[HOM]</span></div><div id="back-notification" class="notification" style="left: 192.6px; top: 114px; cursor: pointer;">Back <span class="icon">[ESC]</span></div></div><!-- end div#wrapper -->
+
+</body></html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+</head> 
+<body>
+<!-- un div qui contient cinq boutons et deux images -->
+<style>
+div {
+	border: 5px solid green;
+	height: 50%;
+}
+img {
+	height: 100px;
+}
+</style>
+<div id="div1">
+<button id="b1">hello</button>
+<button id="b2">hola</button>
+<button id="b3">salut</button>
+<button id="b4">toto</button>
+<button id="b5">tata</button>
+<img src="./img/Memento.jpg">
+<img src="./img/Watchmen.jpg">
+</div>
+
+
+<script>
+div1.addEventListener ("click", function (e){
+	// console.log ("Click sur le div!");
+	// console.log ("target: "+ e.target);
+	// console.log ("current target: " + e.currentTarget);
+	// console.log ("id du target: " + e.target.id);
+	
+	if(e.target.tagName=="BUTTON"){
+		console.log ("C'est le bouton "+e.target.id);
+	};
+	if(e.target.tagName=="IMG"){
+		console.log (e.target.src);
+	}
+	
+	
+	
+});
+
+</script>
+
+
+</body>
+</html>

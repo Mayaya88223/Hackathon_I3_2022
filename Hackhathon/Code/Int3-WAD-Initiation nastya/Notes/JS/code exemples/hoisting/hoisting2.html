@@ -1,0 +1,20 @@
+<html>
+<body>
+<script>
+// Le code équivalent du fichier hoisting1 (tel que le moteur JS l'exécute) est le suivant:
+
+function hello (){
+	console.log ("hello!!");
+}
+var b; // déclarée, mais n'a pas encore une valeur
+
+hello();
+console.log (b); 
+
+b=10; // on lui donne la valeur ici
+
+// on obtient "undefined". la variable n'est pas encore definie (elle est definie plus bas), mais on n'a pas le même effet 
+// que si elle n'avait pas été définie du tout ("Reference error...");
+</script>
+</body>
+</html>

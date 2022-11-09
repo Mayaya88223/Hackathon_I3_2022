@@ -1,0 +1,29 @@
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+</head>
+<body id="body1">
+<form id="form1">
+<input id="input1" value="hello dolly">
+<input id="input2" value="hello dolly 2">
+
+</form>
+</body>
+
+<script>
+document.getElementById ("input1").addEventListener ("click",function (e){
+	console.log ("je suis l'input1, on m'a fait clique!");
+});
+document.getElementById ("form1").addEventListener ("click",function (e){
+	console.log ("je suis le form, on m'a fait clique!");
+});
+document.getElementById ("body1").addEventListener ("click",function (e){
+	console.log ("je suis le body, on m'a fait clique!");
+});
+// on observe que si on clique sur input1 l'événement est propagé.
+// Si on clique sur input2 on voit uniquement la propagation
+
+
+
+</script>
+</html>

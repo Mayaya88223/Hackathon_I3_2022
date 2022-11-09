@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+	<div id="div1"></div>
+	<div id="div2"></div>
+	<h2 id="unH2"></h2>
+	<script>
+	function bonjour (){
+		console.log ("Bonjour, je suis la fonction bonjour");
+	}
+	
+	bonjour ();
+	
+	let bonjour2 = function (){
+		console.log ("Bonjour, je suis la fonction bonjour 2");
+	}
+	bonjour2 ();
+	
+	
+	function pi (){
+		let valeurPi = 3.141592;
+		return valeurPi;
+	}
+	let val = pi();
+	div1.innerHTML = pi();
+	unH2.innerHTML = pi();
+	
+	
+	
+	function renvoyerBonjour (){
+		let bonjour3 = function (){
+			console.log ("Bonjour, je suis la fonction bonjour 3");
+		}
+		return bonjour3;
+	}
+	let fonctionRenvoyee = renvoyerBonjour();
+	fonctionRenvoyee();
+	
+	function renvoyerOperation(action){
+		var f;
+		if (action === "cuisiner"){
+			f = function (){
+				console.log ("On cuisine");
+			}
+		}
+		else if (action === "manger"){
+			f = function (){
+				console.log ("On manger");
+			}
+		}
+		return f;
+	
+	}
+	
+	let maFonction = renvoyerOperation ("cuisiner");
+	maFonction();
+	let maFonction2 = renvoyerOperation ("manger");
+	maFonction2();
+	
+	// Arrow functions
+	
+	// sans arrow (fleche)
+	var somme = function (a,b){
+		let res = a + b;
+		return (res);
+	}
+	div2.innerHTML = somme (10,20);
+	
+	// avec arrow 
+	var somme2 = (a,b) => {
+		let res = a + b;
+		return (res);
+	}
+	div2.innerHTML = somme (100,200);
+	
+	
+	
+	let calculeTVA = (prix, tauxTVA) => (prix + prix * tauxTVA/100); 
+	console.log (calculeTVA (100,10));
+	
+	
+	
+	
+	
+	
+	
+	
+	</script>
+	
+	
+	</body>
+</html>

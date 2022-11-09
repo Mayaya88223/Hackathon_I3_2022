@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8" />
+</head>
+<body>
+
+
+<script>
+
+// créer un objet de la classe XMLHttpRequest
+// pour réaliser une requête au serveur
+var xhr = new XMLHttpRequest();
+
+
+// rajouter un listener pour savoir quand la propriété
+// "onreadystatechange" change de valeur
+// On doit définir l'action à realiser quand ce changement a lieu (la function)
+xhr.onreadystatechange = function (){
+	// la réponse du serveur se trouve dans la propriété "responseText"	
+	// l'état de la requête se trouve dans la propriété "status"
+	if (xhr.readyState == 4){
+		if (xhr.status == 200) {
+			console.log (xhr.responseText);
+		}
+		else {
+			console.log ('Error: ' + xhr.status);
+		}
+	}
+
+};
+
+
+// indiquer la méthode et la page du serveur qui traitera/renverra de données
+xhr.open ('GET', 'exemple1Traitement.php');
+
+// envoyer de paramètres au serveur (rien dans ce cas)
+xhr.send (null);
+</script>
+</body>
+</html>

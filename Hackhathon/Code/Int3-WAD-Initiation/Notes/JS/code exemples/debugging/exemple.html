@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+
+<h1>My First Web Page</h1>
+
+1. Créer un breakpoint avant l'affichage de "a" et vérifier qu'elle vaut 10
+2. Pourquoi la boucle affiche les valeurs undefined? Créez un breakpoint au debut de la boucle pour trouver le problème 
+3. Créez une fonction qui reçoit deux valeurs et renvoie la multiplication.
+Utilisez les breakpoints pour comprendre les étapes d'execution de la fonction 
+<br><br><br>
+<script>
+
+
+console.log ("Bienvenues au debugging!");
+
+let a = 10;
+let nom = "Alice";
+
+
+console.log (a);
+console.log (nom);
+
+
+let unArray = [30, 40, 50];
+
+for (let i = 0; i < 5; i ++){
+	document.write ("<br>L'élément " + i + " de l'array est: " + unArray[i]);
+	document.write ("<h6>Je suis un petit texte</h6>");
+	
+	for (let j = 2; j < 5; j ++){
+		console.log ("tata");
+	}
+}  
+
+/*
+function multiplication (val1, val2){
+	let multi = val1 * val2;
+	document.write ("<br>La calculatrice est en train de fonctionner!!");
+	return (multi);	
+}
+
+let resultat = multiplication (10,20);
+document.write ("<br>Et le résultat est....: " + resultat);*/
+
+</script>
+
+</body>
+</html> 

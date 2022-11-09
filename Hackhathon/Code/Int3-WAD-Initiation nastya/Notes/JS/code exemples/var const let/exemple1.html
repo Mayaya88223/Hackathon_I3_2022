@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+</head> 
+<body>
+<script>
+
+// un code qui contient var
+function maFonction() {
+  var nom = "Marie";
+  if (nom == "Marie") {
+    var nom = "Louise";  // c'est la même variable, on est toujours dans la fonction
+						// même si on a crée un block pour l'if
+    console.log(nom);  // on verra Louise, on a juste ecrassé la valeur de nom
+  }
+  console.log(nom);  // on verra Louise, on vient de l'ecrasser 
+}
+
+maFonction();
+
+// un code qui contient let
+function maFonctionLet() {
+  let nom = "Marie";
+  if (nom == "Marie") {
+    let nom = "Louise";  // c'est une nouvelle variable car on est dans un nouveau bloc (le if)
+    console.log(nom);  // on verra Louise, on a juste ecrassé la valeur de nom
+  }
+  console.log(nom);  // on verra Marie car les variables sont differentes même si elles portent le même nom
+}
+
+maFonctionLet();
+
+// utilisation de const
+const TVA = 21;
+//TVA = 15; // erreur car on ne peut pas affecter à nouveau une constante
+
+// on ne peut pas affecter à nouveau, mais l'objet affecté il peut lui même changer
+const lesNoms = ['Jean', 'David', 'Paul'];
+lesNoms.push ('Luc');
+console.log (lesNoms);
+
+
+
+</script>
+</body>
+</html>

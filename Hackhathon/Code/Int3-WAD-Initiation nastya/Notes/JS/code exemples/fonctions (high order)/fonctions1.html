@@ -1,0 +1,78 @@
+<html>
+<head>
+<title></title>
+<meta charset='utf-8'>
+</head>
+<body>
+<div id="monDiv">Contenu</div>
+
+
+<script>
+// 1. fonction sans paramètre
+// déclaration de la fonction:
+// ---------------------------
+function bonjour(){
+	console.log ("Bonjour");
+}
+
+// appel
+bonjour();
+bonjour();
+
+// 2. fonction avec paramètres
+// déclaration de la fonction:
+// ---------------------------
+function somme (val1, val2){
+	console.log ("La somme est " + (val1 + val2));
+	
+}
+
+// appel
+somme (8,9);
+somme (66,12);
+var a=10;
+var b=15;
+somme (a,b);
+
+function sommeBis (val1, val2){
+	var resultat = val1 + val2;
+	console.log ("La somme bis est "+ resultat);
+}
+sommeBis (100,200);
+
+
+function affichePrixTvac (prix) {
+	var prixTvac = prix*1.21;
+	console.log (prixTvac);
+}
+affichePrixTvac (800);
+affichePrixTvac (200);
+affichePrixTvac (900);
+// on envoie aussi le taux de TVA
+function affichePrixTvacBis (prix, tauxTva){
+	var prixTvac = prix*(1 + tauxTva/100);
+	console.log (prixTvac);
+}
+
+affichePrixTvacBis (1000,30);
+affichePrixTvacBis (500, 80);
+
+
+console.log ("Fonction qui renvoie: ");
+
+// 3. Fonction qui renvoie une valeur
+function calculePrixTvac (prix, tauxTva){
+	var prixTvac = prix*(1 + tauxTva/100);
+	return (prixTvac);
+}
+
+var monPrixTvac = calculePrixTvac (2000,50);
+console.log ("monPrixTvac vaut " + monPrixTvac);
+
+document.getElementById ("monDiv").innerHTML = "Le prix Tvac est: " + monPrixTvac;
+
+
+
+</script>
+</body>
+</html>

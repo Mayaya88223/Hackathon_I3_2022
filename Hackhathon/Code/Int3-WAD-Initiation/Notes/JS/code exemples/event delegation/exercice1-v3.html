@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+<head>
+<body>
+<ul id="listeVilles">
+	<li>Bruxelles</li>
+	<li>Gent</li>
+	<li>Namur</li>
+	<li>Charleroi</li>
+</ul>
+<div id="div2"><ul id="listeVilles2"></ul></div>
+
+<script>
+// avec delegation
+listeVilles.addEventListener ("click", function (event){
+	if (event.target.tagName=="LI"){
+		listeVilles2.appendChild (event.target);
+	}
+});
+
+
+</script>
+
+</body>
+<script>
+
+
+</script>
+</body>
+</html>

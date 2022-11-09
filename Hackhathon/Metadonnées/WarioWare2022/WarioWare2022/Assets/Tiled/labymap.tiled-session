@@ -1,0 +1,27 @@
+{
+    "activeFile": "labymap.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "Tous les Fichiers (*)",
+    "fileStates": {
+        "labymap.tmx": {
+            "scale": 0.8324374999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 400.6306779788273,
+                "y": 255.2744200015016
+            }
+        },
+        "labymap.tmx#coral": {
+            "scaleInDock": 1
+        }
+    },
+    "openFiles": [
+        "labymap.tmx"
+    ],
+    "project": "labymap.tiled-project",
+    "recentFiles": [
+        "labymap.tmx"
+    ]
+}

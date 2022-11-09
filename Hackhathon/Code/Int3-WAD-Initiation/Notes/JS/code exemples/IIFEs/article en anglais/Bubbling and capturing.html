@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html class="working-hover" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><script>window.currentUser = null;</script><title itemprop="name">Bubbling and capturing</title><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="Bubbling%20and%20capturing_files/css.css" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="https://javascript.info/img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="Bubbling%20and%20capturing_files/bubbling-and-capturing_004.html"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="https://javascript.info/img/favicon/favicon.png"><meta itemprop="image" content="https://javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="Bubbling and capturing"><meta property="og:image" content="https://javascript.info/img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Bubbling and capturing"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://javascript.info/img/site_preview_en_512x512.png"><link href="Bubbling%20and%20capturing_files/styles.css" rel="stylesheet"><link rel="prev" href="https://javascript.info/introduction-browser-events"><link rel="next" href="https://javascript.info/event-delegation"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 32184394;</script><script>!function(){window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.currentUser&&ga("set","&uid",currentUser.id),window.addEventListener("error",function(e){var n=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),r=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+n+" "+r,exFatal:!0})})}();</script><script src="Bubbling%20and%20capturing_files/analytics.js" async=""></script><script>ga('send', 'pageview');</script><script>!function(){window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}]}();</script><script src="Bubbling%20and%20capturing_files/watch.js" async=""></script><script>window.RECAPTCHA_ID = "6Lf9NyETAAAAACZlg-a9Us2SxvYbeVC1ROWaWv4O";</script><script src="Bubbling%20and%20capturing_files/head.js"></script><meta property="og:title" content="Bubbling and capturing"><meta property="og:type" content="article"><script src="Bubbling%20and%20capturing_files/tutorial.js" defer="defer" data-manual="1"></script><script src="Bubbling%20and%20capturing_files/footer.js" defer="defer"></script><script src="Bubbling%20and%20capturing_files/embed.js" data-timestamp="1506603607241"></script><link rel="preload" as="style" href="Bubbling%20and%20capturing_files/a_data_002/lounge.css"><link rel="preload" as="script" href="Bubbling%20and%20capturing_files/a_data_002/common.js"><link rel="preload" as="script" href="Bubbling%20and%20capturing_files/a_data_002/lounge.js"><link rel="preload" as="script" href="Bubbling%20and%20capturing_files/a_data_002/config.js"></head><body class=""><script>head.fontTest();</script><span class="font-test" style=""></span><div class="page-wrapper page-wrapper_sidebar_on"><!--[if lt IE 10]><div style="color:red;text-align:center">Sorry, IE&lt;10 is not supported, please use a newer browser.</div><![endif]--><div class="sitetoolbar-light sitetoolbar-light_tutorial"><div style="" id="notify-en-tutorial" class="notification notification_info notification_top sitetoolbar-light__notification"><div class="notification__content">The
+ tutorial was recently rewritten from scratch. There may be typos, 
+please use the "Edit on Github" link (in left sidebar in an article, at 
+the bottom) to propose fixes.
+Thank you!</div><button title="Close" class="notification__close"></button></div><script>head.showTopNotification();</script><div class="sitetoolbar-light__content"><div class="sitetoolbar-light__nav-toggle-wrap"><button onclick="document.querySelector('.sitetoolbar-light').classList.toggle('sitetoolbar-light_menu_open')" type="button" class="sitetoolbar-light__nav-toggle"></button></div><div class="sitetoolbar-light__logo-wrap"><a href="https://javascript.info/" class="sitetoolbar-light__link sitetoolbar-light__link_logo"><object type="image/svg+xml" class="sitetoolbar-light__logo sitetoolbar-light__logo_normal" style="left: 0px; top: 0px; position: absolute;" data="Bubbling%20and%20capturing_files/sitetoolbar__logo_en.svg"></object><img src="Bubbling%20and%20capturing_files/sitetoolbar__logo_en.svg" class="sitetoolbar-light__logo sitetoolbar-light__logo_normal" alt="" style="display: none;" width="200"><object type="image/svg+xml" class="sitetoolbar-light__logo sitetoolbar-light__logo_small" style="left: 0px; top: 0px; position: absolute;" data="Bubbling%20and%20capturing_files/sitetoolbar__logo_small_en.svg"></object><img src="Bubbling%20and%20capturing_files/sitetoolbar__logo_small_en.svg" class="sitetoolbar-light__logo sitetoolbar-light__logo_small" alt="" style="display: none;" width="70"><script>!function(){Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo,img.sitetoolbar-light__logo"),function(o){var e=document.createElement("object");e.type="image/svg+xml",e.className=o.className,e.style.cssText="left:0;top:0;position:absolute",e.onload=function(){e.onload=null,o.style.display="none"},e.data=o.src,o.parentNode.insertBefore(e,o)})}();</script></a></div><div class="sitetoolbar-light__search-wrap"><div class="sitetoolbar-light__search-content"><form method="GET" action="/search" class="sitetoolbar-light__search"><button type="button" class="sitetoolbar-light__search-toggle"></button><span class="sitetoolbar-light__search-icon"></span><div class="sitetoolbar-light__search-input"><div class="text-input"><input name="query" placeholder="Search the site" class="text-input__control" type="text"></div><button type="submit" class="sitetoolbar-light__find">Search</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><a href="https://javascript.info/tutorial/map" data-action="tutorial-map" class="map"><span class="map__text">Tutorial map</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">Share</span><a href="https://twitter.com/share?url=http%3A%2F%2Fjavascript.info%2Fbubbling-and-capturing" class="share share_tw"></a><a href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=http%3A%2F%2Fjavascript.info%2Fbubbling-and-capturing" class="share share_fb"></a><a href="https://plus.google.com/share?url=http%3A%2F%2Fjavascript.info%2Fbubbling-and-capturing" class="share share_gp"></a><a href="https://vkontakte.ru/share.php?url=http%3A%2F%2Fjavascript.info%2Fbubbling-and-capturing" class="share share_vk"></a></div></div></div></div><div style="width: 1519px; margin: 0px; height: 4px;"></div></div><div class="page page_sidebar_on page_sidebar-animation-on"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");var pageWrapper=document.querySelector(".page-wrapper");pageWrapper&&pageWrapper.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")},0);</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><ol class="breadcrumbs"><li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" itemref="breadcrumb-1" class="breadcrumbs__item breadcrumbs__item_home"><a href="https://javascript.info/" itemprop="url" class="breadcrumbs__link"><span itemprop="title" class="breadcrumbs__hidden-text">Учебник</span></a></li><li id="breadcrumb-1" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" itemref="breadcrumb-2" itemprop="child" class="breadcrumbs__item"><a href="https://javascript.info/ui" itemprop="url" class="breadcrumbs__link"><span itemprop="title">Browser: Document, DOM, Interfaces</span></a></li><li id="breadcrumb-2" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" itemprop="child" class="breadcrumbs__item"><a href="https://javascript.info/events" itemprop="url" class="breadcrumbs__link"><span itemprop="title">Introduction into Events</span></a></li></ol><h1 class="main__header-title">Bubbling and capturing</h1></header><div class="content"><article itemscope="" itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Bubbling and capturing"><div itemprop="author" itemscope="" itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Let’s start with an example.</p>
+<p>This handler is assigned to <code>&lt;div&gt;</code>, but also runs if you click any nested tag like <code>&lt;em&gt;</code> or <code>&lt;code&gt;</code>:</p>
+<div data-trusted="1" class="code-example" data-demo-height="60" data-autorun="true" data-prism-done="1">
+<div class="codebox code-example__codebox">
+<div class="codebox__code" data-code="1">
+<pre class="line-numbers  language-markup"><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>alert(<span class="token punctuation">'</span>The handler !<span class="token punctuation">'</span>)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>em</span><span class="token punctuation">&gt;</span></span>If you click on <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">&gt;</span></span>EM<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">&gt;</span></span>, the handler on <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">&gt;</span></span>DIV<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">&gt;</span></span> runs.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>em</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code><span class="line-numbers-rows"><span></span><span></span><span></span></span></pre>
+</div>
+</div>
+<div class="code-result code-example__result">
+<iframe class="code-result__iframe" name="code-result-byjswm" style="height:60px" src="Bubbling%20and%20capturing_files/a_003.html"></iframe>
+</div>
+</div><p>Isn’t it a bit strange? Why the handler on <code>&lt;div&gt;</code> runs if the actual click was on <code>&lt;em&gt;</code>?</p>
+<h2><a class="main__anchor" name="bubbling" href="#bubbling">Bubbling</a></h2><p>The bubbling principle is simple.</p>
+<p><strong>When an event happens on an element, it first runs the 
+handlers on it, then on its parent, then all the way up on other 
+ancestors.</strong></p>
+<p>Let’s say, we have 3 nested elements <code>FORM &gt; DIV &gt; P</code> with a handler on each of them:</p>
+<div data-trusted="1" class="code-example" data-autorun="true" data-prism-done="1">
+<div class="codebox code-example__codebox">
+<div class="toolbar codebox__toolbar">
+<div class="toolbar__tool">
+<a href="#" title="show" data-action="run" class="toolbar__button toolbar__button_run"></a>
+</div>
+<div class="toolbar__tool">
+<a href="#" title="open in sandbox" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+</div>
+</div>
+<div class="codebox__code" data-code="1">
+<pre class="line-numbers  language-markup"><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">&gt;</span></span><span class="token style language-css">
+  <span class="token selector">body * </span><span class="token punctuation">{</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">10</span>px<span class="token punctuation">;</span>
+    <span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">1</span>px solid blue<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>alert(<span class="token punctuation">'</span>form<span class="token punctuation">'</span>)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>FORM
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>alert(<span class="token punctuation">'</span>div<span class="token punctuation">'</span>)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>DIV
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>alert(<span class="token punctuation">'</span>p<span class="token punctuation">'</span>)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>P<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code><span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
+</div>
+</div>
+<div class="code-result code-example__result">
+<iframe class="code-result__iframe" name="code-result-dqb94e" style="display: block; height: 122px;" src="Bubbling%20and%20capturing_files/a_003.html"></iframe>
+</div>
+</div><p>A click on the inner <code>&lt;p&gt;</code> first runs <code>onclick</code>:</p>
+<ol>
+<li>On that <code>&lt;p&gt;</code>.</li>
+<li>Then on the outer <code>&lt;div&gt;</code>.</li>
+<li>Then on the outer <code>&lt;form&gt;</code>.</li>
+<li>And so on upwards till the <code>document</code> object.</li>
+</ol>
+<figure><div class="image" style="width:317px">
+<div class="image__ratio" style="padding-top:54.25867507886435%"></div>
+<img src="Bubbling%20and%20capturing_files/event-order-bubbling2x.png" alt="" class="image__image" width="317" height="172">
+</div></figure><p>So if we click on <code>&lt;p&gt;</code>, then we’ll see 3 alerts: <code>p</code> → <code>div</code> → <code>form</code>.</p>
+<p>The process is called “bubbling”, because events “bubble” from the inner element up through parents like a bubble in the water.</p>
+<div class="important important_warn">
+<div class="important__header"><span class="important__type"><em>Almost</em> all events bubble.</span></div>
+<div class="important__content"><p>The key word in this phrase is “almost”.</p>
+<p>For instance, a <code>focus</code> event does not bubble. There are 
+other examples too, we’ll meet them. But still it’s an exception, rather
+ then a rule, most events do bubble.</p>
+</div></div>
+<h2><a class="main__anchor" name="event-target" href="#event-target">event.target</a></h2><p>A handler on a parent element can always get the details about where it actually happened.</p>
+<p><strong>The most deeply nested element that caused the event is called a <em>target</em> element, accessible as <code>event.target</code>.</strong></p>
+<p>Note the differences from <code>this</code> (=<code>event.currentTarget</code>):</p>
+<ul>
+<li><code>event.target</code> – is the “target” element that initiated the event, it doesn’t change through the bubbling process.</li>
+<li><code>this</code> – is the “current” element, the one that has a currently running handler on it.</li>
+</ul>
+<p>For instance, if we have a single handler <code>form.onclick</code>, then it can “catch” all clicks inside the form. No matter where the click happened, it bubbles up to <code>&lt;form&gt;</code> and runs the handler.</p>
+<p>In <code>form.onclick</code> handler:</p>
+<ul>
+<li><code>this</code> (<code>=event.currentTarget</code>) is the <code>&lt;form&gt;</code> element, because the handler runs on it.</li>
+<li><code>event.target</code> is the concrete element inside the form that actually was clicked.</li>
+</ul>
+<p>Check it out:</p>
+<div class="code-tabs code-tabs_result_on" data-prism-done="1"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button title="&amp;larr;" data-code-tabs-left="" class="code-tabs__scroll-button code-tabs__scroll-button_left"></button></div><div class="code-tabs__switches-wrap"><div data-code-tabs-switches="" class="code-tabs__switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">Result</div><div class="code-tabs__switch">script.js</div><div class="code-tabs__switch">example.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button title="&amp;rarr;" data-code-tabs-right="" class="code-tabs__scroll-button code-tabs__scroll-button_right"></button></div><div class="code-tabs__buttons"><a target="_blank" title="undefined: No translation for [markit.codeTabs.open_new_window]" href="https://javascript.info/article/bubbling-and-capturing/bubble-target/" class="code-tabs__button code-tabs__button_external"></a><a target="_blank" title="edit in the sandbox" href="http://plnkr.co/edit/DNkYM3ttFqwZoDs9fQA9?p=preview" class="code-tabs__button code-tabs__button_edit"></a></div></div><div data-code-tabs-content="" style="height:220px" class="code-tabs__content"><div class="code-tabs__section code-tabs__section_current"><iframe src="Bubbling%20and%20capturing_files/a.html" class="code-tabs__result"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>form.onclick = function(event) {
+  event.target.style.backgroundColor = 'yellow';
+
+  alert("target = " + event.target.tagName + ", this=" + this.tagName);
+
+  event.target.style.backgroundColor = '';
+};</code></pre></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>form {
+  background-color: green;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  cursor: pointer;
+}
+
+div {
+  background-color: blue;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  width: 100px;
+  height: 100px;
+}
+
+p {
+  background-color: red;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  margin: 0;
+}
+
+body {
+  line-height: 25px;
+  font-size: 16px;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;link rel="stylesheet" href="example.css"&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  A click shows both &lt;code&gt;event.target&lt;/code&gt; and &lt;code&gt;this&lt;/code&gt; to compare:
+
+  &lt;form id="form"&gt;FORM
+    &lt;div&gt;DIV
+      &lt;p&gt;P&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+
+  &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div></div></div><p>It’s possible that <code>event.target</code> equals <code>this</code> – when the click is made directly on the <code>&lt;form&gt;</code> element.</p>
+<h2><a class="main__anchor" name="stopping-bubbling" href="#stopping-bubbling">Stopping bubbling</a></h2><p>A bubbling event goes from the target element straight up. Normally it goes upwards till <code>&lt;html&gt;</code>, and then to <code>document</code> object, and some events even reach <code>window</code>, calling all handlers on the path.</p>
+<p>But any handler may decide that the event has been fully processed and stop the bubbling.</p>
+<p>The method for it is <code>event.stopPropagation()</code>.</p>
+<p>For instance, here <code>body.onclick</code> doesn’t work if you click on <code>&lt;button&gt;</code>:</p>
+<div data-trusted="1" class="code-example" data-demo-height="60" data-autorun="true" data-prism-done="1">
+<div class="codebox code-example__codebox">
+<div class="toolbar codebox__toolbar">
+<div class="toolbar__tool">
+<a href="#" title="show" data-action="run" class="toolbar__button toolbar__button_run"></a>
+</div>
+<div class="toolbar__tool">
+<a href="#" title="open in sandbox" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+</div>
+</div>
+<div class="codebox__code" data-code="1">
+<pre class="line-numbers  language-markup"><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>alert(`the bubbling doesn<span class="token punctuation">'</span>t reach here`)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>event.stopPropagation()<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Click me<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span></code><span class="line-numbers-rows"><span></span><span></span><span></span></span></pre>
+</div>
+</div>
+<div class="code-result code-example__result">
+<iframe class="code-result__iframe" name="code-result-b9eon0" style="height:60px" src="Bubbling%20and%20capturing_files/a_003.html"></iframe>
+</div>
+</div><div class="important important_smart">
+<div class="important__header"><span class="important__type">event.stopImmediatePropagation()</span></div>
+<div class="important__content"><p>If an element has multiple event 
+handlers on a single event, then even if one of them stops the bubbling,
+ the other ones still execute.</p>
+<p>In other words, <code>event.stopPropagation()</code> stops the move upwards, but on the current element all other handlers will run.</p>
+<p>To stop the bubbling and prevent handlers on the current element from running, there’s a method <code>event.stopImmediatePropagation()</code>. After it no other handlers execute.</p>
+</div></div>
+<div class="important important_warn">
+<div class="important__header"><span class="important__type">Don’t stop bubbling without a need!</span></div>
+<div class="important__content"><p>Bubbling is convenient. Don’t stop it without a real need: obvious and architecturally well-thought.</p>
+<p>Sometimes <code>event.stopPropagation()</code> creates hidden pitfalls that later may become problems.</p>
+<p>For instance:</p>
+<ol>
+<li>We create a nested menu. Each submenu handles clicks on its elements and calls <code>stopPropagation</code> so that outer menu don’t trigger.</li>
+<li>Later we decide to catch clicks on the whole window, to track users’
+ behavior (where people click). Some analytic systems do that. Usually 
+the code uses <code>document.addEventListener('click'…)</code> to catch all clicks.</li>
+<li>Our analytic won’t work over the area where clicks are stopped by <code>stopPropagation</code>. We’ve got a “dead zone”.</li>
+</ol>
+<p>There’s usually no real need to prevent the bubbling. A task that 
+seemingly requires that may be solved by other means. One of them is to 
+use custom events, we’ll cover them later. Also we can write our data 
+into the <code>event</code> object in one handler and read it in another one, so we can pass to handlers on parents information about the processing below.</p>
+</div></div>
+<h2><a class="main__anchor" name="capturing" href="#capturing">Capturing</a></h2><p>There’s another phase of event processing called “capturing”. It is rarely used in real code, but sometimes can be useful.</p>
+<p>The standard <a href="http://www.w3.org/TR/DOM-Level-3-Events/">DOM Events</a> describes 3 phases of event propagation:</p>
+<ol>
+<li>Capturing phase – the event goes down to the element.</li>
+<li>Target phase – the event reached the target element.</li>
+<li>Bubbling phase – the event bubbles up from the element.</li>
+</ol>
+<p>Here’s the picture of a click on <code>&lt;td&gt;</code> inside a table, taken from the specification:</p>
+<figure><div class="image" style="width:605px">
+<div class="image__ratio" style="padding-top:96.03305785123966%"></div>
+<img src="Bubbling%20and%20capturing_files/eventflow2x.png" alt="" class="image__image" width="605" height="581">
+</div></figure><p>That is: for a click on <code>&lt;td&gt;</code> the 
+event first goes through the ancestors chain down to the element 
+(capturing), then it reaches the target, and then it goes up (bubbles), 
+calling handlers on its way.</p>
+<p><strong>Before we only talked about bubbling, because the capturing phase is rarely used. Normally it is invisible to us.</strong></p>
+<p>Handlers added using <code>on&lt;event&gt;</code>-property or using HTML attributes or using <code>addEventListener(event, handler)</code> don’t know anything about capturing, they only run on the 2nd and 3rd phases.</p>
+<p>To catch an event on the capturing phase, we need to set the 3rd argument of <code>addEventListener</code> to <code>true</code>.</p>
+<p>There are two possible values for that optional last argument:</p>
+<ul>
+<li>If it’s <code>false</code> (default), then the handler is set on the bubbling phase.</li>
+<li>If it’s <code>true</code>, then the handler is set on the capturing phase.</li>
+</ul>
+<p>Note that while formally there are 3 phases, the 2nd phase (“target 
+phase”: the event reached the element) is not handled separately: 
+handlers on both capturing and bubbling phases trigger at that phase.</p>
+<p>If one puts capturing and bubbling handlers on the target element, 
+the capture handler triggers last in the capturing phase and the bubble 
+handler triggers first in the bubbling phase.</p>
+<p>Let’s see it in action:</p>
+<div data-trusted="1" class="code-example" data-demo-height="140" data-autorun="true" data-prism-done="1">
+<div class="codebox code-example__codebox">
+<div class="toolbar codebox__toolbar">
+<div class="toolbar__tool">
+<a href="#" title="show" data-action="run" class="toolbar__button toolbar__button_run"></a>
+</div>
+<div class="toolbar__tool">
+<a href="#" title="open in sandbox" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+</div>
+</div>
+<div class="codebox__code" data-code="1">
+<pre class="line-numbers  language-markup"><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">&gt;</span></span><span class="token style language-css">
+  <span class="token selector">body * </span><span class="token punctuation">{</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">10</span>px<span class="token punctuation">;</span>
+    <span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">1</span>px solid blue<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span><span class="token punctuation">&gt;</span></span>FORM
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>DIV
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>P<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> elem <span class="token keyword">of</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">'*'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    elem<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> e <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">alert</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`Capturing: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>elem<span class="token punctuation">.</span>tagName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    elem<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> e <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">alert</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`Bubbling: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>elem<span class="token punctuation">.</span>tagName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></code><span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre>
+</div>
+</div>
+<div class="code-result code-example__result">
+<iframe class="code-result__iframe" name="code-result-c2hfqi" style="height:140px" src="Bubbling%20and%20capturing_files/a_003.html"></iframe>
+</div>
+</div><p>The code sets click handlers on <em>every</em> element in the document to see which ones are working.</p>
+<p>If you click on <code>&lt;p&gt;</code>, then the sequence is:</p>
+<ol>
+<li><code>HTML</code> → <code>BODY</code> → <code>FORM</code> → <code>DIV</code> → <code>P</code> (capturing phase, the first listener), and then:</li>
+<li><code>P</code> → <code>DIV</code> → <code>FORM</code> → <code>BODY</code> → <code>HTML</code> (bubbling phase, the second listener).</li>
+</ol>
+<p>Please note that <code>P</code> shows up two times: at the end of capturing and at the start of bubbling.</p>
+<p>There’s a property <code>event.eventPhase</code> that tells us the 
+number of the phase on which the event was caught. But it’s rarely used,
+ because we usually know it in the handler.</p>
+<h2><a class="main__anchor" name="summary" href="#summary">Summary</a></h2><p>The event handling process:</p>
+<ul>
+<li>When an event happens – the most nested element where it happens gets labeled as the “target element” (<code>event.target</code>).</li>
+<li>Then the event first moves from the document root down the <code>event.target</code>, calling handlers assigned with <code>addEventListener(...., true)</code> on the way.</li>
+<li>Then the event moves from <code>event.target</code> up to the root, calling handlers assigned using <code>on&lt;event&gt;</code> and <code>addEventListener</code> without the 3rd argument or with the 3rd argument <code>false</code>.</li>
+</ul>
+<p>Each handler can access <code>event</code> object properties:</p>
+<ul>
+<li><code>event.target</code> – the deepest element that originated the event.</li>
+<li><code>event.currentTarget</code> (=<code>this</code>) – the current element that handles the event (the one that has the handler on it)</li>
+<li><code>event.eventPhase</code> – the current phase (capturing=1, bubbling=3).</li>
+</ul>
+<p>Any event handler can stop the event by calling <code>event.stopPropagation()</code>, but that’s not recommended, because we can’t really be sure we won’t need it above, maybe for completely different things.</p>
+<p>The capturing phase is used very rarely, usually we handle events on bubbling. And there’s a logic behind that.</p>
+<p>In real world, when an accident happens, local authorities react 
+first. They know best the area where it happened. Then higher-level 
+authorities if needed.</p>
+<p>The same for event handlers. The code that set the handler on a 
+particular element knows maximum details about the element and what it 
+does. A handler on a particular <code>&lt;td&gt;</code> may be suited for that exactly <code>&lt;td&gt;</code>,
+ it knows everything about it, so it should get the chance first. Then 
+its immediate parent also knows about the context, but a little bit 
+less, and so on till the very top element that handles general concepts 
+and runs the last.</p>
+<p>Bubbling and capturing lay the foundation for “event delegation” – an
+ extremely powerful event handling pattern that we study in the next 
+chapter.</p>
+</div></article></div><div class="page__nav-wrap"><a href="https://javascript.info/introduction-browser-events" data-tooltip="Introduction to browser events" class="page__nav page__nav_prev"><span class="page__nav-text"><span class="page__nav-text-shortcut">Alt + <span class="page__nav-text-arr">←</span></span></span><span class="page__nav-text-alternate">Previous lesson</span></a><a href="https://javascript.info/event-delegation" data-tooltip="Event delegation" class="page__nav page__nav_next"><span class="page__nav-text"><span class="page__nav-text-shortcut">Alt + <span class="page__nav-text-arr">→</span></span></span><span class="page__nav-text-alternate">Next lesson</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">Share</span><a href="https://twitter.com/share?url=http%3A%2F%2Fjavascript.info%2Fbubbling-and-capturing" class="share share_tw"></a><a href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=http%3A%2F%2Fjavascript.info%2Fbubbling-and-capturing" class="share share_fb"></a><a href="https://plus.google.com/share?url=http%3A%2F%2Fjavascript.info%2Fbubbling-and-capturing" class="share share_gp"></a><a href="https://vkontakte.ru/share.php?url=http%3A%2F%2Fjavascript.info%2Fbubbling-and-capturing" class="share share_vk"></a></div><div class="article-tablet-foot__map"><a href="https://javascript.info/tutorial/map" data-action="tutorial-map" class="map"><span class="map__text">Tutorial map</span></a></div></div></div><div id="comments" class="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">Comments</a></h2><div class="comments__read-before"><span class="comments__read-before-link">read this before commenting…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>You're welcome to post additions, questions to the articles and answers to them.</li><li>To insert a few words of code, use the <code>&lt;code&gt;</code> tag, for several lines – use <code>&lt;pre&gt;</code>, for more than 10 lines – use a sandbox (<a href="http://plnkr.co/edit/?p=preview">plnkr</a>, <a href="http://jsbin.com/">JSBin</a>, <a href="http://codepen.io/">codepen</a>…)</li><li>If you can't understand something in the article – please elaborate.</li></ul></div></div></div></div></div><div id="disqus_thread"><iframe id="dsq-app3530" name="dsq-app3530" allowtransparency="true" scrolling="no" tabindex="0" title="Disqus" style="width: 1px !important; min-width: 100% !important; border: medium none !important; overflow: hidden !important; height: 2583px !important;" src="Bubbling%20and%20capturing_files/a_002.html" horizontalscrolling="no" verticalscrolling="no" width="100%" frameborder="0"></iframe></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/javascript.info\/bubbling-and-capturing","identifier":"\/bubbling-and-capturing","title":"Bubbling and capturing"}); };</script><script>var disqus_shortname = "javascriptinfo";</script><script>{
+  var s = document.createElement('script');
+  s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  document.head.appendChild(s);
+}
+</script><script async="" id="dsq-count-scr" src="Bubbling%20and%20capturing_files/count.js"></script></main></div><div class="page__sidebar sidebar sidebar_sticky-footer" style="top: 0px;"><button data-sidebar-toggle="" class="sidebar__toggle"></button><a href="https://javascript.info/tutorial/map" data-action="tutorial-map" data-tooltip="Tutorial map" class="map"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">Chapter</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a href="https://javascript.info/events" class="sidebar__link">Introduction into Events</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">Lesson navigation</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a href="#bubbling" class="sidebar__link">Bubbling</a></li><li class="sidebar__navigation-link"><a href="#event-target" class="sidebar__link">event.target</a></li><li class="sidebar__navigation-link"><a href="#stopping-bubbling" class="sidebar__link">Stopping bubbling</a></li><li class="sidebar__navigation-link"><a href="#capturing" class="sidebar__link sidebar__navigation-link_active">Capturing</a></li><li class="sidebar__navigation-link"><a href="#summary" class="sidebar__link">Summary</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a href="#comments" class="sidebar__link">Comments</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">Share</div><a href="https://twitter.com/share?url=http%3A%2F%2Fjavascript.info%2Fbubbling-and-capturing" class="share share_tw sidebar__share"></a><a href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=http%3A%2F%2Fjavascript.info%2Fbubbling-and-capturing" class="share share_fb sidebar__share"></a><a href="https://plus.google.com/share?url=http%3A%2F%2Fjavascript.info%2Fbubbling-and-capturing" class="share share_gp sidebar__share"></a></div><div class="sidebar__section"><a href="https://github.com/iliakan/javascript-tutorial-en/tree/master/2-ui/2-events/02-bubbling-and-capturing/article.md" class="sidebar__link">Edit on Github</a></div></div></div></div></div></div><div class="page-footer"><div class="page-footer__left"><ul class="page-footer__list"><li class="page-footer__item">©&nbsp;2007—2017&nbsp; Ilya Kantor</li><li class="page-footer__item"><a href="https://javascript.info/about#contact-us" class="page-footer__link">contact us</a></li><li class="page-footer__item"><a href="https://javascript.info/about" class="page-footer__link">about the project</a></li><li class="page-footer__item"><a href="https://learn.javascript.ru/" class="page-footer__link">RU</a> / EN</li></ul></div><div class="page-footer__right"><ul class="page-footer__list"><li class="page-footer__item">powered by <a rel="nofollow" href="http://nodejs.org/" class="page-footer__link">node.js</a>&nbsp;&amp;&nbsp;<a rel="nofollow" href="http://github.com/iliakan/javascript-tutorial-ru" class="page-footer__link">open source</a></li></ul></div></div><iframe style="display: none;"></iframe><progress data-sticky="" value="13" max="27" data-tooltip="Lesson 13 of 27" class="tutorial-progress sticky" style="position: fixed; top: 0px; left: 0px; z-index: 101; background: white none repeat scroll 0% 0%; margin: 0px; width: 1519px;"></progress></body></html>

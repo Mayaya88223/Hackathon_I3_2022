@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+</head> 
+<body>
+<button>Salut</button>
+<button>Hola</button>
+<button>Hello</button>
+
+
+Nombre de passagers<input type="number" id="nombrePassagers">
+<button id="bouton1">Valider</button>
+
+<script>
+
+// Nous faisons face à deux situations différentes:
+
+// 1. boucle qui crée des listener d'événements (une boucle qui crée le click pour chaque bouton)
+
+// 2. un seul listener d'événement qui lance une boucle (un seul évènement de click qui crée plusieurs éléments HTML)
+
+
+// 1. infamous: on rajoute des évémenements dans une boucle,
+// et quand le click se déclenche on cherche la valeur de i
+var boutons = document.getElementsByTagName ("button");
+console.log (boutons)
+
+for (var i=0; i< boutons.length; i++){
+	boutons[i].addEventListener ("click", function (e){
+		// on cherche la valeur de i quand le clique se produit.
+		// la valeur prise sera l'acutuelle, pas celle de i quand
+		// on avait rajouté l'événement
+		console.log ("click sur le bouton " + i);
+	});
+}
+
+// 2. exercice 20: la boucle est à l'interieur de l'événement et pas à l'invers!
+// A chaque fois qu'on lance l'événement la boucle se lance et 
+// fait appel à une fonction 
+document.getElementById ("bouton1").addEventListener ("click", function (event) {
+	// chaque fois qu'on fait clique une boucle est lancée
+	// la variable i prends les valeurs de 0 à "nombrePassagers" dans chaque click
+	for (var i=0; i< nombrePassagers.value ; i++){
+		console.log (i);
+		rajouterFormulaire("formulaire"+i);
+	}
+});
+
+
+function rajouterFormulaire(idFormulaire){
+	
+	var formulaire = document.createElement ("form");
+	
+	var inputNom = document.createElement ("input");
+	inputNom.type = "text";
+	inputNom.placeholder = "nom";
+	formulaire.appendChild(inputNom);
+	
+	var inputPrenom = document.createElement ("input");
+	inputPrenom.type = "text";
+	inputPrenom.placeholder = "prenom";
+	formulaire.appendChild(inputPrenom);
+	
+	formulaire.id = idFormulaire;
+	document.body.appendChild(formulaire);
+}
+
+
+</script>
+</body>
+</html>

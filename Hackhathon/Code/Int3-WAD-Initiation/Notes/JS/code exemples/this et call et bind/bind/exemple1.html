@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+	
+<script>
+// Exemple 1  
+
+// un objet normal
+var personne = {
+	prenom: "Marie",
+	nom: "Curie",
+	afficherInfos: function (){
+		return this.prenom + " " + this.nom;
+		
+	},
+	marcher: function (vitesse){
+		console.log (this.prenom + " " + this.nom + " se déplace à " + vitesse + " km l'heure!");
+	}
+}
+
+personne.marcher (70); // Marie Curie marche à 70 km/h, tout va bien
+
+
+// Exemple 1: on extrait une méthode de l'objet personne
+var monMarcher = personne.marcher;
+// quand on l'utilise, this pointe vers l'objet window car
+// la méthode n'est plus dans le contexte de l'objet original
+monMarcher (15); // undefined undefined se déplace à .....
+
+// Exemple 2 (bind): on peut résoudre le problème en indiquant l'objet qui sera this
+var monMarcher2 = personne.marcher.bind(personne);
+monMarcher2(80); // le this est fixé à "personne"
+
+// Exemple 3 (bind): on peut aussi utiliser bind avec un autre objet, pas forcement 
+// avec celui dont on extrait la méthode
+var p = {
+	prenom: "Ada",
+	nom: "Lovelace"
+}
+var monMarcher3 = personne.marcher.bind (p);
+monMarcher3(60); // le this est fixé à "p" même si on a extrait la méthode de "personne"
+
+
+// Exemple 4: Valeurs par défaut: on peut utiliser bind aussi pour crée de fonctions qui ont des 
+// arguments par défaut. Ici on n'a pas un objet literal mais juste une fonction
+function majuscules(){
+	console.log (arguments); // Observez le contenu de cet objet... qui n'est pas un array!
+	// console.log (typeof (arguments));
+	
+	// Le moteur de JS créez un array à partir des arguments (valeures isolées séparées par virgules)
+	// et appliquer la foncton toUpperCase. Renvoyer l'array modifié
+	return Array.from (arguments).map (function (val){ return val.toUpperCase()});
+}
+
+var changeMajuscules = majuscules;
+console.log (changeMajuscules("Lola","Marie","Joanna"));
+
+var changeMajuscules2 = majuscules.bind (null, "Rudolph", "Salvatore");
+// dans ce cas on aura déjà deux valeurs par défaut
+console.log (changeMajuscules2("Loulou", "Sardinita"));
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

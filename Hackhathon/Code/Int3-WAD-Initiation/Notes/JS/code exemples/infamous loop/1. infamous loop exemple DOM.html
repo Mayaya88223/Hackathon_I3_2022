@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+</head> 
+<body>
+<button>Salut</button>
+<button>Hola</button>
+<button>Hello</button>
+
+<script>
+// on obtient tous les boutons
+var boutons = document.getElementsByTagName ("button");
+console.log (boutons);
+
+// on rajoute des éléments dans une boucle. Observez que la variable "i" est dans le contexte global
+for (var i=0; i< boutons.length; i++){
+	boutons[i].addEventListener ("click", function (e){
+		// cette "i" n'est pas propre à chaque fonction de click 
+		// Chaque fois qu'on l'utilise, il s'agit d'une référence au contexte global
+		// tel qu'ici:
+		console.log ("click sur le bouton " + i);
+	});
+}
+
+// problème: quand on fait appel à l'événement, la valeur de i
+// affichée sera la valeur qu'elle a prise dans le contexte global, c'est à dire celle 
+// après l'éxécution de la boucle (3 dans ce cas)
+</script>
+</body>
+</html>

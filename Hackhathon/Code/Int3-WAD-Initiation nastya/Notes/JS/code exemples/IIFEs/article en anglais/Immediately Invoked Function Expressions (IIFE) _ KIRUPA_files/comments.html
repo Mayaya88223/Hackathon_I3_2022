@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+    <link href="comments_data/embed_f05ce1f7399f90a0f901d206cbdede1e809b094a.css" media="all" rel="stylesheet" data-target="embed">
+      <link href="comments_data/embedded_theme_5_a1c386275c65c03228dfe91ee28e5dd37972b9b8.css" media="all" rel="stylesheet" data-target="embedded_theme">
+    <link rel="preload" href="comments_data/break_string-cc617154cd957804f2f6a1f3bc68258c9cdca3d4b9a322bf.js" as="script">
+<script src="comments_data/break_string-cc617154cd957804f2f6a1f3bc68258c9cdca3d4b9a322bf.js"></script>
+
+      <title>Immediately Invoked Function Expressions (IIFE) | kirupa.com - programming - kirupaForum</title>
+
+    <script>
+      (function() {
+
+        function postUp(msg) {
+          if (parent) {
+            parent.postMessage(msg, 'https://www.kirupa.com/html5/immediately_invoked_function_expressions_iife.htm');
+          }
+        }
+
+        function clickPostLink(e) {
+          var postId = e.target.getAttribute('data-link-to-post');
+          if (postId) {
+            var postElement = document.getElementById('post-' + postId);
+            if (postElement) {
+              var rect = postElement.getBoundingClientRect();
+              if (rect && rect.top) {
+                postUp({type: 'discourse-scroll', top: rect.top});
+                e.preventDefault();
+                return false;
+              }
+            }
+          }
+        }
+
+        window.onload = function() {
+          // Send a post message with our loaded height
+          postUp({type: 'discourse-resize', height: document['body'].offsetHeight});
+
+          var postLinks = document.querySelectorAll("a[data-link-to-post]"),
+              i;
+
+          for (i=0; i<postLinks.length; i++) {
+            postLinks[i].onclick = clickPostLink;
+          }
+
+          // Make sure all links in the iframe point to _blank
+          var cookedLinks = document.querySelectorAll('.cooked a');
+          for (i=0; i<cookedLinks.length; i++) {
+            cookedLinks[i].target = "_blank";
+          }
+
+          // Adjust all names
+          var names = document.querySelectorAll('.username a');
+          for (i=0; i<names.length; i++) {
+            var username = names[i].innerHTML;
+            if (username) {
+              names[i].innerHTML = new BreakString(username).break();
+            }
+          }
+
+        };
+
+      })();
+    </script>
+  </head>
+  <body>
+    <header class="discourse">
+  <span class="replies">3 replies</span>
+</header>
+
+    <article class="post" id="post-785158">
+      <a title="February  7, 2015  7:29am" class="post-date" target="_blank" href="http://forum.kirupa.com/t/immediately-invoked-function-expressions-iife-kirupa-com/526860/2">Feb '15</a>
+
+      <div class="author">
+        <a href="http://forum.kirupa.com/u/krilnon" target="_blank"><img src="comments_data/34_1.png" alt=""></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://forum.kirupa.com/u/krilnon" target="_blank" class="staff">krilnon</a>
+            <span class="title">≈ ≠ =</span>
+        </h3>
+        <aside class="quote" data-post="1" data-topic="526860"><div class="title">
+<div class="quote-controls"></div>
+<img src="comments_data/7086.png" class="avatar" width="20" height="20">kirupa:</div>
+<blockquote><p>The main difference is that an IIFE leaves behind no 
+evidence of its existence after it has run. This is largely because 
+IIFEs are anonymous functions that are nameless.</p></blockquote></aside>
+
+<p>This is true of the function itself, but there can be many traces 
+(good and bad/accidental) that the function has run. The most accidental
+ way is if you forget to declare a variable and use it. This will be 
+detected as an error if you opt-in to ES5's strict mode:</p>
+
+<p></p><pre><code class="lang-javascript">(function(){ 'use strict'; foo = 5 })() // Uncaught ReferenceError: foo is not defined</code></pre>
+
+<p>If you aren't using strict mode, which is the default, you will have just set the global variable <code>foo</code> in your program.</p>
+
+<p>Plus, you can still mess with any global program state, even in strict mode, as long as those objects aren't frozen:</p>
+
+<p></p><pre><code class="lang-javascript">(function(){ 'use strict'; Math.PIE = 3 })()
+Math.PIE // 3</code></pre>
+
+<p>So, as the tutorial mentions, IIFEs are great for protecting the IIFE
+ code from the rest of your (or others') programs, but they don't stop 
+your IIFE code from wreaking havoc on the code outside of your IIFE.</p>
+
+<hr>
+
+<p>There are ways other than using wrapping parentheses to reach a valid
+ point in the grammar so that your function is treated as an expression.
+ Pretty much any unary operator will work, for example:</p>
+
+<p></p><pre><code class="lang-javascript">void function(e){ console.log(e) }('hi')
+!function(e){ console.log(e) }('hi')
+typeof function(e){ console.log(e) }('hi')</code></pre>
+
+<p>I forget if there's any good reason why people have settled on the 
+paren syntax, other than that it reminds people of Lisp, I guess. <img src="comments_data/stuck_out_tongue.png" title=":stuck_out_tongue:" class="emoji" alt="stuck_out_tongue" width="20" height="20"></p>
+
+            <a class="post-replies button" target="_blank" href="http://forum.kirupa.com/t/immediately-invoked-function-expressions-iife-kirupa-com/526860/2">2 replies</a>
+      </div>
+    </article>
+    <article class="post" id="post-785159">
+      <a title="February  7, 2015  7:38am" class="post-date" target="_blank" href="http://forum.kirupa.com/t/immediately-invoked-function-expressions-iife-kirupa-com/526860/3">Feb '15</a>
+        <a data-link-to-post="785158" class="in-reply-to" href="http://forum.kirupa.com/t/immediately-invoked-function-expressions-iife-kirupa-com/526860/2">▶ krilnon</a>
+
+      <div class="author">
+        <a href="http://forum.kirupa.com/u/kirupa" target="_blank"><img src="comments_data/7086_1.png" alt=""></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://forum.kirupa.com/u/kirupa" target="_blank" class="staff">kirupa</a>
+        </h3>
+        <p>That's a great point about IIFEs having the ability to wreck 
+things outside of their bubbles. I'll modify the tutorial by adding a 
+note summarizing what you mention.</p>
+
+<p>Regarding the syntax, the paren version does look at lot like Lisp haha!</p>
+
+      </div>
+    </article>
+    <article class="post" id="post-785173">
+      <a title="February  8, 2015  1:58pm" class="post-date" target="_blank" href="http://forum.kirupa.com/t/immediately-invoked-function-expressions-iife-kirupa-com/526860/4">Feb '15</a>
+        <a data-link-to-post="785158" class="in-reply-to" href="http://forum.kirupa.com/t/immediately-invoked-function-expressions-iife-kirupa-com/526860/2">▶ krilnon</a>
+
+      <div class="author">
+        <a href="http://forum.kirupa.com/u/senocular" target="_blank"><img src="comments_data/7217_1.jpg" alt=""></a>
+      </div>
+      <div class="cooked">
+        <h3 class="username">
+          <a href="http://forum.kirupa.com/u/senocular" target="_blank" class="staff">senocular</a>
+            <span class="title">Irregular</span>
+        </h3>
+        <p>Void... Cooool. Looks like the return type <img src="comments_data/stuck_out_tongue_winking_eye.png" title=":stuck_out_tongue_winking_eye:" class="emoji" alt="stuck_out_tongue_winking_eye" width="20" height="0"></p>
+
+      </div>
+    </article>
+
+    <footer class="clearfix">
+      <a target="_blank" href="http://forum.kirupa.com/"><img class="logo" src="orange_logo_svg.svg" alt="Orange logo svg"></a>
+      <a class="button" target="_blank" href="http://forum.kirupa.com/t/immediately-invoked-function-expressions-iife-kirupa-com/526860/4">Continue Discussion</a>
+    </footer>
+    <div class="clearfix"></div>
+
+
+  
+
+</body></html>

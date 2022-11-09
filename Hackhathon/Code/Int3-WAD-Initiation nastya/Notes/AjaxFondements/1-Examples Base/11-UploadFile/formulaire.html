@@ -1,0 +1,19 @@
+<!-- HTML5 Input Form Elements -->
+<input id="fichier" type="file" name="fileupload" />
+<button id="upload-button" onclick="uploadFile()"> Upload </button>
+
+
+<!-- AJAX pour upload -->
+<script>
+  async function uploadFile() {
+    let formData = new FormData();
+    formData.append("fichier", fichier.files[0]);
+    // appel fetch
+    fetch('./uploadTraitement.php', {
+      method: "POST",
+      body: formData
+    }).then((response) => { return response.json() })
+      .then((data) => { console.log(data) });
+    ;
+  }
+</script>

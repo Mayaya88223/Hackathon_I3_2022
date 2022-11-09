@@ -1,0 +1,2 @@
+Ce projet permet d'uploader de fichiers sur le serveur.
+Vous choisissez le fichier dans le formulaire formChoix.php.

@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta charset='utf-8' />
+</head>
+<body>
+<script>
+
+// si on ne l'utilise pas 
+// à l'interieur d'un objet, la variable this fait référence 
+// à l'objet global (window)
+// ------------------------------------------------------------
+
+
+// dans le code principal:
+console.log (this); // on obtient l'objet global (window)
+
+// dans le code d'une fonction:
+function coucou (){
+	console.log ("Dans la fonction coucou: "); 
+	console.log(this);
+}
+coucou();	// on obtient toujours l'objet global (window)
+
+
+// dans le code d'une fonction tel qu'éxpression:
+coucou2 = function (){
+	console.log ("Dans la fonction coucou2: ");	
+	console.log (this);
+}
+coucou2();	// on obtient toujours l'objet global (window)
+
+
+// dans le code d'une fonction qui se trouve dans une fonction:
+coucou3 = function (){
+	console.log ("Dans la fonction coucou3: ");
+	var coucou4= function (){
+		console.log ("Dans la fonction coucou4, à l'interieur coucou3: ");	
+		console.log (this);
+	}
+	coucou4();
+	
+}
+coucou3(); // on obtient toujours l'objet global (window)
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

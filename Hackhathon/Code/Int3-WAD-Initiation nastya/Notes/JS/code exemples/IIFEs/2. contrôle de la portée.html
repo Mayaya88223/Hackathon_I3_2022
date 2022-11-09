@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+</head> 
+<body>
+<button id="bouton1">Bouton 1!</button>
+<button id="bouton2">Bouton 2!</button>
+<br>
+Le div1: <div id="clics1"></div>
+Le div2: <div id="clics2"></div>
+
+
+<script>
+
+// Les deux variables compteur s'appellent de la même manière (compteClicks), 
+// mais vu qu'elles se trouvent dans deux contextes différents 
+// nous n'avons pas du conflit.
+
+// Les IIFEs sont spécialement utiles quand nous voulons 
+// éviter les collisions entre plusieurs variables dans notre script
+
+(function(){
+	var compteClicks = 0; // cette variable se trouve dans le contexte de notre IIFE
+	document.getElementById("bouton1").addEventListener ("click", function (){
+		compteClicks++;
+		clics1.innerHTML= compteClicks;
+	});
+})();
+
+(function(){
+	var compteClicks = 0; // cette variable se trouve dans le contexte de notre IIFE
+	document.getElementById("bouton2").addEventListener ("click", function (){
+		compteClicks++;
+		clics2.innerHTML= compteClicks;
+	});
+})();
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<html>
+<body>
+<script>
+// Normalement on devrait déclarer les fonctions avant de les utiliser, mais pas en JS
+// à cause du Hoisting
+
+// Dans le code suivant, JS réalise la déclaration des variables (var b) et des fonctions (function hello) avant de realiser l'appel 
+// MAIS il ne donne pas encore les valeurs aux variables. On n'obtient pas d'erreur mais "b" est undefined
+
+hello();   
+console.log (b); 
+
+// on obtient "undefined" car la variable n'a pas ENCORE sa valeur (elle est definie plus bas, b=10)
+// on n'a pas le même effet que si elle n'avait pas été définie du tout (si vous effacez "var b=10" vous obtenez "Reference error...")
+function hello (){
+	console.log ("hello!!");
+}
+var b=10; 
+
+
+
+</script>
+</body>
+</html>

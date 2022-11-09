@@ -1,0 +1,4 @@
+objetsClass: exemples simples de création de classes en JS
+objetsLiteraux.html: exemples de création d'objets litteraux
+
+Nous n'incluons ici des exemples d'utilisation de prototypes

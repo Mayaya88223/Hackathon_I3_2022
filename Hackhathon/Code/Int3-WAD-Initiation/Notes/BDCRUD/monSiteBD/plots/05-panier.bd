@@ -1,0 +1,11 @@
+Panier
+------
+
+
+
+
+- Afficher les produits (films)
+- Rajouter un produit au panier 
+    1. Depuis la liste de produits on choisi un produit
+        - bouton rajouter
+        - input pour quantité

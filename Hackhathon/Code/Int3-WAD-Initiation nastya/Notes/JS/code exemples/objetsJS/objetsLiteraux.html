@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+</head> 
+<body>
+<script>
+var film1 = {
+	titre: "Problemos",
+	realisateur: "Eric Judor",
+	dateSortie: "10/5/2017",
+	afficherFilm: function (){ 
+		console.log ("Le film " + this.titre + " a été réalisé par " + this.realisateur + " et est sorti le " + this.dateSortie);
+	}	
+}
+
+// ou on peut utiliser la notation d'ECMA6 pour les méthodes
+var film2 = {
+	titre: "Matrix",
+	realisateur: "The Wachowskis",
+	dateSortie: "1/1/1999",
+	afficherFilm: function (){ 
+		console.log ("Le film " + this.titre + " a été réalisé par " + this.realisateur + " et est sorti le " + this.dateSortie);
+	}	
+}
+film1.afficher = function (){
+	console.log ("toto");
+}
+film1.afficher();
+
+film1.afficherFilm();
+film2.afficherFilm();
+
+
+</script>
+</body>
+</html>

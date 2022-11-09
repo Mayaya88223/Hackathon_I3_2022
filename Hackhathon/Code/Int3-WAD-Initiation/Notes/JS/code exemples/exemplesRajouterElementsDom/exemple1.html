@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta charset='utf-8' />
+</head>
+<body>
+<div id="divInput"></div>
+</body>
+<script>
+// rajouter une image
+var uneImage = document.createElement("img");
+
+uneImage.src = "./totoro.jpg";
+uneImage.id = "imageTotoro";
+
+document.body.appendChild(uneImage);
+
+uneImage.addEventListener ("mouseover", function (){
+	console.log ("Bonjour je suis l'image");
+	// accéder un élément de plusieurs manières:
+	
+	console.log (uneImage.id);		
+	console.log (document.getElementById("imageTotoro").id);
+	
+});
+
+var autreImage = document.createElement ("img");
+autreImage.src = "./terminator.jpg";
+document.body.appendChild(autreImage);
+
+autreImage.addEventListener ("click", function(event){
+	//console.log (typeof(event));
+	//console.log (event);
+	console.log ("Vous avez cliqué: " + event.clientX + ","+ event.clientY);
+	console.log (event.target.src);
+});
+
+// rajouter un input dans le div "divInput"
+var input1 = document.createElement ("input");
+input1.id="monInput";
+document.getElementById ("divInput").appendChild (input1);
+
+
+input1.addEventListener("keyup", function (event){
+	// console.log ("On a appuyé sur une touche");
+	/*if (event.target.value === "Aisha"){
+		alert ("Bienvenue Aisha");
+	}*/
+	console.log ("Vous êtes en train d'écrire dans: " + event.target.id);
+	console.log ("Vous avez appuyé sur: " + event.key);
+	// console.log (event);
+});
+
+
+
+
+
+</script>
+
+</html>

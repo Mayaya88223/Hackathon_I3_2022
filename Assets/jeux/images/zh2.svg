@@ -1,0 +1,15 @@
+<svg id="zh2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="178.58" height="249.45" viewBox="0 0 178.58 249.45">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_1" data-name="Rectangle 1" width="178.58" height="249.45" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Groupe_2" data-name="Groupe 2">
+    <g id="Groupe_1" data-name="Groupe 1" clip-path="url(#clip-path)">
+      <path id="Tracé_1" data-name="Tracé 1" d="M8.5,0H170.08a8.5,8.5,0,0,1,8.5,8.5V240.95a8.5,8.5,0,0,1-8.5,8.5H8.5a8.5,8.5,0,0,1-8.5-8.5V8.5A8.5,8.5,0,0,1,8.5,0" fill="#fff"/>
+      <path id="Tracé_2" data-name="Tracé 2" d="M171.5,58.26V10.09a3.013,3.013,0,0,0-3.01-3.01H10.09a3,3,0,0,0-3,3.01V239.35a3,3,0,0,0,3,3.01h158.4a3.013,3.013,0,0,0,3.01-3.01V91.4m0-.01V58.29M29.01,44.95a.076.076,0,0,1,.02-.04.142.142,0,0,0-.02.06" fill="#fceef4"/>
+    </g>
+  </g>
+  <text id="二" transform="translate(29.25 146.588)" fill="#231f20" font-size="120.131" font-family="MaShanZheng-Regular, Ma Shan Zheng"><tspan x="0" y="0">二</tspan></text>
+  <text id="èr_" data-name="èr " transform="translate(70 204.928)" fill="#231f20" font-size="24" font-family="SourceSansPro-SemiBold, Source Sans Pro" font-weight="600"><tspan x="0" y="0">èr </tspan></text>
+</svg>

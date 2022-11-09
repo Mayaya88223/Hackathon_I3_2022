@@ -1,0 +1,97 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+	<ul id="maListe">
+		<li>rock</li>
+		<li>jazz</li>
+	</ul>
+<script>
+// Exemple 1 (sans call): Nous avons un objet de base contenant de 
+// méthodes et de propriétés 
+var personne = {
+	prenom: "Marie",
+	nom: "Curie",
+	afficherInfos: function (){
+		return this.prenom + " " + this.nom;
+		
+	},
+	marcher: function (){
+		console.log ("Allons y on bouge!");
+	}
+}
+personne.afficherInfos();
+personne.marcher();
+
+// Exemple 2 (call): on force maintenant l'objet this 
+// à être un autre objet
+// Dans cet exemple nous avons un objet qui contient 
+// uniquement une fonctionnalité (de méthodes) 
+// On veut lui envoyer un autre objet en paramètre 
+// contenant de valeurs pour de propriétés 
+// pour qu'il exécute de méthodes sur ces propriétés
+var utilisePersonne = {
+	afficherInfos: function (){
+			console.log (this);
+
+		console.log (this.prenom + " " + this.nom);
+	},
+	marcher: function (){
+		console.log ("Allons y on bouge!");
+	}
+}
+var personne1 = {
+	prenom: "Marie",
+	nom: "Curie"
+}
+var personne2 = {
+	prenom: "Ada",
+	nom: "Lovelace"
+}
+utilisePersonne.afficherInfos(); // ça ne marchera pas, "utilisePersonne" n'a pas de propriétés
+utilisePersonne.afficherInfos (personne1); // ça ne marche pas non plus, la méthode car afficherInfos n'a pas de paramétres
+utilisePersonne.afficherInfos.call (personne2); // ok! call enverra l'objet "personne2" qui deviendra "this" pour la méthode
+
+// Exemple 3 (call): 
+// Même système mais en utilisant le DOM
+// Dans ce cas nous avons un objet capable de 
+// rajouter des éléments à une liste.
+// On force "this" à être la liste  
+var manipuleListe = {
+	// on force le this à être la liste qu'on veut modifier
+	rajouterLiTexte : function (texteLi){
+		elem = document.createElement ("li");
+		elem.appendChild (document.createTextNode (texteLi));
+		this.appendChild (elem);
+	}
+}
+
+// le prémier paramétre est l'objet qu'on veut qui devienne "this"
+// le deuxième paramétre est le paramètre propre à la méthode (texteLi dans ce cas)
+manipuleListe.rajouterLiTexte.call (maListe, "classique");
+manipuleListe.rajouterLiTexte.call (maListe, "salsa");
+// manipuleListe.rajouterLiTexte (maListe, "classique"); // erreur car this est "window"
+
+// Exemple 4: call avec de paramétres
+var persoImage = {
+	modifierTaille : function (uneImage, width, height){
+		uneImage.style.width = width;
+		uneImage.style.height = height;
+		// si on veut pouvoir envoyer uniquément width, height ou aucun de deux:
+		//uneImage.style.width = (typeof (width) !== 'undefined') ? width : uneImage.width;
+		//uneImage.style.height = (typeof (height) !== 'undefined') ? height : uneImage.height;
+	}
+}
+
+var img = document.createElement ("img");
+img.src = "./lince.jpg";
+// voici les paramètres: l'objet (pour this) et les paramètres propres à la méthode
+persoImage.modifierTaille (img, "250px", "200px");
+document.body.appendChild (img);
+
+
+</script>
+</body>
+</html>

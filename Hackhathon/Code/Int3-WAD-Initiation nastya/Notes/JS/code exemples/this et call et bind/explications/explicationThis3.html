@@ -1,0 +1,34 @@
+<html>
+<head>
+<meta charset='utf-8' />
+</head>
+<body>
+<script>
+
+
+// comportement attendu
+// ----------------------
+var monFilm = {
+	titre: "Porco Rosso",
+	duree: 140,
+	prix: 25,
+	calculePrixPromo: function (pourcentagePromo){
+	
+		console.log (this); // on est dans le contexte d'un objet, this fait référence à l'objet en cours
+		return (this.prix - this.prix * pourcentagePromo / 100);
+
+	}	
+}
+
+prixPromo = monFilm.calculePrixPromo (20);
+console.log (monFilm.titre + " coute " + prixPromo + " euros");
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

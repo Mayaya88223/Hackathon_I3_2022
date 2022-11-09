@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta charset='utf-8' />
+</head>
+<body>
+<script>
+
+
+// sans paramétres, la fonction est appelée et la variable contient une fonction
+var bonjour = function (){
+	console.log ("Bonjour!");
+}();
+
+// avec de paramétres, la fonction est appelée et la varible contient une fonction
+var afficheMessage = function (message) {
+	console.log ("Je dois te dire... " + message);
+}("bla bla bla bla");
+
+// avec return, la fonction est appelée MAIS attention car maintenant la variable ne contient plus une fonction.
+// Elle contient la valeur renvoyée avec return
+var multiplication = function (val1, val2){
+	return val1 * val2;
+}(10,2000);
+console.log (multiplication);
+
+
+// considerons cette fonction déclarée tel qu'expression:
+var afficheMessage = function (message) {
+	console.log ("Je dois te dire... " + message);
+}("bla bla bla bla");
+
+
+// si on ne veut pas créer une variable, 
+// on pourrait penser que cela va fonctionner, 
+// mais on obtient une erreur de syntaxe car 
+// JS pense qu'on essaie de créer une instruction
+// et alors le ("bla bla bla bla") est en trop!
+
+
+// function (message) {
+// 	console.log ("Je dois te dire... " + message);
+// }("bla bla bla bla");
+
+
+// IIFE: on appelle la fonction et il y n'y a pas de problèmes
+(function (message) {
+	console.log (message);
+}("bonsoir!!"));
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+</head> 
+<body>
+<!-- un div qui contient cinq boutons et deux images -->
+<style>
+div {
+	border: 5px solid green;
+	height: 50%;
+}
+img {
+	height: 100px;
+}
+</style>
+<div id="div1">
+<button id="b1">hello</button>
+<button id="b2">hola</button>
+<button id="b3">salut</button>
+<button id="b4">toto</button>
+<button id="b5">tata</button>
+<img src="./img/Memento.jpg">
+<img src="./img/Watchmen.jpg">
+</div>
+<script>
+
+
+// rajouter des évènements dans une boucle. Il n'y a pas de délegation ici
+
+// attention: on cible uniquement les boutons qui se trouvent dans le div.
+// pour faire cela, on appliquer getElementsByTagName à l'objet div:
+var lesBoutons = div1.getElementsByTagName ("button");
+
+for (let i=0; i < lesBoutons.length ; i++){
+	lesBoutons[i].addEventListener ("click", function (e){
+		console.log ("Je suis le bouton " + i);
+	});
+}
+
+// on obtient uniquement les images qui se trouvent à l'interieur du DIV
+var lesImages = div1.getElementsByTagName ("img");
+// on va utiliser, juste pour le montrer, une autre façon de parcourir une collection. 
+// on utilise la boucle for .. of 
+for (var uneImage of lesImages){
+	uneImage.addEventListener ("click",function (e){
+		console.log ("Je suis l'image: " + e.target.src); // même chose que uneImage.src
+	});
+};
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

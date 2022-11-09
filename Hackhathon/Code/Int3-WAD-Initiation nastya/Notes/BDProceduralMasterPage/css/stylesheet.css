@@ -1,0 +1,39 @@
+nav ul li{
+	display: inline-block;
+	list-style: none;
+	padding: 10px;
+	margin: 0 15px 0 0;
+	border: 2px solid gray;
+	border-radius: 5px;
+}
+nav ul li a{
+	text-decoration: none;
+	color: gray;
+}
+nav ul li a h3{
+	font-weight: bold;
+	margin: 0 auto;
+	padding: 0;
+}
+
+body h4{
+	font-weight: normal !important;
+	margin: 40px 0 0 42px;
+}
+
+body div:nth-child(2) h4, body form, body .foreach{
+	font-weight: normal !important;
+	margin: 40px 0 0 42px !important;
+}
+
+body div:nth-child(3) h4{
+	font-weight: normal !important;
+	margin: 40px 0 0 0 !important;
+}
+
+body .foreach div h4{
+	font-weight: normal !important;
+	margin: 40px 0 0 0 !important;
+}
+
+
