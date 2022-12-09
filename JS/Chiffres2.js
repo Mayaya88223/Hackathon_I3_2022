@@ -20,34 +20,34 @@ let matched = false;
 
 function preload(){
     
-    this.load.svg('NumberFr0' , '/assets/Jeux/images/fr0.svg')
-    this.load.svg('NumberCn0' , '/assets/Jeux/images/zh0.svg')
-    this.load.svg('NumberFr4' , '/assets/Jeux/images/fr4.svg')
-    this.load.svg('NumberCn4' , '/assets/Jeux/images/zh4.svg')
-    this.load.svg('NumberFr5' , '/assets/Jeux/images/fr5.svg')
-    this.load.svg('NumberCn5' , '/assets/Jeux/images/zh5.svg')
-    this.load.svg('NumberFr6' , '/assets/Jeux/images/fr6.svg')
-    this.load.svg('NumberCn6' , '/assets/Jeux/images/zh6.svg')
-    this.load.svg('NumberFr7' , '/assets/Jeux/images/fr7.svg')
-    this.load.svg('NumberCn7' , '/assets/Jeux/images/zh7.svg')
-    this.load.svg('NumberFr8' , '/assets/jeux/images/fr8.svg')
-    this.load.svg('NumberCn8' , '/assets/jeux/images/zh8.svg')
-    this.load.svg('NumberFr9' , '/assets/jeux/images/fr9.svg')
-    this.load.svg('NumberCn9' , '/assets/jeux/images/zh9.svg')
-    this.load.svg('NumberFr10' , '/assets/jeux/images/fr10.svg')
-    this.load.svg('NumberCn10' , '/assets/jeux/images/zh10.svg')
+    this.load.svg('NumberFr0' , 'assets/Jeux/images/fr0.svg')
+    this.load.svg('NumberCn0' , 'assets/Jeux/images/zh0.svg')
+    this.load.svg('NumberFr4' , 'assets/Jeux/images/fr4.svg')
+    this.load.svg('NumberCn4' , 'assets/Jeux/images/zh4.svg')
+    this.load.svg('NumberFr5' , 'assets/Jeux/images/fr5.svg')
+    this.load.svg('NumberCn5' , 'assets/Jeux/images/zh5.svg')
+    this.load.svg('NumberFr6' , 'assets/Jeux/images/fr6.svg')
+    this.load.svg('NumberCn6' , 'assets/Jeux/images/zh6.svg')
+    this.load.svg('NumberFr7' , 'assets/Jeux/images/fr7.svg')
+    this.load.svg('NumberCn7' , 'assets/Jeux/images/zh7.svg')
+    this.load.svg('NumberFr8' , 'assets/jeux/images/fr8.svg')
+    this.load.svg('NumberCn8' , 'assets/jeux/images/zh8.svg')
+    this.load.svg('NumberFr9' , 'assets/jeux/images/fr9.svg')
+    this.load.svg('NumberCn9' , 'assets/jeux/images/zh9.svg')
+    this.load.svg('NumberFr10' , 'assets/jeux/images/fr10.svg')
+    this.load.svg('NumberCn10' , 'assets/jeux/images/zh10.svg')
     
-    this.load.image('Next' , '/assets/jeux/images/nextButton.png')
-    this.load.image('background' ,'/assets/jeux/images/blueBackground.png')
+    this.load.image('Next' , 'assets/jeux/images/nextButton.png')
+    this.load.image('background' ,'assets/jeux/images/blueBackground.png')
 
-    this.load.audio('sound0', '/assets/jeux/son/nb-0.mp3');
-    this.load.audio('sound4', '/assets/jeux/son/nb-4.mp3');
-    this.load.audio('sound5', '/assets/jeux/son/nb-5.mp3');
-    this.load.audio('sound6', '/assets/jeux/son/nb-6.mp3');
-    this.load.audio('sound7', '/assets/jeux/son/nb-7.mp3');
-    this.load.audio('sound8', '/assets/jeux/son/nb-8.mp3');
-    this.load.audio('sound9', '/assets/jeux/son/nb-9.mp3');
-    this.load.audio('sound10', '/assets/jeux/son/nb-10.mp3');
+    this.load.audio('sound0', 'assets/jeux/son/nb-0.mp3');
+    this.load.audio('sound4', 'assets/jeux/son/nb-4.mp3');
+    this.load.audio('sound5', 'assets/jeux/son/nb-5.mp3');
+    this.load.audio('sound6', 'assets/jeux/son/nb-6.mp3');
+    this.load.audio('sound7', 'assets/jeux/son/nb-7.mp3');
+    this.load.audio('sound8', 'assets/jeux/son/nb-8.mp3');
+    this.load.audio('sound9', 'assets/jeux/son/nb-9.mp3');
+    this.load.audio('sound10', 'assets/jeux/son/nb-10.mp3');
 }
 
 function create(){

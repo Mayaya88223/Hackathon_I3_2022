@@ -35,7 +35,7 @@
                     ?>
                     </div>
                     <div class="form__bottom">
-                        <a href="#">Pas de compte ? S'inscrire ici.</a>
+                        <a href="index.php?page=test/Compte/3_inscription.php">Pas de compte ? S'inscrire ici.</a>
                         <a href="#">Mot de passe oublié ?</a>
                     </div>
                 </div>

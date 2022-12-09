@@ -1,7 +1,7 @@
 <?php 
 
 include "../../../connexion/db.php";
-var_dump ($_POST);
+//var_dump ($_POST);
 
 
 
@@ -53,6 +53,7 @@ try
     $stmt->bindValue (":password", $password);
 
     $stmt->execute ();
+    header("location:../../../index.php?page=test/Compte/1_login.php");
 }
 catch(Exception $e)
 {

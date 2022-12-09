@@ -41,6 +41,8 @@ if (password_verify ($password,$passwordBD) === true) {
 
 } else {
     // 5. Si pas ok, aller vers la page de login en envoyant un message dans la URL
-    header('location: ./1_login.php?error=badPass');
+    header('location: ../../../index.php?page=test/compte/1_login.php&error=badPass');
+
+
 }
 ?>
