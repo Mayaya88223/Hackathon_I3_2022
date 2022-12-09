@@ -187,6 +187,7 @@ function win(t)
         winText.setTint(0xbb4430, 0xbb4430, 0xbb4430, 0xbb4430);
         winText.setScale(3);
         dbUpdate();
+        alert("Saved");
     }
 }
 
@@ -219,7 +220,7 @@ function dbUpdate(){
             category: 'chiffres'
         })
     }).then(res => {
-        return res.json()
+        return res.json(); alert(res);
     })
     .then(data => console.log(data))
     .catch(error => console.log('ERROR'))

@@ -37,6 +37,7 @@ if (password_verify ($password,$passwordBD) === true) {
     // 4. Si ok, aller vers l'accueil
     // après avoir mis le login dans la session
     $_SESSION ['loginConnecte'] = $login;
+    $_SESSION['UserID']= $res['ID'];
     header('location: ../../../index.php?page=categories/categories.html');
 
 } else {

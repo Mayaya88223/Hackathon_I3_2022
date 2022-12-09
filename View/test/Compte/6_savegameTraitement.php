@@ -1,9 +1,11 @@
 <?php
-
+session_start(); 
+$userId=$_SESSION["UserID"];
+$json = file_get_contents('php://input');
+$data = json_decode($json);
 
 // 1. Créer une connexion à la BD
 include "../../../connexion/db.php";
-
 try {
     $cnx = new PDO(DBDRIVER . ':host=' . DBHOST . ';port=' . DBPORT . ';dbname=' . DBNAME . ';charset=' . DBCHARSET, DBUSER, DBPASS);
 } catch (Exception $e) {
@@ -14,26 +16,25 @@ try {
     die();
 }
 
-$sql = "INSERT INTO film (id, titre, duree, description, dateSortie, image) ";
-$sql .= " VALUES (NULL , :titre, :duree, :description, :dateSortie, :image)";
+$sql = "INSERT INTO categories (ID, UserID, level, Succeed, category) ";
+$sql .= " VALUES (NULL ,:UserID, :level, :Succeed, :category)";
 
 // https://www.php.net/manual/fr/pdo.constants.php
 $stmt = $cnx->prepare($sql);
 
-$stmt->bindValue (":titre", $_POST['titre']);
-$stmt->bindValue (":duree", $_POST['duree'], PDO::PARAM_INT);
-$stmt->bindValue (":description", $_POST['description']);
-$stmt->bindValue (":dateSortie", $_POST['dateSortie']);
-$stmt->bindValue (":image", $nomFichier);
+$stmt->bindValue (":UserID", $userId);
+$stmt->bindValue (":level", $data->level);
+$stmt->bindValue (":Succeed", $data->Succeed);
+$stmt->bindValue (":category", $data->category);
 
 $stmt->execute();
 // var_dump ($stmt->errorInfo());
 
-header ("location: ./index.php?p=listeFilms");
+echo "{ 'Status':'OK'}"
 
 
-session_start();
-include "../../../connexion/db.php";
+?>
+
 
 
 
