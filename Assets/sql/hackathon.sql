@@ -24,6 +24,17 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `resetPassword`
+--
+
+CREATE TABLE `resetPassword` (
+  `login` varchar(200) NOT NULL,
+  `password` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `categories`
 --
 

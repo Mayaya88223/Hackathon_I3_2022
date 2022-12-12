@@ -19,9 +19,16 @@
         <div class="inner-header">
             <nav class="navbar">
                 <ul class="navbar__list">
-                    <li class="navbar__item"><a href="#">Item 1</a></li>
-                    <li class="navbar__item"><a href="#">Item 2</a></li>
-                    <li class="navbar__item"><a href="#">Item 3</a></li>
+                    <li class="navbar__item"><a href="index.php?page=categories/categories.html">HOME</a></li>
+                    <li class="navbar__item"><a href="#">Apprendre</a></li>
+                    <li class="navbar__item"><a href="#">Jouer</a></li>
+                    <li class="navbar__item"><a href="#">LOGOUT</a></li>
+<?php
+  if (isset($_POST['logout'])) {
+    // Insérez ici le code PHP pour effectuer la déconnexion de l'utilisateur
+  }
+?>    
+                    
                     </li>
                 </ul>
             </nav>

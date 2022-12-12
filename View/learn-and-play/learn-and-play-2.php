@@ -1,37 +1,31 @@
- <section class="section section--page">
+<section class="section section--page">
         <div class="page__inner d-flex">
-            <div class="text-box">
-                <div d-flex></div>
-                <h2 class="h2--lesson">Apprendre : Les chiffres</h2>
-             
-                  <h3 class="h3--lesson">Leçon 1 :Un,deux,trois </h3>
-                    <div class="page__inner d-flex">
-                        <div class="text-box2">
-                            <p>Les mots en chinois sont représentés par des caractères… Ce ne sont pas des lettres !</p>
-                            <p>Pour les chiffres, chaque chiffre de zéro à dix est représenté par un caractère.</p>
-                            <p>Le chiffre un est représenté par un simple trait horizontal.</p>
-                              <p>Cliquez sur le caractère pour entendre sa prononciation !</p> 	 
-                                <p> Pour le chiffre deux, il faut deux traits !</p>
-                                <p>Celui du dessus est plus court.	 </p>
-                                <p>Et pour le chiffre trois… Trois traits !</p>
-                                <p>Le trait du milieu est le plus court, et celui du dessous le plus long.	 </p>
-                                </p>
-                                <a href="index.php?page=games/game-num-1.html">JOUER</a>
-                        </div>
-                      <div class="lesson">
-                          <h3 class="h3--lesson">Leçon 2 De 0 à 10</h3>
-                          <div class="text-box2">
-                              <p>Pour les autres chiffres (zéro et de quatre à dix),</p>
-                              <p>c’est un peu plus difficile. On notera que le caractère pour cinq comporte cinq traits,</p> 
-                              <p>et que le caractère pour sept ressemble au chiffre 7 retourné !</p>
-                          </div>
+            <h3 class="h3">Apprenez quelques mots... puis testez vos connaissances</h3>
+            <div class="study box d-flex">
+                <div class="study__inner grid-1">
+                    <div class="padding-20">
+                        <img src="Assets/images/deco/notebook.svg" alt="Couleurs">
+                    </div>
+<div class="grid-2 padding-20">                        
+                        <a href="index.php?page=lessons/lesson-num-1.php">
+                        <input type="submit" value="Apprendre" class="btn btn--submit">
+                        </a>                    
+                    </div>
+                    <div class="padding-20 grid-3 d-flex">
+                        <img src="Assets/images/deco/dice.svg" alt="" class="grid-3">
+                    </div>
+<div class="grid-4 padding-20">
+                      <a href="index.php?page=games/game-num-1.html">
+                        <input type="submit" value="Jouer" class="btn btn--submit">
+                        </a>
                       </div>
-                    </div> 
-                </div> 
-                <div class="tigre">
-                  <img src="assets/images/deco/tigre-bleu-lg.svg" alt="tigre bleu">
-              </div>
                 </div>
-    </section>
+            </div>
 
-     
+        </div>
+        </div>
+        <div class="tigre">
+            <img src="Assets/images/deco/tigre-bleu-lg.svg" alt="tigre bleu">
+        </div>
+
+    </section>

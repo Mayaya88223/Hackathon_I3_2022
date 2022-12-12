@@ -392,3 +392,10 @@ right: 20px;
     height: 600px;
     background-color:#bb4430;
 }
+
+.fieldset form {
+    text-align: left;
+    /* float: left;
+    justify-content: right;
+    display: flex; */
+}

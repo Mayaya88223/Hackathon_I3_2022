@@ -10,13 +10,10 @@
                     <div class="form__top">
 
 
-    <form action="./4_inscriptionTraitement.php" method="POST">
+    <form action="./8_ResetPasswordTraitement.php" method="POST">
         <fieldset class="fieldset">
-            Nom:<input class="form-control" type="text" name="nom"><br>
             Login:<input class="form-control" type="email" name="login"><br>
-            Password:<input class="form-control" type="password" name="password"><br>
-            Re-tapez le password:<input class="form-control" type="password" name="repassword"><br>
-            <input type="submit" value="Envoyer">
+            <input type="submit" value="Envoyer" name="submit_email">
         </fieldset>
     </form>
 
@@ -31,4 +28,3 @@
 
 
     </section>
-            
