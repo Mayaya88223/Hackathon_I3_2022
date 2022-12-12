@@ -44,7 +44,7 @@
 
 
     <section class="section section--page">
-    <h4>"<?php echo $path . "/Assets/css/reset.css"; ?>"</h4>
+    <h4>"<?php echo $path . "Assets/css/reset.css"; ?>"</h4>
         <div class="page__inner d-flex">
             <div class="text-box">
                 <div d-flex>
@@ -54,7 +54,7 @@
 
                 </div>
                 <div class="tigre">
-                    <img src="/Assets/images/deco/tigre-bleu-lg.svg" alt="tigre bleu">
+                    <img src="Assets/images/deco/tigre-bleu-lg.svg" alt="tigre bleu">
                 </div>
     </section>
     <script src="<?php echo $folder . "JS/Chiffres2.js" ?>"></script>

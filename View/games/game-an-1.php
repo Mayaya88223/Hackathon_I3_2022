@@ -48,13 +48,13 @@
         <div class="page__inner d-flex">
             <div class="text-box">
                 <div d-flex>
-                    <h3>Couleurs : Niveau 1</h3>
+                    <h3>Animaux : Niveau 1</h3>
                     <div id="game-wrapper">
                     </div>
 
                 </div>
                 <div class="tigre">
-                    <img src="/Assets/images/deco/tigre-bleu-lg.svg" alt="tigre bleu">
+                    <img src="Assets/images/deco/tigre-bleu-lg.svg" alt="tigre bleu">
                 </div>
     </section>
     <script src="<?php echo $folder . "JS/Chiffres2.js" ?>"></script>
